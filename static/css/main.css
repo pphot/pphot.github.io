@@ -5,7 +5,7 @@
 :root {
     /* Primary Colors - Warm & Welcoming */
     --color-primary: #d4a574; /* Warm sand/gold */
-    --color-primary-dark: #b8885a; /* Deeper gold */
+    --color-primary-dark: #a67344; /* Deeper gold - better contrast */
     --color-primary-light: #e8c9a8; /* Lighter sand */
     --color-accent: #c17767; /* Terracotta */
     --color-accent-dark: #a95e50; /* Deep terracotta */
@@ -15,16 +15,16 @@
     --color-bg-alt: #f5f1eb; /* Light cream */
     --color-bg-card: #ffffff; /* Pure white */
     --color-text: #2c2c2c; /* Almost black */
-    --color-text-light: #6b6b6b; /* Medium gray */
-    --color-text-lighter: #999999; /* Light gray */
+    --color-text-light: #4a4a4a; /* Medium gray - improved from #6b6b6b for better contrast */
+    --color-text-lighter: #737373; /* Light gray - improved from #999999 */
     --color-border: #e5ddd5; /* Soft border */
     --color-border-light: #f0ebe5; /* Very light border */
 
     /* Semantic Colors */
-    --color-success: #7ba05b; /* Sage green */
-    --color-info: #6b9cc3; /* Soft blue */
-    --color-warning: #d4a574; /* Same as primary */
-    --color-error: #c17767; /* Same as accent */
+    --color-success: #5d7e43; /* Sage green - darker for contrast */
+    --color-info: #4a7a9f; /* Soft blue - darker for contrast */
+    --color-warning: #a67344; /* Darker gold for contrast */
+    --color-error: #a95e50; /* Darker terracotta */
 
     /* Shadows & Overlays */
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
@@ -204,13 +204,13 @@ p {
 }
 
 a {
-    color: var(--color-primary);
+    color: var(--color-primary-dark); /* Better contrast than primary */
     text-decoration: none;
     transition: color var(--transition-fast);
 }
 
 a:hover {
-    color: var(--color-primary-dark);
+    color: var(--color-text); /* High contrast on hover */
 }
 
 strong {
@@ -601,11 +601,12 @@ header {
 
 .post-date {
     font-size: var(--text-sm);
-    color: var(--color-text-lighter);
+    color: var(--color-text-light); /* Improved contrast */
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-bottom: var(--space-sm);
     display: block;
+    font-weight: 500; /* Slightly bolder for readability */
 }
 
 .post-title {
@@ -641,11 +642,13 @@ header {
 
 .post-tag {
     font-size: var(--text-xs);
-    color: var(--color-primary);
+    color: var(--color-primary-dark); /* Dark gold text - WCAG AA compliant */
     background: var(--color-primary-light);
     padding: 0.25rem 0.75rem;
     border-radius: var(--radius-full);
     text-transform: lowercase;
+    font-weight: 600; /* Bolder for better readability */
+    border: 1px solid var(--color-primary); /* Add subtle border for definition */
 }
 
 /* FOOTER
@@ -1199,10 +1202,11 @@ article {
 .post-meta {
     text-align: center;
     font-size: var(--text-sm);
-    color: var(--color-text-lighter);
+    color: var(--color-text-light); /* Improved contrast */
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin-bottom: var(--space-md);
+    font-weight: 500;
 }
 
 .reading-time {

@@ -18,12 +18,13 @@ homepage_cache_sections = ["journal", "books", "photography"]
 [extra]
 name = "Pphot"
 id = "pphot"
+email = "pphot@gmail.com"
 bio = "Sharing life's beautiful moments • Travel • Books • Photography"
 avatar = "/img/avatar.webp"
 img = "/img/post-cover.webp"
 links = [
   { name = "Instagram", icon = "instagram", url = "#" },
-  { name = "Email", icon = "email", url = "mailto:hello@pphot.blog" },
+  { name = "Email", icon = "email", url = "mailto:pphot@gmail.com" },
 ]
 
 # Primary navigation (header) - core content only

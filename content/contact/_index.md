@@ -1,6 +1,6 @@
 +++
 title = "Contact"
-template = "prose.html"
+template = "contact.html"
 date = 2026-01-09
 generate_feed = false
 +++
