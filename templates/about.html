@@ -8,16 +8,19 @@
         
         <main id="main">
             <div class="container">
-                <article class="prose" style="text-align: center; max-width: 800px; margin-inline: auto;">
-                    <img 
-                        src="{{ .Site.Config.extra.avatar }}" 
-                        alt="{{ .Site.Config.extra.name }}"
-                        style="width: 150px; height: 150px; border-radius: 50%; margin: 0 auto var(--space-xl);"
-                    />
+                <article class="about-content">
+                    <div class="about-header">
+                        <img 
+                            src="{{ .Site.Config.extra.avatar }}" 
+                            alt="{{ .Site.Config.extra.name }}"
+                            class="about-avatar"
+                        />
+                        <h1>About Pphot</h1>
+                    </div>
                     
-                    <h1>About Pphot</h1>
-                    
-                    {{ .Page.Content }}
+                    <div class="prose prose-about">
+                        {{ .Page.Content }}
+                    </div>
                 </article>
             </div>
         </main>

@@ -58,14 +58,12 @@ This blog is my way of processing experiences, sharing discoveries, and inviting
 
 ### Let's Connect
 
-I believe the best stories are the ones we share together. I'd love to hear from you:
+I believe the best stories are the ones we share together. I'd love to hear from you.
 
-- What books are changing how you see the world?
-- Where should I travel next?
-- What are you noticing and appreciating today?
+What books are changing how you see the world? Where should I travel next? What are you noticing and appreciating today?
 
-You can find me on Instagram [@pphot.travels](https://instagram.com/pphot.travels) or reach me at hello@pphot.com.
+You can find me on Instagram [@phuong_phot](https://instagram.com/phuong_phot) or reach me at pphot@gmail.com.
 
 Thank you for being here, for reading, for paying attention to your own life's beauty.
 
-*Here's to the adventure of being alive.*
+_Here's to the adventure of being alive._
