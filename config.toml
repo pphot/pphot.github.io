@@ -1,0 +1,102 @@
+base_url = "https://pphot.blog"
+feed_url = "https://pphot.blog/atom.xml"
+title = "Pphot"
+description = "A lifestyle blog about journeys, books, photography, and personal reflections"
+language = "en"
+output_dir = "public"
+minify_css = true
+minify_html = true
+minify_js = true
+
+# Auto-generate summaries from first N sentences (when description is not provided)
+summary_length = 2
+
+# Sections to include in homepage cache key (for incremental builds)
+homepage_cache_sections = ["journal", "books", "photography"]
+
+#=========================================================================================
+[extra]
+name = "Pphot"
+id = "pphot"
+bio = "Sharing life's beautiful moments • Travel • Books • Photography"
+avatar = "/img/avatar.webp"
+img = "/img/post-cover.webp"
+links = [
+  { name = "Instagram", icon = "instagram", url = "#" },
+  { name = "Email", icon = "email", url = "mailto:hello@pphot.blog" },
+]
+
+# Primary navigation (header) - core content only
+sections = [
+  { name = "journal", path = "/journal", is_external = false },
+  { name = "books", path = "/books", is_external = false },
+  { name = "photography", path = "/photography", is_external = false },
+  { name = "about", path = "/about", is_external = false },
+]
+
+# Secondary navigation (footer) - grouped by function
+# Browse group: content discovery
+footer_browse = [
+  { name = "archive", path = "/archive", is_external = false },
+  { name = "tags", path = "/tags", is_external = false },
+]
+
+# Connect group: contact and subscription
+footer_connect = [
+  { name = "contact", path = "/contact", is_external = false },
+  { name = "subscribe", path = "/subscribe", is_external = false },
+  { name = "rss", path = "/atom.xml", is_external = false },
+]
+
+# Legal group: policies
+footer_legal = [
+  { name = "privacy", path = "/privacy", is_external = false },
+]
+
+nav_separator = "☰"
+nav_wrapper_left = ""
+nav_wrapper_right = ""
+nav_wrapper_separator = ""
+# Currently working on status badge (shown next to name)
+currently_status = "exploring new places"
+currently_status_link = "#"
+ended_words = "Thanks for reading! I'd love to hear your thoughts."
+reaction_align = "right" # "left" | "center" | "right"
+reaction_endpoint = "https://reaction.tienduy-nguyen-dev.workers.dev"
+outdate_alert_text_before = "This post was written "
+outdate_alert_text_after = " days ago."
+recent_more_text = "View All Posts"
+enable_analytics = false
+
+# Homepage bento cards configuration
+[[extra.bento_cards]]
+type = "focus"
+icon = "✈️"
+title = "Currently"
+lines = [
+  { prompt = "📍", text = "exploring new destinations" },
+  { prompt = "📖", text = "reading great stories" },
+  { prompt = "📸", text = "capturing moments" }
+]
+
+[[extra.bento_cards]]
+type = "interests"
+icon = "💭"
+title = "Interests"
+tags = ["Travel", "Photography", "Books", "Writing", "Nature", "Culture"]
+
+[[extra.bento_cards]]
+type = "now"
+icon = "🌟"
+title = "Favorites"
+lines = [
+  { prompt = ">", text = "journaling life's adventures" },
+  { prompt = ">", text = "discovering hidden gems" },
+  { prompt = ">", text = "sharing beautiful moments" }
+]
+
+
+# Taxonomy configuration
+[taxonomies]
+tags = { enabled = true, paginate_by = 0 }
+series = { enabled = false, paginate_by = 0 }
