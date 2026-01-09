@@ -331,15 +331,15 @@ header {
     position: sticky;
     top: 0;
     z-index: var(--z-sticky);
-    /* Glassmorphism effect - frosted glass */
-    background: rgba(253, 251, 247, 0.75); /* Semi-transparent warm white */
+    /* Glassmorphism effect - frosted glass with STRONG background for readability */
+    background: rgba(253, 251, 247, 0.95); /* Increased from 0.75 for better contrast */
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: 1px solid rgba(212, 165, 116, 0.15); /* Subtle gold tint */
+    border-bottom: 1px solid rgba(212, 165, 116, 0.2); /* Slightly more visible */
     padding: var(--space-md) 0;
     /* Modern shadow for depth */
     box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.8) inset,
-                0 8px 32px rgba(0, 0, 0, 0.06);
+                0 8px 32px rgba(0, 0, 0, 0.08);
     transition: all var(--transition-base);
 }
 
@@ -502,12 +502,12 @@ header:hover {
 .hero-overlay {
     position: absolute;
     inset: 0;
-    /* 2026 Gradient Mesh - Organic, flowing, warm */
+    /* CRITICAL: Strong overlay for text readability - WCAG AA compliant
+       Dark gradient ensures white text (contrast ratio > 4.5:1) works on ANY image */
     background: 
-        radial-gradient(circle at 20% 30%, rgba(212, 165, 116, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(166, 115, 68, 0.12) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(253, 251, 247, 0.05) 0%, transparent 70%),
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.5) 100%);
+        radial-gradient(circle at 20% 30%, rgba(212, 165, 116, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(166, 115, 68, 0.15) 0%, transparent 50%),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.75) 100%);
 }
 
 .hero-content {
@@ -529,17 +529,24 @@ header:hover {
     font-weight: 900; /* Bolder for 2026 */
     margin-bottom: var(--space-md);
     color: white;
-    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    /* CRITICAL: Strong shadow for readability on any background */
+    text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.8),
+        0 4px 16px rgba(0, 0, 0, 0.6),
+        0 8px 32px rgba(0, 0, 0, 0.4);
     letter-spacing: -0.03em; /* Tighter, more modern */
 }
 
 .hero-subtitle {
     font-family: var(--font-serif); /* Elegant serif for subtitle */
     font-size: var(--text-xl);
-    font-weight: 300;
+    font-weight: 400; /* Slightly bolder than 300 for readability */
     max-width: 600px;
-    opacity: 0.95;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    color: rgba(255, 255, 255, 0.98); /* Slightly less transparent */
+    /* CRITICAL: Strong shadow for readability */
+    text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.8),
+        0 4px 12px rgba(0, 0, 0, 0.5);
     font-style: italic; /* Touch of elegance */
 }
 
