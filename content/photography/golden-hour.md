@@ -7,6 +7,7 @@ tags = ["photography", "golden-hour", "light", "nature"]
 
 [extra]
 img = "/img/gallery/golden-hour-01.webp"
+featured = true
 +++
 
 There's something sacred about golden hour. That fleeting moment when the sun hangs low on the horizon, painting the world in warm amber and honey tones. Photographers call it the "magic hour," and once you've experienced it, you understand why.

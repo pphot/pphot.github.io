@@ -43,17 +43,16 @@
                 <div>{{ .Page.Content }}</div>
             </section>
 
-            <!-- Featured Posts Section -->
             {{ $journal := get_section "journal" }}
             {{ $books := get_section "books" }}
             {{ $photography := get_section "photography" }}
             
-            {{ $has_posts := false }}
-            {{ if gt (len $journal.Children) 0 }}{{ $has_posts = true }}{{ end }}
-            {{ if gt (len $books.Children) 0 }}{{ $has_posts = true }}{{ end }}
-            {{ if gt (len $photography.Children) 0 }}{{ $has_posts = true }}{{ end }}
+            {{ $has_featured := false }}
+            {{ range $journal.Children }}{{ if .Config.extra.featured }}{{ $has_featured = true }}{{ end }}{{ end }}
+            {{ range $books.Children }}{{ if .Config.extra.featured }}{{ $has_featured = true }}{{ end }}{{ end }}
+            {{ range $photography.Children }}{{ if .Config.extra.featured }}{{ $has_featured = true }}{{ end }}{{ end }}
             
-            {{ if $has_posts }}
+            {{ if $has_featured }}
             <section class="section-featured">
                 <div class="section-header">
                     <h2>Featured Stories</h2>
@@ -63,7 +62,7 @@
                 <div class="post-grid">
                     {{ $count := 0 }}
                     {{ range (reverse $journal.Children) }}
-                        {{ if lt $count 2 }}
+                        {{ if and .Config.extra.featured (lt $count 6) }}
                         {{ $count = add $count 1 }}
                     <article class="post-card fade-in">
                         {{ $post_image := "/img/post-cover.webp" }}
@@ -110,9 +109,8 @@
                         {{ end }}
                     {{ end }}
                     
-                    {{ $count = 0 }}
                     {{ range (reverse $books.Children) }}
-                        {{ if lt $count 2 }}
+                        {{ if and .Config.extra.featured (lt $count 6) }}
                         {{ $count = add $count 1 }}
                     <article class="post-card fade-in">
                         {{ $post_image := "/img/post-cover.webp" }}
@@ -159,9 +157,8 @@
                         {{ end }}
                     {{ end }}
                     
-                    {{ $count = 0 }}
                     {{ range (reverse $photography.Children) }}
-                        {{ if lt $count 2 }}
+                        {{ if and .Config.extra.featured (lt $count 6) }}
                         {{ $count = add $count 1 }}
                     <article class="post-card fade-in">
                         {{ $post_image := "/img/post-cover.webp" }}
@@ -210,6 +207,160 @@
                 </div>
             </section>
             {{ end }}
+            
+            <section class="section-latest">
+                <div class="section-header">
+                    <h2>Latest Posts</h2>
+                    <p class="section-subtitle">Recent stories from all corners</p>
+                </div>
+                
+                <div class="post-grid">
+                    {{ $latest_count := 0 }}
+                    {{ range (reverse $journal.Children) }}
+                        {{ if lt $latest_count 3 }}
+                        {{ $latest_count = add $latest_count 1 }}
+                    <article class="post-card fade-in">
+                        {{ $post_image := "/img/post-cover.webp" }}
+                        {{ if .Config.extra.img }}
+                            {{ $img_path := .Config.extra.img }}
+                            {{ $first_char := index (split $img_path "") 0 }}
+                            {{ if eq $first_char "/" }}
+                                {{ $post_image = $img_path }}
+                            {{ else }}
+                                {{ $post_image = printf "%s%s" .Permalink $img_path }}
+                            {{ end }}
+                        {{ end }}
+                        
+                        <a href="{{ .Permalink }}" class="post-card-image">
+                            <img 
+                                src="{{ $post_image }}" 
+                                alt="{{ .Config.title }}"
+                                width="400"
+                                height="250"
+                                loading="lazy"
+                                decoding="async"
+                                onerror="this.src='/img/post-cover.webp'"
+                            />
+                        </a>
+                        
+                        <div class="post-card-content">
+                            <time class="post-date" datetime="{{ .Config.date }}">
+                                {{ date .Config.date "Jan 2, 2006" }}
+                            </time>
+                            <h3 class="post-title">
+                                <a href="{{ .Permalink }}">{{ .Config.title }}</a>
+                            </h3>
+                            {{ $summary := .Summary }}
+                            {{ if $summary }}
+                            <p class="post-description">{{ $summary }}</p>
+                            {{ end }}
+                            <div class="post-tags">
+                                {{ range .Config.tags }}
+                                <span class="post-tag">#{{ . }}</span>
+                                {{ end }}
+                            </div>
+                        </div>
+                    </article>
+                        {{ end }}
+                    {{ end }}
+                    
+                    {{ range (reverse $books.Children) }}
+                        {{ if lt $latest_count 6 }}
+                        {{ $latest_count = add $latest_count 1 }}
+                    <article class="post-card fade-in">
+                        {{ $post_image := "/img/post-cover.webp" }}
+                        {{ if .Config.extra.img }}
+                            {{ $img_path := .Config.extra.img }}
+                            {{ $first_char := index (split $img_path "") 0 }}
+                            {{ if eq $first_char "/" }}
+                                {{ $post_image = $img_path }}
+                            {{ else }}
+                                {{ $post_image = printf "%s%s" .Permalink $img_path }}
+                            {{ end }}
+                        {{ end }}
+                        
+                        <a href="{{ .Permalink }}" class="post-card-image">
+                            <img 
+                                src="{{ $post_image }}" 
+                                alt="{{ .Config.title }}"
+                                width="400"
+                                height="250"
+                                loading="lazy"
+                                decoding="async"
+                                onerror="this.src='/img/post-cover.webp'"
+                            />
+                        </a>
+                        
+                        <div class="post-card-content">
+                            <time class="post-date" datetime="{{ .Config.date }}">
+                                {{ date .Config.date "Jan 2, 2006" }}
+                            </time>
+                            <h3 class="post-title">
+                                <a href="{{ .Permalink }}">{{ .Config.title }}</a>
+                            </h3>
+                            {{ $summary := .Summary }}
+                            {{ if $summary }}
+                            <p class="post-description">{{ $summary }}</p>
+                            {{ end }}
+                            <div class="post-tags">
+                                {{ range .Config.tags }}
+                                <span class="post-tag">#{{ . }}</span>
+                                {{ end }}
+                            </div>
+                        </div>
+                    </article>
+                        {{ end }}
+                    {{ end }}
+                    
+                    {{ range (reverse $photography.Children) }}
+                        {{ if lt $latest_count 9 }}
+                        {{ $latest_count = add $latest_count 1 }}
+                    <article class="post-card fade-in">
+                        {{ $post_image := "/img/post-cover.webp" }}
+                        {{ if .Config.extra.img }}
+                            {{ $img_path := .Config.extra.img }}
+                            {{ $first_char := index (split $img_path "") 0 }}
+                            {{ if eq $first_char "/" }}
+                                {{ $post_image = $img_path }}
+                            {{ else }}
+                                {{ $post_image = printf "%s%s" .Permalink $img_path }}
+                            {{ end }}
+                        {{ end }}
+                        
+                        <a href="{{ .Permalink }}" class="post-card-image">
+                            <img 
+                                src="{{ $post_image }}" 
+                                alt="{{ .Config.title }}"
+                                width="400"
+                                height="250"
+                                loading="lazy"
+                                decoding="async"
+                                onerror="this.src='/img/post-cover.webp'"
+                            />
+                        </a>
+                        
+                        <div class="post-card-content">
+                            <time class="post-date" datetime="{{ .Config.date }}">
+                                {{ date .Config.date "Jan 2, 2006" }}
+                            </time>
+                            <h3 class="post-title">
+                                <a href="{{ .Permalink }}">{{ .Config.title }}</a>
+                            </h3>
+                            {{ $summary := .Summary }}
+                            {{ if $summary }}
+                            <p class="post-description">{{ $summary }}</p>
+                            {{ end }}
+                            <div class="post-tags">
+                                {{ range .Config.tags }}
+                                <span class="post-tag">#{{ . }}</span>
+                                {{ end }}
+                            </div>
+                        </div>
+                    </article>
+                        {{ end }}
+                    {{ end }}
+                </div>
+            </section>
         </main>
         
         {{ template "partials/_footer.html" . }}

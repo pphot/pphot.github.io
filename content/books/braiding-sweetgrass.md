@@ -7,6 +7,7 @@ tags = ["books", "nature", "indigenous-wisdom", "non-fiction"]
 
 [extra]
 img = "/img/braiding-sweetgrass.webp"
+featured = true
 +++
 
 Some books change how you see the world. "Braiding Sweetgrass" by Robin Wall Kimmerer is one of them. I'm not the same person I was before reading it, and I mean that literally. The way I walk through forests has changed. The way I think about my relationship to the earth has changed. Even my morning routine has changed – I now thank my coffee, which sounds ridiculous but also feels profound.
