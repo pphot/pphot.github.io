@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
+    {{ template "partials/_head.html" . }}
+    <body class="about-page">
+        <a href="#main" class="skip-to-content">Skip to content</a>
+        
+        {{ template "partials/_header.html" . }}
+        
+        <main id="main">
+            <div class="container">
+                <article class="prose" style="text-align: center; max-width: 800px; margin-inline: auto;">
+                    <img 
+                        src="{{ .Site.Config.extra.avatar }}" 
+                        alt="{{ .Site.Config.extra.name }}"
+                        style="width: 150px; height: 150px; border-radius: 50%; margin: 0 auto var(--space-xl);"
+                    />
+                    
+                    <h1>About Pphot</h1>
+                    
+                    {{ .Page.Content }}
+                </article>
+            </div>
+        </main>
+        
+        {{ template "partials/_footer.html" . }}
+        
+        <script src="/js/main.js"></script>
+    </body>
+</html>

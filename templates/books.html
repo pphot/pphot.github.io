@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
+    {{ template "partials/_head.html" . }}
+    <body class="section-page books-page">
+        <a href="#main" class="skip-to-content">Skip to content</a>
+        
+        {{ template "partials/_header.html" . }}
+        
+        <main id="main">
+            <div class="container">
+                <div class="section-header">
+                    <h1>📚 Books</h1>
+                    <p class="section-subtitle">Reviews, reflections, and literary discoveries</p>
+                </div>
+                
+                <div class="post-grid">
+                    {{ range reverse .Section.Children }}
+                    <article class="post-card">
+                        {{ $post_image := "/img/post-cover.webp" }}
+                        {{ if .Config.extra.img }}
+                            {{ $img_path := .Config.extra.img }}
+                            {{ $first_char := index (split $img_path "") 0 }}
+                            {{ if eq $first_char "/" }}
+                                {{ $post_image = $img_path }}
+                            {{ else }}
+                                {{ $post_image = printf "%s%s" .Permalink $img_path }}
+                            {{ end }}
+                        {{ end }}
+                        
+                        <a href="{{ .Permalink }}" class="post-card-image">
+                            <img 
+                                src="{{ $post_image }}" 
+                                alt="{{ .Config.title }}"
+                                width="400"
+                                height="250"
+                                loading="lazy"
+                                decoding="async"
+                                onerror="this.src='/img/post-cover.webp'"
+                            />
+                        </a>
+                        
+                        <div class="post-card-content">
+                            <time class="post-date" datetime="{{ .Config.date }}">
+                                {{ date .Config.date "Jan 2, 2006" }}
+                            </time>
+                            <h2 class="post-title">
+                                <a href="{{ .Permalink }}">{{ .Config.title }}</a>
+                            </h2>
+                            {{ $summary := .Summary }}
+                            {{ if $summary }}
+                            <p class="post-description">{{ $summary }}</p>
+                            {{ end }}
+                            <div class="post-tags">
+                                {{ range .Config.tags }}
+                                <span class="post-tag">#{{ . }}</span>
+                                {{ end }}
+                            </div>
+                        </div>
+                    </article>
+                    {{ end }}
+                </div>
+            </div>
+        </main>
+        
+        {{ template "partials/_footer.html" . }}
+        
+        <script src="/js/main.js"></script>
+    </body>
+</html>

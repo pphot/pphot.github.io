@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
+    {{ template "partials/_head.html" . }}
+    <body class="tags-page">
+        <a href="#main" class="skip-to-content">Skip to content</a>
+        
+        {{ template "partials/_header.html" . }}
+        
+        <main id="main">
+            <div class="container">
+                <div class="section-header">
+                    <h1>All Tags</h1>
+                    <p class="section-subtitle">Browse posts by topic</p>
+                </div>
+                
+                <div class="tag-cloud">
+                    {{ range .Site.Tags }}
+                    <a href="/tags/{{ .Name | urlize }}" class="tag-item">
+                        #{{ .Name }}
+                        <span class="tag-count">({{ len .Children }})</span>
+                    </a>
+                    {{ end }}
+                </div>
+            </div>
+        </main>
+        
+        {{ template "partials/_footer.html" . }}
+        
+        <script src="/js/main.js"></script>
+    </body>
+</html>

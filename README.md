@@ -1,51 +1,110 @@
-# 🌐 tduyng.com
+# Pphot - A Beautiful Lifestyle Blog 🌸✨
 
-**Modern personal blog powered by [gozzi](https://github.com/tduyng/gozzi)**
-
-<p>
-  <a href="https://tduyng.com">
-    <img alt="Website Status" title="Website Status" src="https://custom-icon-badges.demolab.com/website?url=https%3A%2F%2Ftduyng.com&style=for-the-badge&logo=globe&logoColor=white&labelColor=302D41&color=A6E3A1&up_message=online&down_message=offline"/></a>
-  <a href="https://github.com/tduyng/gozzi">
-    <img alt="Built with Gozzi" title="Static Site Generator" src="https://custom-icon-badges.demolab.com/badge/Built_with-Gozzi-CBA6F7?style=for-the-badge&logo=rocket-fill&logoColor=white&labelColor=302D41"/></a>
-  <a href="https://github.com/tduyng/tduyng.github.io/actions/workflows/deploy.yml">
-    <img alt="Deploy Status" title="Deployment Status" src="https://img.shields.io/github/actions/workflow/status/tduyng/tduyng.github.io/deploy.yml?branch=main&style=for-the-badge&logo=github-actions&logoColor=white&labelColor=302D41&color=94E2D5&label=deploy"/></a>
-  <a href="LICENSE">
-    <img alt="License" title="MIT License" src="https://custom-icon-badges.demolab.com/badge/License-MIT-FAB387?style=for-the-badge&logo=law&logoColor=white&labelColor=302D41"/></a>
-</p>
+A warm, elegant lifestyle blog built with [Gozzi](https://github.com/tduyng/gozzi) static site generator. Features photography, travel journals, and book reviews with a magazine-style design.
 
 ---
 
-### About
+## Features
 
-A lightweight, fast, and modern personal website showcasing blog posts, technical notes, and projects. Built with **Go** through the custom [gozzi](https://github.com/tduyng/gozzi) static site generator, prioritizing simplicity and performance.
+- 🎨 **Warm Color Palette** - Sand (#D4A574), terracotta (#C17767), and cream tones
+- 📱 **Fully Responsive** - Mobile-first design (640px, 768px, 1024px, 1280px breakpoints)
+- ⚡ **Lightning Fast** - Static site generation, optimized images, lazy loading
+- 🔍 **SEO Optimized** - Complete meta tags, Open Graph, Twitter Cards, JSON-LD structured data
+- ♿ **Accessible** - WCAG compliant, keyboard navigation, skip links
+- 📸 **Image Lightbox** - Beautiful full-screen photo viewing with keyboard support
+- 📖 **Reading Progress** - Visual progress indicator for blog posts
+- ✨ **Smooth Animations** - Elegant fade-ins and transitions throughout
 
-### Repository Structure
+## Design Philosophy
+
+**Inspired by**: Kinfolk magazine, Cereal magazine, modern lifestyle blogs
+
+**Typography**:
+- Display: Playfair Display (elegant headings)
+- Body: Lora (readable serif for content)
+- UI: Inter (clean sans-serif for interface)
+
+**Layout**: 
+- Magazine-style with heavy focus on imagery
+- Image-first post cards in 3-column grid
+- Clean, airy spacing with generous whitespace
+- Warm golden hour aesthetic
+
+**Sections**:
+- 📔 **Journal** - Travel stories and life adventures
+- 📚 **Books** - Reviews and literary reflections
+- 📸 **Photography** - Visual essays and galleries
+- 👤 **About** - Personal story and bio
+
+## Repository Structure
 
 ```
-📁 content/       → Markdown content (blog posts, notes, pages)
-📁 templates/     → HTML templates and partials
-📁 static/        → CSS, JavaScript, images, and icons
-📁 config/        → Site configuration (dev & prod)
+pphot/
+├── content/
+│   ├── _index.md           → Homepage content
+│   ├── about/              → About page
+│   ├── contact/            → Contact page
+│   ├── journal/            → Travel & journal posts
+│   ├── books/              → Book reviews
+│   └── photography/        → Photo galleries
+├── templates/
+│   ├── partials/
+│   │   ├── _head.html      → Meta tags, SEO
+│   │   ├── _header.html    → Navigation
+│   │   ├── _footer.html    → Footer links
+│   │   └── _json_ld.html   → Structured data
+│   ├── home.html           → Homepage template
+│   ├── post.html           → Single post template
+│   ├── journal.html        → Journal section
+│   ├── books.html          → Books section
+│   ├── photography.html    → Photography gallery
+│   ├── about.html          → About page
+│   ├── contact.html        → Contact form
+│   ├── tags.html           → All tags page
+│   ├── tag.html            → Single tag page
+│   ├── archive.html        → Archive timeline
+│   └── 404.html            → Error page
+├── static/
+│   ├── css/
+│   │   └── main.css        → Complete CSS architecture
+│   ├── js/
+│   │   ├── main.js         → Navigation, scroll effects
+│   │   └── lightbox.js     → Image lightbox
+│   └── img/                → Images and photos
+└── config.toml             → Site configuration
 ```
 
-### Quick Start
+## Development
 
 ```bash
-# Generate the site
+# Build the site
 gozzi build
 
 # Serve locally with hot reload
-gozzi serve
+gozzi serve --port 1313
 ```
 
-### Tech Stack
+## Tech Stack
 
-- **Generator**: [Gozzi](https://github.com/tduyng/gozzi) (Go-based SSG)
-- **Deployment**: GitHub Pages
-- **CI/CD**: GitHub Actions
+- **Generator**: [Gozzi](https://github.com/tduyng/gozzi) - Fast Go-based SSG
+- **CSS**: Pure CSS, no frameworks - fluid typography, CSS Grid, custom properties
+- **JavaScript**: Vanilla JS - minimal, performant interactions
+- **Fonts**: Google Fonts (Playfair Display, Lora, Inter)
+
+## Sample Content
+
+The blog includes sample content to showcase the design:
+- 2 journal posts (Paris weekend, Portugal coast)
+- 2 book reviews (The Midnight Library, Braiding Sweetgrass)
+- 1 photography gallery (Golden Hour Collection)
+
+## License
+
+MIT
 
 ---
 
 <p align="center">
-  <sub>Built with 💚 by <a href="https://github.com/tduyng">@tduyng</a></sub>
+  <sub>✨ Created by Pixel the Frontend Wizard ✨</sub><br>
+  <sub>Built with 🌸 using <a href="https://github.com/tduyng/gozzi">Gozzi</a></sub>
 </p>

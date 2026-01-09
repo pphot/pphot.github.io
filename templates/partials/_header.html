@@ -1,0 +1,28 @@
+<header>
+    <div class="header-container">
+        <a href="/" class="site-logo">{{ .Site.Config.title }}</a>
+        
+        <nav class="main-nav">
+            <ul>
+                {{ range .Site.Config.extra.sections }}
+                <li><a href="{{ .path }}">{{ .name }}</a></li>
+                {{ end }}
+            </ul>
+        </nav>
+        
+        <button class="mobile-menu-toggle" aria-label="Toggle menu" id="mobile-menu-toggle">
+            ☰
+        </button>
+    </div>
+</header>
+
+<nav class="mobile-nav" id="mobile-nav">
+    <button class="mobile-nav-close" aria-label="Close menu" id="mobile-nav-close">
+        ×
+    </button>
+    <ul>
+        {{ range .Site.Config.extra.sections }}
+        <li><a href="{{ .path }}">{{ .name }}</a></li>
+        {{ end }}
+    </ul>
+</nav>

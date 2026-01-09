@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
+    {{ template "partials/_head.html" . }}
+    <body class="archive-page">
+        <a href="#main" class="skip-to-content">Skip to content</a>
+        
+        {{ template "partials/_header.html" . }}
+        
+        <main id="main">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Archive</h1>
+                    <p class="section-subtitle">All posts organized by date</p>
+                </div>
+                
+                <div class="archive-timeline">
+                    <p style="text-align: center; color: var(--color-text-light);">Archive functionality coming soon...</p>
+                </div>
+            </div>
+        </main>
+        
+        {{ template "partials/_footer.html" . }}
+        
+        <script src="/js/main.js"></script>
+    </body>
+</html>

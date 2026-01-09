@@ -1,0 +1,97 @@
+<head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#D4A574" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="base" content="{{ .Site.Config.base_url }}" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="msapplication-TileColor" content="#D4A574" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Preconnect for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/webp" sizes="32x32" href="/img/favicon-32x32.webp" />
+    <link rel="icon" type="image/webp" sizes="16x16" href="/img/favicon-16x16.webp" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.webp" />
+    
+    <!-- Canonical and alternate links -->
+    <link rel="canonical" href="{{ .Site.Config.base_url }}{{ .Page.Permalink }}" />
+    <link rel="alternate" type="application/atom+xml" title="{{ .Site.Config.title }} - Atom Feed" href="{{ .Site.Config.feed_url }}" />
+    
+    <!-- Basic meta tags -->
+    {{ if .Page.Config.tags }}
+    <meta name="keywords" content="{{ join .Page.Config.tags ", " }}" />
+    {{ end }}
+    <meta name="author" content="{{ .Site.Config.extra.name }}" />
+    <meta name="language" content="{{ .Site.Config.language }}" />
+    
+    <!-- Title -->
+    {{ $page_title := priority .Page.Config.title .Section.Config.title .Site.Config.title }}
+    {{ $site_title := .Site.Config.title }}
+    <title>{{ if and .Page.Config.title (ne $page_title $site_title) }}{{ $page_title }} | {{ $site_title }}{{ else }}{{ $page_title }}{{ end }}</title>
+    
+    <!-- Description -->
+    {{ $description := priority .Page.Config.description .Section.Config.description .Site.Config.description }}
+    <meta name="description" content="{{ $description }}" />
+    
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="{{ priority .Page.Config.title .Section.Config.title .Site.Config.title }}" />
+    <meta property="og:description" content="{{ $description }}" />
+    <meta property="og:type" content="{{ if or (has_prefix .Page.Path "journal/") (has_prefix .Page.Path "books/") (has_prefix .Page.Path "photography/") }}article{{ else }}website{{ end }}" />
+    <meta property="og:url" content="{{ .Site.Config.base_url }}{{ .Page.Permalink }}" />
+    <meta property="og:site_name" content="{{ .Site.Config.title }}" />
+    <meta property="og:locale" content="en_US" />
+    
+    {{ if .Page.Config.extra.img }}
+    <meta property="og:image" content="{{ .Page.Config.img_url }}" />
+    <meta property="og:image:secure_url" content="{{ .Page.Config.img_url }}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="{{ .Page.Config.title }}" />
+    {{ else }}
+    <meta property="og:image" content="{{ .Site.Config.base_url }}{{ .Site.Config.extra.img }}" />
+    <meta property="og:image:secure_url" content="{{ .Site.Config.base_url }}{{ .Site.Config.extra.img }}" />
+    {{ end }}
+    
+    <!-- Article specific OG tags -->
+    {{ if or (has_prefix .Page.Path "journal/") (has_prefix .Page.Path "books/") (has_prefix .Page.Path "photography/") }}
+    {{ if .Page.Config.date }}
+    <meta property="article:published_time" content="{{ .Page.Config.date }}" />
+    {{ end }}
+    {{ if not .Page.Config.updated.IsZero }}
+    <meta property="article:modified_time" content="{{ .Page.Config.updated }}" />
+    {{ end }}
+    <meta property="article:author" content="{{ .Site.Config.base_url }}" />
+    {{ range .Page.Config.tags }}
+    <meta property="article:tag" content="{{ . }}" />
+    {{ end }}
+    {{ end }}
+    
+    <!-- Twitter Card meta tags -->
+    <meta name="twitter:card" content="{{ if .Page.Config.extra.img }}summary_large_image{{ else }}summary{{ end }}" />
+    <meta name="twitter:title" content="{{ priority .Page.Config.title .Section.Config.title .Site.Config.title }}" />
+    <meta name="twitter:description" content="{{ $description }}" />
+    {{ if .Page.Config.extra.img }}
+    <meta name="twitter:image" content="{{ .Page.Config.img_url }}" />
+    <meta name="twitter:image:alt" content="{{ .Page.Config.title }}" />
+    {{ else }}
+    <meta name="twitter:image" content="{{ .Site.Config.base_url }}{{ .Site.Config.extra.img }}" />
+    {{ end }}
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+    
+    <!-- Stylesheets -->
+    <link rel="preload" href="/css/main.css" as="style" />
+    <link rel="stylesheet" href="/css/main.css" />
+    
+    <!-- JSON-LD Structured Data -->
+    {{ template "partials/_json_ld.html" . }}
+</head>

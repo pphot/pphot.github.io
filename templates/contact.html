@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
+    {{ template "partials/_head.html" . }}
+    <body class="contact-page">
+        <a href="#main" class="skip-to-content">Skip to content</a>
+        
+        {{ template "partials/_header.html" . }}
+        
+        <main id="main">
+            <div class="container">
+                <div class="prose" style="max-width: 600px; margin-inline: auto;">
+                    <h1 style="text-align: center;">Get in Touch</h1>
+                    <p style="text-align: center;">I'd love to hear from you! Feel free to reach out.</p>
+                    
+                    {{ .Page.Content }}
+                    
+                    <form class="contact-form" style="margin-top: var(--space-2xl);">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Name</label>
+                            <input type="text" id="name" name="name" class="form-input" required />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email</label>
+                            <input type="email" id="email" name="email" class="form-input" required />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="message">Message</label>
+                            <textarea id="message" name="message" class="form-textarea" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+                    </form>
+                    
+                    <div style="text-align: center; margin-top: var(--space-2xl); padding-top: var(--space-2xl); border-top: 1px solid var(--color-border);">
+                        <p>Or email me directly at:</p>
+                        <p><a href="mailto:hello@pphot.blog" style="font-size: var(--text-lg); font-weight: 500;">hello@pphot.blog</a></p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        {{ template "partials/_footer.html" . }}
+        
+        <script src="/js/main.js"></script>
+    </body>
+</html>

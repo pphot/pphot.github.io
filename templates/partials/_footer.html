@@ -1,0 +1,47 @@
+<footer>
+    <div class="footer-content">
+        <div class="footer-nav">
+            <div class="footer-group">
+                <h4 class="footer-group-title">Browse</h4>
+                <nav class="footer-group-links">
+                    {{ range .Site.Config.extra.footer_browse }}
+                    <a href="{{ .path }}">{{ .name }}</a>
+                    {{ end }}
+                </nav>
+            </div>
+
+            <div class="footer-group">
+                <h4 class="footer-group-title">Connect</h4>
+                <nav class="footer-group-links">
+                    {{ range .Site.Config.extra.footer_connect }}
+                    <a href="{{ .path }}">{{ .name }}</a>
+                    {{ end }}
+                </nav>
+            </div>
+
+            <div class="footer-group">
+                <h4 class="footer-group-title">Legal</h4>
+                <nav class="footer-group-links">
+                    {{ range .Site.Config.extra.footer_legal }}
+                    <a href="{{ .path }}">{{ .name }}</a>
+                    {{ end }}
+                </nav>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="copyright">
+                © {{ date now "2006" }} {{ .Site.Config.extra.name }} • 
+                All moments captured with love
+            </div>
+            
+            <div class="social-links">
+                {{ range .Site.Config.extra.links }}
+                <a href="{{ .url }}" aria-label="{{ .name }}" class="social-link" target="_blank" rel="noopener noreferrer">
+                    {{ if eq .icon "instagram" }}📷{{ else if eq .icon "email" }}✉️{{ end }}
+                </a>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</footer>

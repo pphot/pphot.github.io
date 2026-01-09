@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
+    {{ template "partials/_head.html" . }}
+    <body class="post-page">
+        <a href="#main" class="skip-to-content">Skip to content</a>
+        
+        {{ template "partials/_header.html" . }}
+        
+        <div class="reading-progress" id="reading-progress"></div>
+        
+        <main id="main">
+            <article class="container">
+                <header class="post-header">
+                    {{ $post_image := "/img/post-cover.webp" }}
+                    {{ if .Page.Config.extra.img }}
+                        {{ $img_path := .Page.Config.extra.img }}
+                        {{ $first_char := index (split $img_path "") 0 }}
+                        {{ if eq $first_char "/" }}
+                            {{ $post_image = $img_path }}
+                        {{ else }}
+                            {{ $post_image = printf "%s%s" .Page.Permalink $img_path }}
+                        {{ end }}
+                    {{ end }}
+                    
+                    <div class="post-featured-image">
+                        <img 
+                            src="{{ $post_image }}" 
+                            alt="{{ .Page.Config.title }}"
+                            width="1200"
+                            height="630"
+                            loading="eager"
+                            fetchpriority="high"
+                            onerror="this.src='/img/post-cover.webp'"
+                        />
+                    </div>
+                    
+                    <div class="post-meta">
+                        <time class="post-date" datetime="{{ .Page.Config.date }}">
+                            {{ date .Page.Config.date "January 2, 2006" }}
+                        </time>
+                        {{ if .Page.Config.extra.reading_time }}
+                        <span class="reading-time">• {{ .Page.Config.extra.reading_time }} min read</span>
+                        {{ end }}
+                    </div>
+                    
+                    <h1 class="post-title-single">{{ .Page.Config.title }}</h1>
+                    
+                    {{ if .Page.Config.description }}
+                    <p class="post-intro">{{ .Page.Config.description }}</p>
+                    {{ end }}
+                    
+                    <div class="post-tags">
+                        {{ range .Page.Config.tags }}
+                        {{ $tag_slugify := . | urlize }}
+                        {{ $tag_url := printf "/tags/%s" $tag_slugify }}
+                        <a href="{{ $tag_url }}" class="post-tag">#{{ . }}</a>
+                        {{ end }}
+                    </div>
+                </header>
+                
+                <div class="prose">
+                    {{ .Page.Content }}
+                </div>
+                
+                <footer class="post-footer">
+                    <div class="post-share">
+                        <h3>Share this post</h3>
+                        <div class="share-buttons">
+                            <a href="https://twitter.com/intent/tweet?text={{ .Page.Config.title }}&url={{ .Site.Config.base_url }}{{ .Page.Permalink }}" target="_blank" rel="noopener noreferrer" class="share-button">
+                                Twitter
+                            </a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ .Site.Config.base_url }}{{ .Page.Permalink }}" target="_blank" rel="noopener noreferrer" class="share-button">
+                                Facebook
+                            </a>
+                            <a href="mailto:?subject={{ .Page.Config.title }}&body=Check out this post: {{ .Site.Config.base_url }}{{ .Page.Permalink }}" class="share-button">
+                                Email
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="post-author">
+                        <img src="{{ .Site.Config.extra.avatar }}" alt="{{ .Site.Config.extra.name }}" class="author-avatar" width="60" height="60" />
+                        <div class="author-info">
+                            <h4>{{ .Site.Config.extra.name }}</h4>
+                            <p>{{ .Site.Config.extra.bio }}</p>
+                        </div>
+                    </div>
+                </footer>
+            </article>
+        </main>
+        
+        {{ template "partials/_footer.html" . }}
+        
+        <script src="/js/main.js"></script>
+    </body>
+</html>

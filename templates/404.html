@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
+    {{ template "partials/_head.html" . }}
+    <body class="error-404">
+        <a href="#main" class="skip-to-content">Skip to content</a>
+        
+        {{ template "partials/_header.html" . }}
+        
+        <main id="main">
+            <div class="error-page">
+                <div class="error-code">404</div>
+                <h1 class="error-message">Lost in the Journey?</h1>
+                <p style="font-size: var(--text-lg); color: var(--color-text-light); margin-bottom: var(--space-xl);">
+                    The page you're looking for seems to have wandered off the path.
+                </p>
+                <a href="/" class="btn">Take Me Home</a>
+            </div>
+        </main>
+        
+        {{ template "partials/_footer.html" . }}
+        
+        <script src="/js/main.js"></script>
+    </body>
+</html>
