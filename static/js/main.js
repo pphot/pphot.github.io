@@ -97,4 +97,22 @@
         });
     }
     
+    // Animate section headers on scroll
+    if ('IntersectionObserver' in window) {
+        const headerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    headerObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.2
+        });
+        
+        document.querySelectorAll('.section-header').forEach(header => {
+            headerObserver.observe(header);
+        });
+    }
+    
 })();

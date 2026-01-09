@@ -502,12 +502,11 @@ header:hover {
 .hero-overlay {
     position: absolute;
     inset: 0;
-    /* CRITICAL: Strong overlay for text readability - WCAG AA compliant
-       Dark gradient ensures white text (contrast ratio > 4.5:1) works on ANY image */
+    /* Warm light overlay to match site color scheme - dark text friendly */
     background: 
-        radial-gradient(circle at 20% 30%, rgba(212, 165, 116, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(166, 115, 68, 0.15) 0%, transparent 50%),
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.75) 100%);
+        radial-gradient(circle at 30% 40%, rgba(253, 251, 247, 0.85) 0%, rgba(253, 251, 247, 0.65) 60%),
+        radial-gradient(circle at 70% 60%, rgba(232, 201, 168, 0.5) 0%, transparent 50%),
+        linear-gradient(to bottom, rgba(253, 251, 247, 0.75) 0%, rgba(245, 241, 235, 0.85) 100%);
 }
 
 .hero-content {
@@ -520,34 +519,32 @@ header:hover {
     justify-content: center;
     text-align: center;
     padding: var(--space-xl);
-    color: white;
 }
 
 .hero-title {
     font-family: var(--font-display);
     font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 900; /* Bolder for 2026 */
+    font-weight: 900;
     margin-bottom: var(--space-md);
-    color: white;
-    /* CRITICAL: Strong shadow for readability on any background */
+    color: var(--color-text); /* Dark text matching site scheme */
+    /* Subtle glow for depth, not harsh shadow */
     text-shadow: 
-        0 2px 4px rgba(0, 0, 0, 0.8),
-        0 4px 16px rgba(0, 0, 0, 0.6),
-        0 8px 32px rgba(0, 0, 0, 0.4);
-    letter-spacing: -0.03em; /* Tighter, more modern */
+        0 1px 2px rgba(255, 255, 255, 0.8),
+        0 2px 8px rgba(212, 165, 116, 0.3);
+    letter-spacing: -0.03em;
 }
 
 .hero-subtitle {
-    font-family: var(--font-serif); /* Elegant serif for subtitle */
+    font-family: var(--font-serif);
     font-size: var(--text-xl);
-    font-weight: 400; /* Slightly bolder than 300 for readability */
+    font-weight: 400;
     max-width: 600px;
-    color: rgba(255, 255, 255, 0.98); /* Slightly less transparent */
-    /* CRITICAL: Strong shadow for readability */
+    color: var(--color-text-light); /* Medium gray matching site palette */
+    /* Subtle glow, warm tint */
     text-shadow: 
-        0 2px 4px rgba(0, 0, 0, 0.8),
-        0 4px 12px rgba(0, 0, 0, 0.5);
-    font-style: italic; /* Touch of elegance */
+        0 1px 2px rgba(255, 255, 255, 0.9),
+        0 2px 6px rgba(232, 201, 168, 0.4);
+    font-style: italic;
 }
 
 /* WELCOME SECTION - Friendly & Inviting
@@ -1560,4 +1557,96 @@ article {
     .about-header h1 {
         font-size: var(--text-3xl);
     }
+}
+
+/* MICRO-INTERACTIONS - 2026 Smooth Animations
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Stagger animation for post cards */
+.post-card:nth-child(1) { animation-delay: 0ms; }
+.post-card:nth-child(2) { animation-delay: 100ms; }
+.post-card:nth-child(3) { animation-delay: 200ms; }
+.post-card:nth-child(4) { animation-delay: 300ms; }
+.post-card:nth-child(5) { animation-delay: 400ms; }
+.post-card:nth-child(6) { animation-delay: 500ms; }
+
+/* Gentle hover lift for links */
+a {
+    transition: all var(--transition-fast);
+}
+
+/* Button-like elements get a satisfying press */
+.share-button,
+.contact-card,
+.post-tag {
+    transition: all var(--transition-fast);
+}
+
+.share-button:active,
+.contact-card:active,
+.post-tag:active {
+    transform: scale(0.97);
+}
+
+/* Images lazy load with fade-in */
+img {
+    transition: opacity var(--transition-base);
+}
+
+img[loading="lazy"] {
+    opacity: 0;
+}
+
+img[loading="lazy"].loaded,
+img:not([loading="lazy"]) {
+    opacity: 1;
+}
+
+/* Smooth focus indicator movement */
+*:focus-visible {
+    transition: outline-offset var(--transition-fast);
+}
+
+/* Nav underline slides in smoothly (already has transition) */
+/* Card hover is smooth (already has transition) */
+
+/* Welcome avatar subtle float on hover */
+.welcome-avatar,
+.about-avatar,
+.author-avatar {
+    transition: transform var(--transition-base);
+}
+
+.welcome-avatar:hover,
+.about-avatar:hover {
+    transform: translateY(-4px) rotate(2deg);
+}
+
+/* Section headers fade in on scroll (will be triggered by JS) */
+.section-header {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.section-header.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
