@@ -13,7 +13,7 @@
     /* Neutrals - Sophisticated Grays */
     --color-bg: #fdfbf7; /* Warm white */
     --color-bg-alt: #f5f1eb; /* Light cream */
-    --color-bg-card: #ffffff; /* Pure white */
+    --color-bg-card: #faf8f4; /* Warm cream (NOT pure white) */
     --color-text: #2c2c2c; /* Almost black */
     --color-text-light: #4a4a4a; /* Medium gray - improved from #6b6b6b for better contrast */
     --color-text-lighter: #737373; /* Light gray - improved from #999999 */
@@ -62,7 +62,7 @@
     /* Font Sizes - BOLD 2026 Typography with Kinetic Scale */
     --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
     --text-sm: clamp(0.875rem, 0.825rem + 0.25vw, 1rem);
-    --text-base: clamp(1.0625rem, 1rem + 0.3125vw, 1.1875rem); /* Bumped from 1rem */
+    --text-base: clamp(1rem, 1rem + 0.125vw, 1.125rem); /* 16px-18px - standard readable size */
     --text-lg: clamp(1.25rem, 1.125rem + 0.625vw, 1.5rem); /* Larger */
     --text-xl: clamp(1.5rem, 1.25rem + 1.25vw, 2rem); /* Bolder */
     --text-2xl: clamp(2rem, 1.5rem + 2.5vw, 3rem); /* HUGE */
@@ -211,32 +211,6 @@ h6 {
     text-transform: uppercase;
 }
 
-h1 {
-    font-size: var(--text-4xl);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-}
-h2 {
-    font-size: var(--text-3xl);
-    letter-spacing: -0.025em;
-}
-h3 {
-    font-size: var(--text-2xl);
-}
-h4 {
-    font-size: var(--text-xl);
-}
-h5 {
-    font-size: var(--text-lg);
-}
-h6 {
-    font-size: var(--text-base);
-    font-family: var(--font-sans);
-    font-weight: 600;
-    letter-spacing: 0;
-    text-transform: uppercase;
-}
-
 p {
     margin-bottom: var(--space-md);
     max-width: var(--width-prose);
@@ -331,22 +305,17 @@ header {
     position: sticky;
     top: 0;
     z-index: var(--z-sticky);
-    /* Glassmorphism effect - frosted glass with STRONG background for readability */
-    background: rgba(253, 251, 247, 0.95); /* Increased from 0.75 for better contrast */
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: 1px solid rgba(212, 165, 116, 0.2); /* Slightly more visible */
+    /* DARK solid header - warm deep gold */
+    background: #a67344; /* --color-primary-dark (deep gold) */
+    border-bottom: 1px solid rgba(212, 165, 116, 0.3);
     padding: var(--space-md) 0;
-    /* Modern shadow for depth */
-    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.8) inset,
-                0 8px 32px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     transition: all var(--transition-base);
 }
 
 /* Floating effect on scroll */
 header:hover {
-    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.8) inset,
-                0 12px 48px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
 .header-container {
@@ -362,13 +331,13 @@ header:hover {
     font-family: var(--font-display);
     font-size: var(--text-2xl);
     font-weight: 600;
-    color: var(--color-text);
+    color: #fdfbf7; /* Light cream text on dark header */
     text-decoration: none;
     transition: color var(--transition-fast);
 }
 
 .site-logo:hover {
-    color: var(--color-primary);
+    color: #e8c9a8; /* Lighter sand on hover */
 }
 
 .main-nav {
@@ -384,7 +353,7 @@ header:hover {
 .main-nav a {
     font-size: var(--text-base);
     font-weight: 500;
-    color: var(--color-text-light);
+    color: #f5f1eb; /* Light text on dark header */
     text-decoration: none;
     position: relative;
     transition: color var(--transition-fast);
@@ -398,12 +367,12 @@ header:hover {
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--color-primary);
+    background: #e8c9a8; /* Lighter sand underline */
     transition: width var(--transition-base);
 }
 
 .main-nav a:hover {
-    color: var(--color-text);
+    color: #fdfbf7; /* Bright cream on hover */
 }
 
 .main-nav a:hover::after {
@@ -416,7 +385,7 @@ header:hover {
     border: none;
     cursor: pointer;
     padding: var(--space-xs);
-    color: var(--color-text);
+    color: #fdfbf7; /* Light color on dark header */
     font-size: var(--text-xl);
 }
 
@@ -502,11 +471,11 @@ header:hover {
 .hero-overlay {
     position: absolute;
     inset: 0;
-    /* Warm light overlay to match site color scheme - dark text friendly */
+    /* Dark warm overlay - deep gold and terracotta tones */
     background: 
-        radial-gradient(circle at 30% 40%, rgba(253, 251, 247, 0.85) 0%, rgba(253, 251, 247, 0.65) 60%),
-        radial-gradient(circle at 70% 60%, rgba(232, 201, 168, 0.5) 0%, transparent 50%),
-        linear-gradient(to bottom, rgba(253, 251, 247, 0.75) 0%, rgba(245, 241, 235, 0.85) 100%);
+        radial-gradient(circle at 30% 40%, rgba(166, 115, 68, 0.6) 0%, rgba(166, 115, 68, 0.4) 60%),
+        radial-gradient(circle at 70% 60%, rgba(169, 94, 80, 0.5) 0%, transparent 50%),
+        linear-gradient(to bottom, rgba(44, 44, 44, 0.5) 0%, rgba(44, 44, 44, 0.7) 100%);
 }
 
 .hero-content {
@@ -526,11 +495,10 @@ header:hover {
     font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 900;
     margin-bottom: var(--space-md);
-    color: var(--color-text); /* Dark text matching site scheme */
-    /* Subtle glow for depth, not harsh shadow */
+    color: #fdfbf7; /* Light text on dark overlay */
     text-shadow: 
-        0 1px 2px rgba(255, 255, 255, 0.8),
-        0 2px 8px rgba(212, 165, 116, 0.3);
+        0 2px 4px rgba(0, 0, 0, 0.8),
+        0 4px 12px rgba(0, 0, 0, 0.5);
     letter-spacing: -0.03em;
 }
 
@@ -539,11 +507,10 @@ header:hover {
     font-size: var(--text-xl);
     font-weight: 400;
     max-width: 600px;
-    color: var(--color-text-light); /* Medium gray matching site palette */
-    /* Subtle glow, warm tint */
+    color: #f5f1eb; /* Light cream on dark overlay */
     text-shadow: 
-        0 1px 2px rgba(255, 255, 255, 0.9),
-        0 2px 6px rgba(232, 201, 168, 0.4);
+        0 2px 4px rgba(0, 0, 0, 0.8),
+        0 4px 12px rgba(0, 0, 0, 0.5);
     font-style: italic;
 }
 
@@ -555,7 +522,7 @@ header:hover {
     margin-inline: auto;
     margin-bottom: var(--space-3xl);
     padding-inline: var(--space-md);
-    text-align: center;
+    text-align: left; /* Left-aligned for modern 2026 aesthetic */
 }
 
 .welcome-avatar {
@@ -575,7 +542,7 @@ header:hover {
 }
 
 .welcome p {
-    font-size: var(--text-lg);
+    font-size: var(--text-base); /* Normal readable size, not oversized */
     color: var(--color-text-light);
     line-height: var(--leading-relaxed);
     margin-inline: auto;
@@ -585,7 +552,7 @@ header:hover {
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .section-header {
-    text-align: center;
+    text-align: left; /* Modern 2026 - no centered text */
     margin-bottom: var(--space-2xl);
     padding-inline: var(--space-md);
 }
@@ -597,7 +564,7 @@ header:hover {
 }
 
 .section-subtitle {
-    font-size: var(--text-lg);
+    font-size: var(--text-base); /* Normal readable size, not oversized */
     color: var(--color-text-light);
 }
 
@@ -1356,39 +1323,6 @@ article {
     object-fit: cover;
 }
 
-.post-meta {
-    text-align: center;
-    font-size: var(--text-sm);
-    color: var(--color-text-light); /* Improved contrast */
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: var(--space-md);
-    font-weight: 500;
-}
-
-.reading-time {
-    color: var(--color-text-lighter);
-}
-
-.post-title-single {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    line-height: var(--leading-tight);
-    text-align: center;
-    margin-bottom: var(--space-lg);
-    color: var(--color-text);
-}
-
-.post-intro {
-    font-size: var(--text-xl);
-    line-height: var(--leading-relaxed);
-    text-align: center;
-    max-width: var(--width-prose);
-    margin-inline: auto;
-    margin-bottom: var(--space-lg);
-    color: var(--color-text-light);
-}
-
 .post-footer {
     margin-top: var(--space-3xl);
     padding-top: var(--space-2xl);
@@ -1512,7 +1446,7 @@ article {
 
 .prose-about p {
     font-family: var(--font-body); /* Match Contact page - clean sans-serif */
-    font-size: var(--text-lg);
+    font-size: var(--text-base); /* Normal size, not large */
     line-height: var(--leading-relaxed);
     margin-bottom: var(--space-lg);
     color: var(--color-text);
@@ -1610,10 +1544,8 @@ img {
     transition: opacity var(--transition-base);
 }
 
-img[loading="lazy"] {
-    opacity: 0;
-}
-
+/* DO NOT hide lazy images by default - breaks if JS fails */
+/* Let browser handle native lazy loading instead */
 img[loading="lazy"].loaded,
 img:not([loading="lazy"]) {
     opacity: 1;
@@ -1641,8 +1573,8 @@ img:not([loading="lazy"]) {
 
 /* Section headers fade in on scroll (will be triggered by JS) */
 .section-header {
-    opacity: 0;
-    transform: translateY(20px);
+    /* Visible by default for instant content display */
+    transform: translateY(0);
     transition: opacity var(--transition-slow), transform var(--transition-slow);
 }
 
@@ -1681,7 +1613,16 @@ img:not([loading="lazy"]) {
 /* Meta info - left aligned, not centered */
 .post-meta {
     text-align: left;
+    font-size: var(--text-sm);
+    color: var(--color-text-light); /* Improved contrast */
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     margin-bottom: var(--space-lg);
+    font-weight: 500;
+}
+
+.reading-time {
+    color: var(--color-text-lighter);
 }
 
 /* Post intro - left aligned, standout */
@@ -1761,14 +1702,5 @@ img:not([loading="lazy"]) {
     margin-top: var(--space-2xl);
 }
 
-/* Pull quotes - standout asymmetric blocks */
-.prose > p:has(strong:only-child) {
-    font-family: var(--font-display);
-    font-size: var(--text-2xl);
-    font-weight: 700;
-    line-height: var(--leading-snug);
-    color: var(--color-primary-dark);
-    margin-block: var(--space-2xl);
-    padding-left: var(--space-2xl);
-    border-left: 8px solid var(--color-accent);
-}
+/* Pull quotes - standout asymmetric blocks (REMOVED - was making normal text too big) */
+/* Only use this style if you explicitly wrap text in a <blockquote> instead */
