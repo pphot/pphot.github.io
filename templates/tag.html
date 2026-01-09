@@ -10,9 +10,12 @@
             <div class="container">
                 <div class="section-header">
                     <h1>#{{ .Tag.Name }}</h1>
+                    {{ if .Tag.Children }}
                     <p class="section-subtitle">{{ len .Tag.Children }} posts</p>
+                    {{ end }}
                 </div>
                 
+                {{ if .Tag.Children }}
                 <div class="post-grid">
                     {{ range reverse .Tag.Children }}
                     <article class="post-card">
@@ -54,6 +57,7 @@
                     </article>
                     {{ end }}
                 </div>
+                {{ end }}
             </div>
         </main>
         

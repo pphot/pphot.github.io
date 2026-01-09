@@ -44,7 +44,7 @@
     <!-- Open Graph meta tags -->
     <meta property="og:title" content="{{ priority .Page.Config.title .Section.Config.title .Site.Config.title }}" />
     <meta property="og:description" content="{{ $description }}" />
-    <meta property="og:type" content="{{ if or (has_prefix .Page.Path "journal/") (has_prefix .Page.Path "books/") (has_prefix .Page.Path "photography/") }}article{{ else }}website{{ end }}" />
+    <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ .Site.Config.base_url }}{{ .Page.Permalink }}" />
     <meta property="og:site_name" content="{{ .Site.Config.title }}" />
     <meta property="og:locale" content="en_US" />
@@ -56,19 +56,15 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="{{ .Page.Config.title }}" />
     {{ else }}
-    <meta property="og:image" content="{{ .Site.Config.base_url }}{{ .Site.Config.extra.img }}" />
-    <meta property="og:image:secure_url" content="{{ .Site.Config.base_url }}{{ .Site.Config.extra.img }}" />
+    <meta property="og:image" content="{{ .Site.Config.base_url }}/img/hero.webp" />
+    <meta property="og:image:secure_url" content="{{ .Site.Config.base_url }}/img/hero.webp" />
     {{ end }}
     
     <!-- Article specific OG tags -->
-    {{ if or (has_prefix .Page.Path "journal/") (has_prefix .Page.Path "books/") (has_prefix .Page.Path "photography/") }}
     {{ if .Page.Config.date }}
     <meta property="article:published_time" content="{{ .Page.Config.date }}" />
     {{ end }}
-    {{ if not .Page.Config.updated.IsZero }}
-    <meta property="article:modified_time" content="{{ .Page.Config.updated }}" />
-    {{ end }}
-    <meta property="article:author" content="{{ .Site.Config.base_url }}" />
+    {{ if .Page.Config.tags }}
     {{ range .Page.Config.tags }}
     <meta property="article:tag" content="{{ . }}" />
     {{ end }}

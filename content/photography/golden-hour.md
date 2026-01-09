@@ -1,6 +1,7 @@
 +++
 title = "Golden Hour Collection"
 date = 2026-01-04
+template = "post.html"
 description = "A visual journey through the most beautiful time of day – when light turns everything into magic."
 tags = ["photography", "golden-hour", "light", "nature"]
 

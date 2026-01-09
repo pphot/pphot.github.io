@@ -22,7 +22,7 @@
         "url": "{{ .Site.Config.base_url }}{{ .Site.Config.extra.avatar }}"
       }
     }
-    {{ if or (has_prefix .Page.Path "journal/") (has_prefix .Page.Path "books/") (has_prefix .Page.Path "photography/") }}
+    {{ if .Page.Config.date }}
     ,{
       "@type": "BlogPosting",
       "@id": "{{ .Site.Config.base_url }}{{ .Page.Permalink }}#article",

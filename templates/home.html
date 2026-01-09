@@ -48,18 +48,12 @@
             {{ $books := get_section "books" }}
             {{ $photography := get_section "photography" }}
             
-            {{ $all_posts := slice }}
-            {{ range $journal.Children }}
-                {{ $all_posts = append $all_posts . }}
-            {{ end }}
-            {{ range $books.Children }}
-                {{ $all_posts = append $all_posts . }}
-            {{ end }}
-            {{ range $photography.Children }}
-                {{ $all_posts = append $all_posts . }}
-            {{ end }}
+            {{ $has_posts := false }}
+            {{ if gt (len $journal.Children) 0 }}{{ $has_posts = true }}{{ end }}
+            {{ if gt (len $books.Children) 0 }}{{ $has_posts = true }}{{ end }}
+            {{ if gt (len $photography.Children) 0 }}{{ $has_posts = true }}{{ end }}
             
-            {{ if gt (len $all_posts) 0 }}
+            {{ if $has_posts }}
             <section class="section-featured">
                 <div class="section-header">
                     <h2>Featured Stories</h2>
@@ -67,7 +61,10 @@
                 </div>
                 
                 <div class="post-grid">
-                    {{ range limit 3 (reverse $all_posts) }}
+                    {{ $count := 0 }}
+                    {{ range (reverse $journal.Children) }}
+                        {{ if lt $count 2 }}
+                        {{ $count = add $count 1 }}
                     <article class="post-card fade-in">
                         {{ $post_image := "/img/post-cover.webp" }}
                         {{ if .Config.extra.img }}
@@ -110,21 +107,13 @@
                             </div>
                         </div>
                     </article>
+                        {{ end }}
                     {{ end }}
-                </div>
-            </section>
-            {{ end }}
-
-            <!-- Latest Posts Section -->
-            {{ if gt (len $all_posts) 3 }}
-            <section class="section-latest">
-                <div class="section-header">
-                    <h2>Latest Posts</h2>
-                    <p class="section-subtitle">Recent stories from all collections</p>
-                </div>
-                
-                <div class="post-grid">
-                    {{ range limit 6 (reverse $all_posts) }}
+                    
+                    {{ $count = 0 }}
+                    {{ range (reverse $books.Children) }}
+                        {{ if lt $count 2 }}
+                        {{ $count = add $count 1 }}
                     <article class="post-card fade-in">
                         {{ $post_image := "/img/post-cover.webp" }}
                         {{ if .Config.extra.img }}
@@ -167,6 +156,56 @@
                             </div>
                         </div>
                     </article>
+                        {{ end }}
+                    {{ end }}
+                    
+                    {{ $count = 0 }}
+                    {{ range (reverse $photography.Children) }}
+                        {{ if lt $count 2 }}
+                        {{ $count = add $count 1 }}
+                    <article class="post-card fade-in">
+                        {{ $post_image := "/img/post-cover.webp" }}
+                        {{ if .Config.extra.img }}
+                            {{ $img_path := .Config.extra.img }}
+                            {{ $first_char := index (split $img_path "") 0 }}
+                            {{ if eq $first_char "/" }}
+                                {{ $post_image = $img_path }}
+                            {{ else }}
+                                {{ $post_image = printf "%s%s" .Permalink $img_path }}
+                            {{ end }}
+                        {{ end }}
+                        
+                        <a href="{{ .Permalink }}" class="post-card-image">
+                            <img 
+                                src="{{ $post_image }}" 
+                                alt="{{ .Config.title }}"
+                                width="400"
+                                height="250"
+                                loading="lazy"
+                                decoding="async"
+                                onerror="this.src='/img/post-cover.webp'"
+                            />
+                        </a>
+                        
+                        <div class="post-card-content">
+                            <time class="post-date" datetime="{{ .Config.date }}">
+                                {{ date .Config.date "Jan 2, 2006" }}
+                            </time>
+                            <h3 class="post-title">
+                                <a href="{{ .Permalink }}">{{ .Config.title }}</a>
+                            </h3>
+                            {{ $summary := .Summary }}
+                            {{ if $summary }}
+                            <p class="post-description">{{ $summary }}</p>
+                            {{ end }}
+                            <div class="post-tags">
+                                {{ range .Config.tags }}
+                                <span class="post-tag">#{{ . }}</span>
+                                {{ end }}
+                            </div>
+                        </div>
+                    </article>
+                        {{ end }}
                     {{ end }}
                 </div>
             </section>

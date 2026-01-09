@@ -1,6 +1,7 @@
 +++
 title = "Coastal Wanderings: Three Days in Portugal"
 date = 2025-12-28
+template = "post.html"
 description = "From the cliffs of Lagos to the streets of Lisbon, Portugal stole my heart with its warmth, colors, and endless ocean views."
 tags = ["travel", "portugal", "ocean", "adventure"]
 

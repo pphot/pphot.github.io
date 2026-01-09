@@ -1,6 +1,7 @@
 +++
 title = "Braiding Sweetgrass: Indigenous Wisdom Meets Scientific Knowledge"
 date = 2025-12-15
+template = "post.html"
 description = "Robin Wall Kimmerer weaves together botany, Indigenous wisdom, and personal reflection into a love letter to the natural world."
 tags = ["books", "nature", "indigenous-wisdom", "non-fiction"]
 

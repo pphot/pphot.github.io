@@ -1,6 +1,7 @@
 +++
 title = "The Midnight Library: Infinite Choices, One Life"
 date = 2026-01-03
+template = "post.html"
 description = "Matt Haig's exploration of regret, possibility, and the beauty of the life we're living is both heartbreaking and hopeful."
 tags = ["books", "fiction", "philosophy", "reflection"]
 

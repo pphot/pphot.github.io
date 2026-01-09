@@ -1,5 +1,6 @@
 +++
 title = "Contact"
+template = "contact.html"
 date = 2026-01-09
 +++
 

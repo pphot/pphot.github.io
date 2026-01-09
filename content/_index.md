@@ -1,5 +1,6 @@
 +++
 title = "Home"
+template = "home.html"
 date = 2026-01-09
 +++
 
