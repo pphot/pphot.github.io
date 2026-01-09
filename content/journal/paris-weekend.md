@@ -7,7 +7,6 @@ tags = ["travel", "paris", "europe", "photography"]
 
 [extra]
 img = "/img/paris.webp"
-reading_time = 8
 +++
 
 There's something enchanting about Paris that never fades, no matter how many times you visit. This past weekend, I found myself wandering through Montmartre just as the golden hour painted everything in warm amber tones. The Sacré-Cœur gleamed white against a peach-colored sky, and for a moment, I forgot about everything except the beauty unfolding before me.

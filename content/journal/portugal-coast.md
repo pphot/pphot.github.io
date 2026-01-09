@@ -7,7 +7,6 @@ tags = ["travel", "portugal", "ocean", "adventure"]
 
 [extra]
 img = "/img/portugal.webp"
-reading_time = 9
 +++
 
 The Portuguese coast has a way of making you slow down. Maybe it's the sound of waves crashing against ancient cliffs, or the way the light turns everything golden in the late afternoon. Whatever it is, from the moment I stepped off the plane in Faro, I felt myself exhale – releasing the tension I didn't even know I was carrying.

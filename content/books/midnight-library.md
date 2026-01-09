@@ -7,7 +7,6 @@ tags = ["books", "fiction", "philosophy", "reflection"]
 
 [extra]
 img = "/img/midnight-library.webp"
-reading_time = 6
 +++
 
 *"Between life and death there is a library, and within that library, the shelves go on forever. Every book provides a chance to try another life you could have lived."*

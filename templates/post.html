@@ -38,8 +38,8 @@
                         <time class="post-date" datetime="{{ .Page.Config.date }}">
                             {{ date .Page.Config.date "January 2, 2006" }}
                         </time>
-                        {{ if .Page.Config.extra.reading_time }}
-                        <span class="reading-time">• {{ .Page.Config.extra.reading_time }} min read</span>
+                        {{ if .Page.ReadTime }}
+                        <span class="reading-time">• {{ .Page.ReadTime }} min read</span>
                         {{ end }}
                     </div>
                     
