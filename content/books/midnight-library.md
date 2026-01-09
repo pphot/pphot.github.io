@@ -4,12 +4,13 @@ date = 2026-01-03
 template = "post.html"
 description = "Matt Haig's exploration of regret, possibility, and the beauty of the life we're living is both heartbreaking and hopeful."
 tags = ["books", "fiction", "philosophy", "reflection"]
+generate_feed = true
 
 [extra]
 img = "/img/midnight-library.webp"
 +++
 
-*"Between life and death there is a library, and within that library, the shelves go on forever. Every book provides a chance to try another life you could have lived."*
+_"Between life and death there is a library, and within that library, the shelves go on forever. Every book provides a chance to try another life you could have lived."_
 
 I read this book in a single sitting. Not because it's short – it's not particularly – but because I physically couldn't put it down. I started at eleven at night with the intention of reading a chapter or two before bed. At 3 AM, I turned the last page, tears streaming down my face, fundamentally changed.
 
@@ -75,6 +76,6 @@ Matt Haig has written other books about depression and mental health, and this o
 
 Since reading it, I've noticed myself cataloging regrets less and noticing small beauties more. I still wonder about roads not taken – I'm human, after all – but I'm better at returning my attention to the road I'm on.
 
-*Rating: ★★★★★*
+_Rating: ★★★★★_
 
-*Have you read The Midnight Library? I'd love to hear your thoughts. Which version of your life would you explore if you could? And more importantly, what are you discovering is beautiful about the life you're actually living?*
+_Have you read The Midnight Library? I'd love to hear your thoughts. Which version of your life would you explore if you could? And more importantly, what are you discovering is beautiful about the life you're actually living?_

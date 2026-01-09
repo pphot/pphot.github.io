@@ -4,6 +4,7 @@ date = 2025-12-15
 template = "post.html"
 description = "Robin Wall Kimmerer weaves together botany, Indigenous wisdom, and personal reflection into a love letter to the natural world."
 tags = ["books", "nature", "indigenous-wisdom", "non-fiction"]
+generate_feed = true
 
 [extra]
 img = "/img/braiding-sweetgrass.webp"
@@ -100,8 +101,8 @@ The scientific mechanism and the spiritual practice led to the same outcome: rec
 
 That's the promise of this book. Not that we can save the earth through individual actions alone, but that we can remember how to live in relationship. And from that remembering, from that renewed relationship, comes both the will and the way to live differently.
 
-*Rating: ★★★★★*
+_Rating: ★★★★★_
 
-*"In some Native languages the term for plants translates to 'those who take care of us.'"* 🌿
+_"In some Native languages the term for plants translates to 'those who take care of us.'"_ 🌿
 
-*What are you noticing in the natural world around you today? What are you grateful for?*
+_What are you noticing in the natural world around you today? What are you grateful for?_

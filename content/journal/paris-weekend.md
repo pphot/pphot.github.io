@@ -4,6 +4,7 @@ date = 2026-01-05
 template = "post.html"
 description = "Sometimes the best travel moments aren't found in guidebooks, but in the quiet corners where locals live their daily lives."
 tags = ["travel", "paris", "europe", "photography"]
+generate_feed = true
 
 [extra]
 img = "/img/paris.webp"
@@ -55,4 +56,4 @@ I realized that Paris hadn't changed. I had. Again. The city has this way of hol
 
 My train ticket sat in my pocket, and my bag waited by the door. But part of me was already planning the next visit – not to see more, but to see deeper. To find that wine bar Philippe mentioned. To bring bread from the bakery on the hidden street. To sit in Rodin's garden and sketch the roses.
 
-*Until next time, Paris. À bientôt.* ✨
+_Until next time, Paris. À bientôt._ ✨

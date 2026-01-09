@@ -4,6 +4,7 @@ date = 2025-12-28
 template = "post.html"
 description = "From the cliffs of Lagos to the streets of Lisbon, Portugal stole my heart with its warmth, colors, and endless ocean views."
 tags = ["travel", "portugal", "ocean", "adventure"]
+generate_feed = true
 
 [extra]
 img = "/img/portugal.webp"
@@ -92,4 +93,4 @@ The plane lifted off, and through the window, I watched the coastline shrink awa
 
 I opened my journal and wrote: "Portugal taught me that beauty and authenticity are the same thing. That hospitality isn't about perfection, it's about generosity. That the best moments come when you're present enough to recognize them."
 
-*Obrigada, Portugal, for the memories. And for the lessons I'm still learning.* 🌊
+_Obrigada, Portugal, for the memories. And for the lessons I'm still learning._ 🌊

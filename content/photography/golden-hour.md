@@ -4,6 +4,7 @@ date = 2026-01-04
 template = "post.html"
 description = "A visual journey through the most beautiful time of day – when light turns everything into magic."
 tags = ["photography", "golden-hour", "light", "nature"]
+generate_feed = true
 
 [extra]
 img = "/img/gallery/golden-hour-01.webp"
@@ -29,8 +30,9 @@ This gallery represents a year of golden hours captured across different places 
 Each image tells a story not just of place, but of a specific moment in time – that brief window when the light was perfect, when the world held its breath between day and night.
 
 **Gallery Images:**
+
 - Mountain vista at dawn, peaks catching first light
-- Forest path in autumn, leaves glowing like stained glass  
+- Forest path in autumn, leaves glowing like stained glass
 - Beach at sunset, waves turned molten gold
 - Urban street scene, buildings reflecting warm light
 - Coastal cliffs at dusk, ocean turned copper
@@ -66,8 +68,8 @@ But more than that, golden hour reminds me to pay attention. To be present. To n
 
 Photography is my excuse to do that. But really, I'm there for the light itself, for how it makes me feel, for the reminder that beauty is abundant and free and happens twice a day, every day, whether we're paying attention or not.
 
-*"Light makes photography. Embrace light. Admire it. Love it. But above all, know light." – George Eastman*
+_"Light makes photography. Embrace light. Admire it. Love it. But above all, know light." – George Eastman_
 
 ---
 
-*These images are available as prints. Contact me if you're interested in bringing a piece of golden hour into your space.*
+_These images are available as prints. Contact me if you're interested in bringing a piece of golden hour into your space._
