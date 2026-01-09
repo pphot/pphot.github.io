@@ -20,15 +20,11 @@ Six months later, I quit my job, bought a camera and a one-way ticket to Portuga
 
 What started as a simple travel blog evolved into something more – a space to explore not just places, but ideas, emotions, the human experience through literature and visual art. I discovered that the same attentiveness I was learning to bring to photography also changed how I read books, how I experienced new places, how I lived my daily life.
 
-Photography taught me to see. Travel taught me to be present. Books taught me to think deeply. And this blog became the place where all three converge.
-
 ### What You'll Find Here
 
 **Travel Journals** – Real stories from real places. No filters, just honest reflections on the adventures that shape us. I write about the experiences that changed me, the people I met, the lessons I'm still learning. You'll find detailed narratives about getting lost in Montmartre, eating sardines with Portuguese fishermen, stumbling into fado performances that made time stop.
 
 **Book Reviews** – Literature has a way of changing how we see the world. I share in-depth thoughts on books that have moved me, challenged me, and stayed with me long after the last page. From contemporary fiction that explores the weight of our choices to Indigenous wisdom that reconnects us to the earth, I read widely and reflect deeply.
-
-**Photography** – The world is endlessly beautiful. Through my lens, I try to capture fleeting moments that deserve to be remembered. My specialty is golden hour photography – that magical time when light transforms the ordinary into the extraordinary. I'm drawn to natural landscapes, authentic cultural moments, and the interplay of light and shadow.
 
 ### My Philosophy
 

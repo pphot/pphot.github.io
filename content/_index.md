@@ -4,14 +4,14 @@ template = "home.html"
 date = 2026-01-09
 +++
 
-Welcome to Pphot, where I capture the art of paying attention.
+Welcome to my little corner of the internet! 
 
-This is my corner of the internet where I share stories from the road, reflections on books that have changed how I see the world, and photographs that celebrate the fleeting beauty all around us. What started five years ago as a one-way ticket and a camera has become a practice in presence – learning to notice, appreciate, and share the moments that make life worth living.
+This is where I practice writing in English every day. I share my daily thoughts, stories from trips and adventures, and books I'm reading. It's simple, honest, and just me being me.
 
-Here you'll find detailed travel journals from places that shaped me, in-depth book reviews that go beyond surface impressions, and golden hour photography that reminds us light transforms everything it touches.
+Writing helps me notice the small beautiful moments in life - a good cup of coffee, a sunset, a conversation with a friend. I'm not a professional writer, just someone who wants to get better at expressing thoughts in English.
 
-I believe the examined life is worth the effort of examination. That beauty is abundant and free and happening right now, whether we're paying attention or not. That our stories connect us across the distances that separate us.
+Here you'll find short daily reflections, travel stories with photos, and my honest thoughts about books that touched my heart.
 
-Join me in this ongoing adventure of learning to live fully, see clearly, and tell our stories with authenticity and heart.
+Thank you for visiting and reading my words. I hope you enjoy this journey with me!
 
-*Life is a collection of moments. Let's make them count.*
+*Every day is a chance to write something new.* ✨

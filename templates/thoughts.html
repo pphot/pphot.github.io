@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
+    {{ template "partials/_head.html" . }}
+    <body class="section-page thoughts-page">
+        <a href="#main" class="skip-to-content">Skip to content</a>
+        
+        {{ template "partials/_header.html" . }}
+        
+        <main id="main">
+            <div class="container">
+                <div class="section-header">
+                    <h1>💭 Daily Thoughts</h1>
+                    <p class="section-subtitle">Short moments, daily practice, honest reflections</p>
+                </div>
+                
+                <div class="thoughts-timeline">
+                    {{ range reverse .Section.Children }}
+                    <article class="thought-card">
+                        <div class="thought-header">
+                            <time class="thought-date" datetime="{{ .Config.date }}">
+                                {{ date .Config.date "January 2, 2006" }}
+                            </time>
+                            <div class="thought-tags">
+                                {{ range .Config.tags }}
+                                <span class="thought-tag">#{{ . }}</span>
+                                {{ end }}
+                            </div>
+                        </div>
+                        
+                        <h2 class="thought-title">
+                            <a href="{{ .Permalink }}">{{ .Config.title }}</a>
+                        </h2>
+                        
+                        {{ $summary := .Summary }}
+                        {{ if $summary }}
+                        <div class="thought-excerpt">{{ $summary }}</div>
+                        {{ end }}
+                        
+                        <a href="{{ .Permalink }}" class="thought-link">Read more →</a>
+                    </article>
+                    {{ end }}
+                </div>
+            </div>
+        </main>
+        
+        {{ template "partials/_footer.html" . }}
+        
+        <script src="/js/main.js"></script>
+    </body>
+</html>

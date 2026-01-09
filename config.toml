@@ -12,14 +12,14 @@ minify_js = false
 summary_length = 2
 
 # Sections to include in homepage cache key (for incremental builds)
-homepage_cache_sections = ["journal", "books", "photography"]
+homepage_cache_sections = ["journal", "books", "thoughts"]
 
 #=========================================================================================
 [extra]
 name = "Pphot"
 id = "pphot"
 email = "pphot@gmail.com"
-bio = "Sharing life's beautiful moments • Travel • Books • Photography"
+bio = "Sharing life's journey • Daily thoughts • Travel • Books"
 avatar = "/img/avatar.webp"
 img = "/img/post-cover.webp"
 links = [
@@ -29,9 +29,9 @@ links = [
 
 # Primary navigation (header) - core content only
 sections = [
+  { name = "thoughts", path = "/thoughts", is_external = false },
   { name = "journal", path = "/journal", is_external = false },
   { name = "books", path = "/books", is_external = false },
-  { name = "photography", path = "/photography", is_external = false },
   { name = "about", path = "/about", is_external = false },
 ]
 
@@ -71,16 +71,16 @@ lines = [
 type = "interests"
 icon = "💭"
 title = "Interests"
-tags = ["Travel", "Photography", "Books", "Writing", "Nature", "Culture"]
+tags = ["Daily Life", "Travel", "Books", "Writing", "Thoughts", "English Practice"]
 
 [[extra.bento_cards]]
 type = "now"
 icon = "🌟"
 title = "Favorites"
 lines = [
-  { prompt = ">", text = "journaling life's adventures" },
-  { prompt = ">", text = "discovering hidden gems" },
-  { prompt = ">", text = "sharing beautiful moments" }
+  { prompt = ">", text = "writing daily thoughts" },
+  { prompt = ">", text = "practicing English" },
+  { prompt = ">", text = "sharing life moments" }
 ]
 
 
