@@ -34,23 +34,10 @@ sections = [
   { name = "about", path = "/about", is_external = false },
 ]
 
-# Secondary navigation (footer) - grouped by function
-# Browse group: content discovery
-footer_browse = [
-  { name = "archive", path = "/archive", is_external = false },
-  { name = "tags", path = "/tags", is_external = false },
-]
-
-# Connect group: contact and subscription
-footer_connect = [
+# Secondary navigation (footer) - simple and minimal
+footer_links = [
   { name = "contact", path = "/contact", is_external = false },
-  { name = "subscribe", path = "/subscribe", is_external = false },
   { name = "rss", path = "/atom.xml", is_external = false },
-]
-
-# Legal group: policies
-footer_legal = [
-  { name = "privacy", path = "/privacy", is_external = false },
 ]
 
 nav_separator = "☰"

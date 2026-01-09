@@ -39,10 +39,15 @@
     --overlay-dark: rgba(0, 0, 0, 0.3);
     --overlay-light: rgba(255, 255, 255, 0.9);
     
-    /* Typography */
-    --font-serif: 'Lora', 'Georgia', 'Times New Roman', serif;
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-display: 'Playfair Display', 'Georgia', serif;
+    /* Typography - 2026 Modern Stack
+       Display: Fraunces (modern wonky serif with character)
+       Body: System serif stack for performance + readability
+       UI: System sans stack for native feel
+       Mono: System monospace stack for code */
+    --font-serif: ui-serif, 'Newsreader', 'New York', 'Iowan Old Style', 'Georgia', 'Times New Roman', serif;
+    --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+    --font-display: 'Fraunces', ui-serif, 'Georgia', serif;
+    --font-mono: ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', 'Consolas', 'Liberation Mono', monospace;
     
     /* Font Sizes - Fluid Typography */
     --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
@@ -136,9 +141,10 @@ html {
 }
 
 body {
-    font-family: var(--font-sans);
+    font-family: var(--font-serif);
     font-size: var(--text-base);
     line-height: var(--leading-relaxed);
+    letter-spacing: 0.01em;
     color: var(--color-text);
     background-color: var(--color-bg);
     overflow-x: hidden;
@@ -151,16 +157,30 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     font-weight: 600;
     line-height: var(--leading-tight);
+    letter-spacing: -0.02em;
     color: var(--color-text);
     margin-bottom: var(--space-md);
 }
 
-h1 { font-size: var(--text-4xl); }
-h2 { font-size: var(--text-3xl); }
+h1 { 
+    font-size: var(--text-4xl); 
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+h2 { 
+    font-size: var(--text-3xl); 
+    letter-spacing: -0.025em;
+}
 h3 { font-size: var(--text-2xl); }
 h4 { font-size: var(--text-xl); }
 h5 { font-size: var(--text-lg); }
-h6 { font-size: var(--text-base); }
+h6 { 
+    font-size: var(--text-base); 
+    font-family: var(--font-sans);
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
 
 p {
     margin-bottom: var(--space-md);
@@ -625,60 +645,56 @@ footer {
     padding-inline: var(--space-md);
 }
 
-.footer-nav {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-xl);
-    margin-bottom: var(--space-xl);
+.footer-center {
+    text-align: center;
+    max-width: 600px;
+    margin-inline: auto;
 }
 
-@media (min-width: 640px) {
-    .footer-nav {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-.footer-group-title {
+.footer-brand h3 {
     font-family: var(--font-display);
-    font-size: var(--text-lg);
-    margin-bottom: var(--space-md);
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-xs);
     color: var(--color-text);
 }
 
-.footer-group-links {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
-}
-
-.footer-group-links a {
-    color: var(--color-text-light);
+.footer-tagline {
     font-size: var(--text-base);
-    transition: color var(--transition-fast);
+    color: var(--color-text-light);
+    margin-bottom: var(--space-lg);
 }
 
-.footer-group-links a:hover {
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: var(--color-text-light);
+    font-size: var(--text-sm);
+    text-transform: lowercase;
+    transition: color var(--transition-fast);
+    letter-spacing: 0.05em;
+}
+
+.footer-links a:hover {
     color: var(--color-primary);
 }
 
-.footer-bottom {
-    padding-top: var(--space-lg);
-    border-top: 1px solid var(--color-border-light);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: var(--space-md);
-}
-
 .copyright {
-    font-size: var(--text-sm);
+    font-size: var(--text-xs);
     color: var(--color-text-lighter);
+    margin-top: var(--space-lg);
 }
 
 .social-links {
     display: flex;
+    justify-content: center;
     gap: var(--space-md);
+    margin-bottom: var(--space-md);
 }
 
 .social-link {
@@ -745,7 +761,7 @@ footer {
 }
 
 .prose code {
-    font-family: 'Fira Code', 'Consolas', monospace;
+    font-family: var(--font-mono);
     font-size: 0.9em;
     background: var(--color-bg-alt);
     padding: 0.2em 0.4em;
