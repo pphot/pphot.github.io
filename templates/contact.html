@@ -8,37 +8,157 @@
 
         <main id="main">
             <div class="container">
-                <div class="prose" style="max-width: 600px; margin-inline: auto; text-align: center;">
-                    <h1>Get in Touch</h1>
-                    <p style="font-size: var(--text-lg); color: var(--color-text-light);">
-                        I'd love to hear from you! Feel free to reach out.
-                    </p>
-
-                    {{ .Page.Content }}
-
-                    <div
-                        style="
-                            margin-top: var(--space-3xl);
-                            padding: var(--space-2xl);
-                            background: var(--color-bg-alt);
-                            border-radius: var(--radius-lg);
-                        "
-                    >
-                        <p style="font-size: var(--text-xl); font-weight: 600; margin-bottom: var(--space-lg);">
-                            📧 Email
-                        </p>
-                        <p>
-                            <a
-                                href="mailto:{{ .Site.Config.extra.email }}"
-                                style="font-size: var(--text-2xl); font-weight: 700;"
-                                >{{ .Site.Config.extra.email }}</a
-                            >
+                <div style="max-width: 700px; margin-inline: auto; padding: var(--space-3xl) var(--space-md);">
+                    <!-- Hero Section -->
+                    <div style="text-align: center; margin-bottom: var(--space-3xl);">
+                        <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">Get in Touch</h1>
+                        <p style="font-size: var(--text-lg); color: var(--color-text-light); line-height: var(--leading-relaxed); max-width: 600px; margin-inline: auto;">
+                            I'd love to hear from you! Whether you want to chat about travel, books, photography, or just say hello.
                         </p>
                     </div>
 
-                    <p style="margin-top: var(--space-xl); color: var(--color-text-light);">
-                        Click the email above to send me a message directly from your email client.
-                    </p>
+                    <!-- Contact Cards -->
+                    <div style="display: grid; gap: var(--space-lg); margin-bottom: var(--space-2xl);">
+                        <!-- Email Card -->
+                        <a 
+                            href="mailto:{{ .Site.Config.extra.email }}"
+                            style="
+                                display: flex;
+                                align-items: center;
+                                gap: var(--space-lg);
+                                padding: var(--space-xl);
+                                background: var(--color-bg-card);
+                                border: 2px solid var(--color-border);
+                                border-radius: var(--radius-lg);
+                                text-decoration: none;
+                                transition: all var(--transition-base);
+                                box-shadow: var(--shadow-sm);
+                            "
+                            onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='var(--shadow-md)'; this.style.borderColor='var(--color-primary)';"
+                            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-sm)'; this.style.borderColor='var(--color-border)';"
+                        >
+                            <div style="
+                                font-size: 2.5rem;
+                                width: 64px;
+                                height: 64px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                background: linear-gradient(135deg, #d4a574 0%, #c17767 100%);
+                                border-radius: var(--radius-lg);
+                                flex-shrink: 0;
+                            ">
+                                ✉️
+                            </div>
+                            <div style="flex: 1; text-align: left;">
+                                <div style="font-size: var(--text-sm); color: var(--color-text-light); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.25rem;">
+                                    Email
+                                </div>
+                                <div style="font-size: var(--text-xl); font-weight: 600; color: var(--color-text);">
+                                    {{ .Site.Config.extra.email }}
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Instagram Card -->
+                        <a 
+                            href="https://instagram.com/phuong_phot"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style="
+                                display: flex;
+                                align-items: center;
+                                gap: var(--space-lg);
+                                padding: var(--space-xl);
+                                background: var(--color-bg-card);
+                                border: 2px solid var(--color-border);
+                                border-radius: var(--radius-lg);
+                                text-decoration: none;
+                                transition: all var(--transition-base);
+                                box-shadow: var(--shadow-sm);
+                            "
+                            onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='var(--shadow-md)'; this.style.borderColor='var(--color-primary)';"
+                            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-sm)'; this.style.borderColor='var(--color-border)';"
+                        >
+                            <div style="
+                                font-size: 2.5rem;
+                                width: 64px;
+                                height: 64px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                background: linear-gradient(135deg, #c17767 0%, #d4a574 100%);
+                                border-radius: var(--radius-lg);
+                                flex-shrink: 0;
+                            ">
+                                📷
+                            </div>
+                            <div style="flex: 1; text-align: left;">
+                                <div style="font-size: var(--text-sm); color: var(--color-text-light); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.25rem;">
+                                    Instagram
+                                </div>
+                                <div style="font-size: var(--text-xl); font-weight: 600; color: var(--color-text);">
+                                    @phuong_phot
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- GitHub Card -->
+                        <a 
+                            href="https://github.com/pphot"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style="
+                                display: flex;
+                                align-items: center;
+                                gap: var(--space-lg);
+                                padding: var(--space-xl);
+                                background: var(--color-bg-card);
+                                border: 2px solid var(--color-border);
+                                border-radius: var(--radius-lg);
+                                text-decoration: none;
+                                transition: all var(--transition-base);
+                                box-shadow: var(--shadow-sm);
+                            "
+                            onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='var(--shadow-md)'; this.style.borderColor='var(--color-primary)';"
+                            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-sm)'; this.style.borderColor='var(--color-border)';"
+                        >
+                            <div style="
+                                font-size: 2.5rem;
+                                width: 64px;
+                                height: 64px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                background: linear-gradient(135deg, #d4a574 0%, #c17767 100%);
+                                border-radius: var(--radius-lg);
+                                flex-shrink: 0;
+                            ">
+                                💻
+                            </div>
+                            <div style="flex: 1; text-align: left;">
+                                <div style="font-size: var(--text-sm); color: var(--color-text-light); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.25rem;">
+                                    GitHub
+                                </div>
+                                <div style="font-size: var(--text-xl); font-weight: 600; color: var(--color-text);">
+                                    pphot
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Footer Message -->
+                    <div style="
+                        text-align: center;
+                        padding: var(--space-xl);
+                        background: var(--color-bg-alt);
+                        border-radius: var(--radius-lg);
+                        margin-top: var(--space-2xl);
+                    ">
+                        <p style="font-size: var(--text-base); color: var(--color-text-light); margin: 0;">
+                            Looking forward to connecting with you! 🌟
+                        </p>
+                    </div>
                 </div>
             </div>
         </main>
