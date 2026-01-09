@@ -14,10 +14,10 @@
                 </div>
                 
                 <div class="tag-cloud">
-                    {{ range .Site.Tags }}
-                    <a href="/tags/{{ .Name | urlize }}" class="tag-item">
+                    {{ range .Page.Terms }}
+                    <a href="{{ .Permalink }}" class="tag-item">
                         #{{ .Name }}
-                        <span class="tag-count">({{ len .Children }})</span>
+                        <span class="tag-count">({{ .Count }})</span>
                     </a>
                     {{ end }}
                 </div>

@@ -2051,3 +2051,70 @@ img:not([loading='lazy']) {
         flex-direction: column;
     }
 }
+/* ===================================================================
+   POST LIST - Simple, clean list for tag/category pages
+   =================================================================== */
+
+.post-list {
+    max-width: var(--width-prose);
+    margin: var(--space-2xl) auto;
+}
+
+.post-list-item {
+    border-bottom: 1px solid var(--color-border-light);
+    padding: var(--space-lg) 0;
+    transition: all 0.2s ease;
+}
+
+.post-list-item:hover {
+    padding-left: var(--space-sm);
+    border-left: 3px solid var(--color-primary);
+}
+
+.post-list-item:last-child {
+    border-bottom: none;
+}
+
+.post-list-date {
+    display: block;
+    font-size: var(--text-sm);
+    color: var(--color-text-lighter);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-xs);
+    font-weight: 500;
+}
+
+.post-list-title {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    line-height: var(--leading-tight);
+    margin-bottom: var(--space-sm);
+}
+
+.post-list-title a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.post-list-title a:hover {
+    color: var(--color-primary);
+}
+
+.post-list-tags {
+    display: flex;
+    gap: var(--space-xs);
+    flex-wrap: wrap;
+}
+
+/* Mobile responsive */
+@media (max-width: 640px) {
+    .post-list-item {
+        padding: var(--space-md) 0;
+    }
+
+    .post-list-title {
+        font-size: var(--text-lg);
+    }
+}
