@@ -16,7 +16,7 @@
                 <div class="post-grid">
                     {{ range reverse .Section.Children }}
                     <article class="post-card">
-                        {{ $post_image := .Site.Config.extra.default_post_cover }}
+                        {{ $post_image := $.Site.Config.extra.default_post_cover }}
                         {{ if .Config.extra.img }}
                             {{ $img_path := .Config.extra.img }}
                             {{ $first_char := index (split $img_path "") 0 }}
@@ -35,7 +35,7 @@
                                 height="250"
                                 loading="lazy"
                                 decoding="async"
-                                onerror="this.src='{{ .Site.Config.extra.default_post_cover }}'"
+                                onerror="this.src='{{ $.Site.Config.extra.default_post_cover }}'"
                             />
                         </a>
                         
