@@ -9,10 +9,6 @@
         <div class="reading-progress" id="reading-progress"></div>
         
         <div class="post-wrapper">
-            <aside class="toc-sidebar">
-                {{ template "partials/_toc.html" . }}
-            </aside>
-            
             <main id="main">
                 <article class="container">
                 <header class="post-header">
@@ -96,6 +92,10 @@
                 {{ template "partials/_related_posts.html" . }}
             </article>
         </main>
+        
+        <aside class="toc-sidebar">
+            {{ template "partials/_toc.html" . }}
+        </aside>
         </div>
         
         {{ template "partials/_footer.html" . }}
