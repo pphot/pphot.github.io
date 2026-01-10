@@ -2,7 +2,7 @@
 <html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
     {{ template "partials/_head.html" . }}
     <body class="homepage">
-        <a href="#main" class="skip-to-content">Skip to content</a>
+        <a href="#main" class="skip-to-content">{{ .Site.Config.extra.skip_to_content }}</a>
 
         {{ template "partials/_header.html" . }}
 
@@ -13,8 +13,8 @@
             <section class="hero">
                 <div class="hero-image">
                     <img
-                        src="/img/hero.webp"
-                        alt="Pphot - Lifestyle Blog"
+                        src="{{ .Site.Config.extra.hero_image }}"
+                        alt="{{ .Site.Config.extra.home_hero_alt }}"
                         width="1920"
                         height="1080"
                         loading="eager"
@@ -39,7 +39,7 @@
                     height="120"
                     loading="lazy"
                 />
-                <h2>Welcome to {{ .Config.extra.name }}</h2>
+                <h2>{{ .Site.Config.extra.home_welcome_prefix }} {{ .Config.extra.name }}</h2>
                 <div>{{ .Page.Content }}</div>
             </section>
 
@@ -51,8 +51,8 @@
             true }}{{ end }}{{ end }} {{ if $has_featured }}
             <section class="section-featured">
                 <div class="section-header">
-                    <h2>Featured Stories</h2>
-                    <p class="section-subtitle">Handpicked moments and reflections</p>
+                    <h2>{{ .Site.Config.extra.home_featured_title }}</h2>
+                    <p class="section-subtitle">{{ .Site.Config.extra.home_featured_subtitle }}</p>
                 </div>
 
                 <div class="post-grid">
@@ -177,8 +177,8 @@
 
             <section class="section-latest">
                 <div class="section-header">
-                    <h2>Latest Posts</h2>
-                    <p class="section-subtitle">Recent stories from all corners</p>
+                    <h2>{{ .Site.Config.extra.home_latest_title }}</h2>
+                    <p class="section-subtitle">{{ .Site.Config.extra.home_latest_subtitle }}</p>
                 </div>
 
                 <div class="post-grid">

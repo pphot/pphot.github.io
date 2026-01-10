@@ -56,6 +56,57 @@ outdate_alert_text_after = " days ago."
 recent_more_text = "View All Posts"
 enable_analytics = false
 
+# Homepage section titles
+home_featured_title = "Featured Stories"
+home_featured_subtitle = "Handpicked moments and reflections"
+home_latest_title = "Latest Posts"
+home_latest_subtitle = "Recent stories from all corners"
+home_welcome_prefix = "Welcome to"
+home_hero_alt = "Pphot - Lifestyle Blog"
+
+# Section page titles and subtitles
+journal_title = "📔 Journal"
+journal_subtitle = "Travel stories, vacation memories, life adventures, plus food stories and recipes"
+thoughts_title = "💭 Daily Thoughts"
+thoughts_subtitle = "Short moments, daily practice, honest reflections"
+books_title = "📚 Books"
+books_subtitle = "Reviews, reflections, and literary discoveries"
+about_title = "About Pphot"
+
+# Contact page
+contact_title = "Get in Touch"
+contact_subtitle = "I'd love to hear from you! Whether you want to chat about travel, books, photography, or just say hello."
+contact_email_label = "Email"
+contact_instagram_label = "Instagram"
+contact_instagram_handle = "@phuong_phot"
+contact_instagram_url = "https://instagram.com/phuong_phot"
+contact_github_label = "GitHub"
+contact_github_handle = "pphot"
+contact_github_url = "https://github.com/pphot"
+contact_footer_message = "Looking forward to connecting with you! 🌟"
+
+# 404 page
+error_404_title = "Lost in the Journey?"
+error_404_message = "The page you're looking for seems to have wandered off the path."
+error_404_button = "Take Me Home"
+
+# Post page
+post_share_title = "Share this post"
+post_read_time_suffix = "min read"
+post_share_twitter = "Twitter"
+post_share_facebook = "Facebook"
+post_share_email = "Email"
+
+# Footer
+footer_copyright_suffix = "All moments captured with love"
+
+# Accessibility
+skip_to_content = "Skip to content"
+
+# Default images
+default_post_cover = "/img/post-cover.webp"
+hero_image = "/img/hero.webp"
+
 # Homepage bento cards configuration
 [[extra.bento_cards]]
 type = "focus"
