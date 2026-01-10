@@ -49,7 +49,7 @@ jobs:
         run: gozzi version
 
       - name: Build site
-        run: ./deploy.sh
+        run: gozzi build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

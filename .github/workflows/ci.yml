@@ -34,7 +34,7 @@ jobs:
         run: gozzi version
 
       - name: Build site
-        run: ./deploy.sh
+        run: gozzi build
 
       - name: Validate build output
         run: |
