@@ -2,28 +2,32 @@
 <html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
     {{ template "partials/_head.html" . }}
     <body class="section-page journal-page">
-        <a href="#main" class="skip-to-content">Skip to content</a>
+        <a href="#main" class="skip-to-content">{{ .Site.Config.extra.skip_to_content }}</a>
 
         {{ template "partials/_header.html" . }}
 
         <main id="main">
             <div class="container">
                 <div class="section-header">
-                    <h1>📔 Journal</h1>
+                    <h1>{{ .Site.Config.extra.journal_title }}</h1>
                     <p class="section-subtitle">
-                        Travel stories, vacation memories, life adventures, plus food stories and
-                        recipes
+                        {{ .Site.Config.extra.journal_subtitle }}
                     </p>
                 </div>
 
                 <div class="post-grid">
                     {{ range reverse .Section.Children }}
                     <article class="post-card">
-                        {{ $post_image := "/img/post-cover.webp" }} {{ if .Config.extra.img }} {{
-                        $img_path := .Config.extra.img }} {{ $first_char := index (split $img_path
-                        "") 0 }} {{ if eq $first_char "/" }} {{ $post_image = $img_path }} {{ else
-                        }} {{ $post_image = printf "%s%s" .Permalink $img_path }} {{ end }} {{ end
-                        }}
+                        {{ $post_image := .Site.Config.extra.default_post_cover }}
+                        {{ if .Config.extra.img }}
+                            {{ $img_path := .Config.extra.img }}
+                            {{ $first_char := index (split $img_path "") 0 }}
+                            {{ if eq $first_char "/" }}
+                                {{ $post_image = $img_path }}
+                            {{ else }}
+                                {{ $post_image = printf "%s%s" .Permalink $img_path }}
+                            {{ end }}
+                        {{ end }}
 
                         <a href="{{ .Permalink }}" class="post-card-image">
                             <img
@@ -33,7 +37,7 @@
                                 height="250"
                                 loading="lazy"
                                 decoding="async"
-                                onerror="this.src='/img/post-cover.webp'"
+                                onerror="this.src='{{ .Site.Config.extra.default_post_cover }}'"
                             />
                         </a>
 
@@ -44,7 +48,8 @@
                             <h2 class="post-title">
                                 <a href="{{ .Permalink }}">{{ .Config.title }}</a>
                             </h2>
-                            {{ $summary := .Summary }} {{ if $summary }}
+                            {{ $summary := .Summary }}
+                            {{ if $summary }}
                             <p class="post-description">{{ $summary }}</p>
                             {{ end }}
                             <div class="post-tags">
