@@ -162,7 +162,7 @@
                         const target = document.querySelector(href)
                         if (target) {
                             window.scrollTo({
-                                top: target.offsetTop - headerHeight,
+                                top: target.getBoundingClientRect().top + window.pageYOffset - headerHeight,
                                 behavior: 'smooth'
                             })
                         }
@@ -173,7 +173,8 @@
                 const target = document.querySelector(href)
                 if (target) {
                     e.preventDefault()
-                    const targetPosition = target.offsetTop - headerHeight - 20
+                    // Use getBoundingClientRect for accurate position relative to viewport
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20
                     window.scrollTo({
                         top: targetPosition,
                         behavior: 'smooth',
