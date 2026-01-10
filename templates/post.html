@@ -47,13 +47,12 @@
                             {{ $category_icon = "💭" }}
                         {{ end }}
                         <span class="post-category">{{ $category_icon }} {{ $first_category }}</span>
-                        <span class="post-meta-separator">•</span>
                         {{ end }}
                         <time class="post-date" datetime="{{ .Page.Config.date }}">
                             {{ date .Page.Config.date "January 2, 2006" }}
                         </time>
                         {{ if .Page.ReadTime }}
-                        <span class="reading-time">• {{ .Page.ReadTime }} {{ .Site.Config.extra.post_read_time_suffix }}</span>
+                        <span class="reading-time">{{ .Page.ReadTime }} {{ .Site.Config.extra.post_read_time_suffix }}</span>
                         {{ end }}
                     </div>
                     

@@ -2110,6 +2110,9 @@ img:not([loading='lazy']) {
 
 /* Meta info - date and reading time */
 .post-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
     text-align: left;
     font-size: var(--text-sm);
     color: var(--color-text-light);
@@ -2117,22 +2120,43 @@ img:not([loading='lazy']) {
     letter-spacing: 0.1em;
     margin-bottom: var(--space-md);
     font-weight: 500;
+    flex-wrap: wrap;
+}
+
+.post-date {
+    color: var(--color-text-light);
 }
 
 .reading-time {
     color: var(--color-text-lighter);
 }
 
+/* Add bullet separator BEFORE date (after category) */
+.post-date::before {
+    content: '•';
+    color: var(--color-text-lighter);
+    margin-right: var(--space-sm);
+    font-weight: 400;
+}
+
+/* Add bullet separator BEFORE reading-time (after date) */
+.reading-time::before {
+    content: '•';
+    color: var(--color-text-lighter);
+    margin-right: var(--space-sm);
+    font-weight: 400;
+}
+
 /* Post category badge - clear context indicator */
 .post-category {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     font-weight: 600;
     color: var(--color-primary);
     text-transform: capitalize;
     padding: var(--space-2xs) var(--space-sm);
     background: rgba(212, 135, 62, 0.08);
     border-radius: var(--rounded-sm);
-    margin-right: var(--space-xs);
     border: 1px solid rgba(212, 135, 62, 0.15);
     transition: all var(--transition-fast);
 }
@@ -2140,11 +2164,6 @@ img:not([loading='lazy']) {
 .post-category:hover {
     background: rgba(212, 135, 62, 0.12);
     border-color: rgba(212, 135, 62, 0.25);
-}
-
-.post-meta-separator {
-    color: var(--color-text-lighter);
-    margin-inline: var(--space-xs);
 }
 
 /* Post intro/description - italic standout text with subtle accent */

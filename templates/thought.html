@@ -2,9 +2,11 @@
 <html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
     {{ template "partials/_head.html" . }}
     <body class="thought-post-page">
-        <a href="#main" class="skip-to-content">Skip to content</a>
+        <a href="#main" class="skip-to-content">{{ .Site.Config.extra.skip_to_content }}</a>
         
         {{ template "partials/_header.html" . }}
+        
+        <div class="reading-progress" id="reading-progress"></div>
         
         <main id="main">
             <article class="container">
@@ -23,14 +25,20 @@
                             {{ $category_icon = "💭" }}
                         {{ end }}
                         <span class="post-category">{{ $category_icon }} {{ $first_category }}</span>
-                        <span class="post-meta-separator">•</span>
                         {{ end }}
                         <time class="post-date" datetime="{{ .Page.Config.date }}">
                             {{ date .Page.Config.date "January 2, 2006" }}
                         </time>
+                        {{ if .Page.ReadTime }}
+                        <span class="reading-time">{{ .Page.ReadTime }} {{ .Site.Config.extra.post_read_time_suffix }}</span>
+                        {{ end }}
                     </div>
                     
                     <h1 class="post-title-single">{{ .Page.Config.title }}</h1>
+                    
+                    {{ if .Page.Config.description }}
+                    <p class="post-intro">{{ .Page.Config.description }}</p>
+                    {{ end }}
                     
                     <div class="post-tags">
                         {{ range .Page.Config.tags }}
@@ -46,6 +54,21 @@
                 </div>
                 
                 <footer class="post-footer">
+                    <div class="post-share">
+                        <h3>{{ .Site.Config.extra.post_share_title }}</h3>
+                        <div class="share-buttons">
+                            <a href="https://twitter.com/intent/tweet?text={{ .Page.Config.title }}&url={{ .Site.Config.base_url }}{{ .Page.Permalink }}" target="_blank" rel="noopener noreferrer" class="share-button">
+                                {{ .Site.Config.extra.post_share_twitter }}
+                            </a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ .Site.Config.base_url }}{{ .Page.Permalink }}" target="_blank" rel="noopener noreferrer" class="share-button">
+                                {{ .Site.Config.extra.post_share_facebook }}
+                            </a>
+                            <a href="mailto:?subject={{ .Page.Config.title }}&body=Check out this thought: {{ .Site.Config.base_url }}{{ .Page.Permalink }}" class="share-button">
+                                {{ .Site.Config.extra.post_share_email }}
+                            </a>
+                        </div>
+                    </div>
+                    
                     <div class="post-author">
                         <img src="{{ .Site.Config.extra.avatar }}" alt="{{ .Site.Config.extra.name }}" class="author-avatar" width="60" height="60" />
                         <div class="author-info">
@@ -53,12 +76,10 @@
                             <p>{{ .Site.Config.extra.bio }}</p>
                         </div>
                     </div>
-                    
-                    <nav class="thought-nav">
-                        <a href="/thoughts" class="thought-nav-link">← All Thoughts</a>
-                        <a href="/" class="thought-nav-link">Home →</a>
-                    </nav>
                 </footer>
+                
+                {{ template "partials/_pagination.html" . }}
+                {{ template "partials/_related_posts.html" . }}
             </article>
         </main>
         
