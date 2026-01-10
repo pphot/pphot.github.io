@@ -7,63 +7,94 @@
     {{ $books_section := get_section "books" }}
     {{ $all_posts := concat $journal_section.Children $thoughts_section.Children $books_section.Children }}
     
-    {{/* Collect related posts */}}
-    {{ $related := slice }}
-    {{ range $all_posts }}
-        {{ if ne .Permalink $current_page.Permalink }}
-            {{ $has_shared_tag := false }}
-            {{ range .Config.tags }}
-                {{ if in $current_tags . }}
-                    {{ $has_shared_tag = true }}
-                {{ end }}
-            {{ end }}
-            {{ if $has_shared_tag }}
-                {{ $related = append $related . }}
+    {{/* Use related_posts function to find posts with shared tags */}}
+    {{ $related := related_posts .Page $all_posts }}
+    
+    {{/* Count related posts (excluding current page) */}}
+    {{ $related_count := 0 }}
+    {{ if $related }}
+        {{ range $related }}
+            {{ if ne .Permalink $current_page.Permalink }}
+                {{ $related_count = add $related_count 1 }}
             {{ end }}
         {{ end }}
     {{ end }}
     
-    {{ if $related }}
+    {{ if gt $related_count 0 }}
     <section class="related-posts">
         <h3>Related Posts</h3>
         
-        {{/* Group posts by tags */}}
-        {{ $shown_tags := slice }}
-        {{ $shown_posts := slice }}
+        {{/* Group posts by tags - using string-based tracking like tduyng.github.io */}}
         {{ $group_count := 0 }}
+        {{ $shown_tags := "" }}
+        {{ $shown_posts_global := "" }}
         
         {{ range $current_tags }}
-            {{ $tag := . }}
-            {{ if not (in $shown_tags $tag) }}
+            {{ $current_tag := . }}
+            
+            {{/* Check if we already showed this tag */}}
+            {{ $already_shown := false }}
+            {{ $tag_marker := printf ",%s," $current_tag }}
+            {{ $shown_tags_padded := printf ",%s," $shown_tags }}
+            {{ if contains $shown_tags_padded $tag_marker }}
+                {{ $already_shown = true }}
+            {{ end }}
+            
+            {{ if not $already_shown }}
                 {{ if lt $group_count 3 }}
-                    {{/* Find posts with this tag */}}
-                    {{ $posts_for_tag := slice }}
+                    {{/* Count posts for this tag */}}
+                    {{ $posts_with_tag_count := 0 }}
                     {{ range $related }}
-                        {{ if in .Config.tags $tag }}
-                            {{ if not (in $shown_posts .Permalink) }}
-                                {{ $posts_for_tag = append $posts_for_tag . }}
+                        {{ if ne .Permalink $current_page.Permalink }}
+                            {{ $post_marker := printf ",%s," .Permalink }}
+                            {{ $shown_posts_padded := printf ",%s," $shown_posts_global }}
+                            {{ $already_shown_globally := contains $shown_posts_padded $post_marker }}
+                            {{ if not $already_shown_globally }}
+                                {{ range .Config.tags }}
+                                    {{ if eq . $current_tag }}
+                                        {{ $posts_with_tag_count = add $posts_with_tag_count 1 }}
+                                    {{ end }}
+                                {{ end }}
                             {{ end }}
                         {{ end }}
                     {{ end }}
                     
-                    {{ if $posts_for_tag }}
-                        {{ $shown_tags = append $shown_tags $tag }}
+                    {{ if gt $posts_with_tag_count 0 }}
                         {{ $group_count = add $group_count 1 }}
+                        {{ if $shown_tags }}
+                            {{ $shown_tags = printf "%s,%s" $shown_tags $current_tag }}
+                        {{ else }}
+                            {{ $shown_tags = $current_tag }}
+                        {{ end }}
                         
                         <div class="related-group">
-                            <h4>More posts about <a href="/tags/{{ $tag | urlize }}">#{{ $tag }}</a></h4>
+                            <h4>More posts about <a href="/tags/{{ $current_tag | urlize }}">#{{ $current_tag }}</a></h4>
                             <ul class="related-list">
-                                {{ $post_count := 0 }}
-                                {{ range $posts_for_tag }}
-                                    {{ if lt $post_count 6 }}
-                                        {{ $shown_posts = append $shown_posts .Permalink }}
-                                        {{ $post_count = add $post_count 1 }}
-                                        <li>
-                                            <a href="{{ .Permalink }}">
-                                                <span class="date">{{ date .Config.date "2 Jan 2006" }}</span>
-                                                <span class="title">{{ .Config.title }}</span>
-                                            </a>
-                                        </li>
+                                {{ $shown_in_group := 0 }}
+                                {{ range $related }}
+                                    {{ $post := . }}
+                                    {{ if and (ne $post.Permalink $current_page.Permalink) (lt $shown_in_group 6) }}
+                                        {{ $post_marker := printf ",%s," $post.Permalink }}
+                                        {{ $shown_posts_padded := printf ",%s," $shown_posts_global }}
+                                        {{ $already_shown_globally := contains $shown_posts_padded $post_marker }}
+                                        {{ if not $already_shown_globally }}
+                                            {{ range $post.Config.tags }}
+                                                {{ if eq . $current_tag }}
+                                                    {{ $shown_in_group = add $shown_in_group 1 }}
+                                                    {{ if $shown_posts_global }}
+                                                        {{ $shown_posts_global = printf "%s,%s" $shown_posts_global $post.Permalink }}
+                                                    {{ else }}
+                                                        {{ $shown_posts_global = $post.Permalink }}
+                                                    {{ end }}
+                                                    <li>
+                                                        <a href="{{ $post.Permalink }}">
+                                                            <span class="date">{{ date $post.Config.date "2 Jan 2006" }}</span>
+                                                            <span class="title">{{ $post.Config.title }}</span>
+                                                        </a>
+                                                    </li>
+                                                {{ end }}
+                                            {{ end }}
+                                        {{ end }}
                                     {{ end }}
                                 {{ end }}
                             </ul>
