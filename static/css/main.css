@@ -26,13 +26,35 @@
     --color-warning: #a67344; /* Darker gold for contrast */
     --color-error: #a95e50; /* Darker terracotta */
 
-    /* Shadows & Overlays */
+    /* Gradients - Modern 2026 Style */
+    --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    --gradient-accent: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+    --gradient-warm: linear-gradient(135deg, #d4a574 0%, #c17767 50%, #a95e50 100%);
+    --gradient-mesh: radial-gradient(at 27% 37%, hsla(33, 55%, 65%, 0.08) 0px, transparent 50%),
+                     radial-gradient(at 97% 21%, hsla(12, 48%, 58%, 0.08) 0px, transparent 50%),
+                     radial-gradient(at 52% 99%, hsla(33, 100%, 80%, 0.05) 0px, transparent 50%),
+                     radial-gradient(at 10% 29%, hsla(12, 40%, 50%, 0.07) 0px, transparent 50%),
+                     radial-gradient(at 97% 96%, hsla(33, 60%, 70%, 0.06) 0px, transparent 50%);
+    --gradient-overlay: linear-gradient(180deg, rgba(253, 251, 247, 0) 0%, rgba(253, 251, 247, 0.8) 100%);
+    --gradient-shimmer: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+
+    /* Shadows & Overlays - Enhanced with colored shadows */
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
     --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+    --shadow-xl: 0 20px 50px rgba(0, 0, 0, 0.15);
     --shadow-image: 0 10px 40px rgba(0, 0, 0, 0.15);
+    --shadow-colored: 0 8px 32px rgba(212, 165, 116, 0.2);
+    --shadow-glow: 0 0 20px rgba(212, 165, 116, 0.3);
     --overlay-dark: rgba(0, 0, 0, 0.3);
     --overlay-light: rgba(255, 255, 255, 0.9);
+    
+    /* Glassmorphism */
+    --glass-bg: rgba(250, 248, 244, 0.8);
+    --glass-border: rgba(229, 221, 213, 0.6);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    --backdrop-blur: blur(12px);
+    --backdrop-blur-strong: blur(20px);
 
     /* Typography - System Fonts Only (ZERO loading time, maximum speed)
        Body: System UI sans-serif (SF Pro on macOS, Segoe on Windows)
@@ -92,17 +114,22 @@
     --width-max: 1400px;
     --width-container: min(var(--width-max), 100% - 2rem);
 
-    /* Border Radius */
+    /* Border Radius - More variety for modern design */
     --radius-sm: 4px;
     --radius-md: 8px;
     --radius-lg: 12px;
     --radius-xl: 16px;
+    --radius-2xl: 24px;
+    --radius-3xl: 32px;
     --radius-full: 9999px;
 
-    /* Transitions */
+    /* Transitions - Enhanced with more easing options */
     --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
     --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
     --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-smooth: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
 
     /* Z-Index Scale */
     --z-base: 0;
@@ -114,11 +141,12 @@
     --z-tooltip: 600;
 }
 
-/* DARK MODE SUPPORT (Optional for future)
+/* DARK MODE SUPPORT - Enhanced with gradients
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 @media (prefers-color-scheme: dark) {
     :root {
+        /* Dark mode base colors */
         --color-bg: #1a1a1a;
         --color-bg-alt: #242424;
         --color-bg-card: #2c2c2c;
@@ -129,6 +157,18 @@
         --color-border-light: #2e2e2e;
         --overlay-dark: rgba(0, 0, 0, 0.6);
         --overlay-light: rgba(0, 0, 0, 0.8);
+        
+        /* Dark mode gradients */
+        --gradient-mesh: radial-gradient(at 27% 37%, hsla(33, 55%, 35%, 0.15) 0px, transparent 50%),
+                         radial-gradient(at 97% 21%, hsla(12, 48%, 28%, 0.15) 0px, transparent 50%),
+                         radial-gradient(at 52% 99%, hsla(33, 100%, 40%, 0.1) 0px, transparent 50%);
+        --gradient-overlay: linear-gradient(180deg, rgba(26, 26, 26, 0) 0%, rgba(26, 26, 26, 0.9) 100%);
+        
+        /* Dark mode glass */
+        --glass-bg: rgba(44, 44, 44, 0.7);
+        --glass-border: rgba(58, 58, 58, 0.5);
+        --shadow-colored: 0 8px 32px rgba(212, 165, 116, 0.1);
+        --shadow-glow: 0 0 20px rgba(212, 165, 116, 0.15);
     }
 }
 
@@ -157,7 +197,10 @@ body {
     letter-spacing: -0.011em;
     color: var(--color-text);
     background-color: var(--color-bg);
+    background-image: var(--gradient-mesh);
+    background-attachment: fixed;
     overflow-x: hidden;
+    position: relative;
 }
 
 /* TYPOGRAPHY
