@@ -14,7 +14,7 @@
                 </div>
                 
                 <div class="thoughts-timeline">
-                    {{ range reverse .Section.Children }}
+                    {{ range .Section.Children }}
                     <article class="thought-card">
                         <div class="thought-header">
                             <time class="thought-date" datetime="{{ .Config.date }}">

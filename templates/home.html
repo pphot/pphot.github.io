@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="post-grid">
-                    {{ $count := 0 }} {{ range (reverse $journal.Children) }} {{ if and
+                    {{ $count := 0 }} {{ range $journal.Children }} {{ if and
                     .Config.extra.featured (lt $count 6) }} {{ $count = add $count 1 }}
                     <article class="post-card fade-in">
                         {{ $post_image := "/img/post-cover.webp" }} {{ if .Config.extra.img }} {{
@@ -94,7 +94,7 @@
                             </div>
                         </div>
                     </article>
-                    {{ end }} {{ end }} {{ range (reverse $books.Children) }} {{ if and
+                    {{ end }} {{ end }} {{ range $books.Children }} {{ if and
                     .Config.extra.featured (lt $count 6) }} {{ $count = add $count 1 }}
                     <article class="post-card fade-in">
                         {{ $post_image := "/img/post-cover.webp" }} {{ if .Config.extra.img }} {{
@@ -132,7 +132,7 @@
                             </div>
                         </div>
                     </article>
-                    {{ end }} {{ end }} {{ range (reverse $thoughts.Children) }} {{ if and
+                    {{ end }} {{ end }} {{ range $thoughts.Children }} {{ if and
                     .Config.extra.featured (lt $count 6) }} {{ $count = add $count 1 }}
                     <article class="post-card fade-in">
                         {{ $post_image := "/img/post-cover.webp" }} {{ if .Config.extra.img }} {{
@@ -182,7 +182,7 @@
                 </div>
 
                 <div class="post-grid">
-                    {{ $latest_count := 0 }} {{ range (reverse $journal.Children) }} {{ if lt
+                    {{ $latest_count := 0 }} {{ range $journal.Children }} {{ if lt
                     $latest_count 3 }} {{ $latest_count = add $latest_count 1 }}
                     <article class="post-card fade-in">
                         {{ $post_image := "/img/post-cover.webp" }} {{ if .Config.extra.img }} {{
@@ -220,7 +220,7 @@
                             </div>
                         </div>
                     </article>
-                    {{ end }} {{ end }} {{ range (reverse $books.Children) }} {{ if lt $latest_count
+                    {{ end }} {{ end }} {{ range $books.Children }} {{ if lt $latest_count
                     6 }} {{ $latest_count = add $latest_count 1 }}
                     <article class="post-card fade-in">
                         {{ $post_image := "/img/post-cover.webp" }} {{ if .Config.extra.img }} {{

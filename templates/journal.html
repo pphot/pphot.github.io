@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="post-grid">
-                    {{ range reverse .Section.Children }}
+                    {{ range .Section.Children }}
                     <article class="post-card">
                         {{ $post_image := $.Site.Config.extra.default_post_cover }} {{ if
                         .Config.extra.img }} {{ $img_path := .Config.extra.img }} {{ $first_char :=
