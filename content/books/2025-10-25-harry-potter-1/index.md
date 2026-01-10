@@ -3,7 +3,7 @@ title = "Harry Potter and the Philosopher's Stone: Where Magic Begins"
 date = 2025-10-25
 template = "post.html"
 description = "The book that started it all - a story about belonging, friendship, and discovering you're more than you think you are."
-tags = ["books", "fantasy", "magic", "childhood", "adventure"]
+tags = ["fantasy", "coming-of-age", "friendship"]
 generate_feed = true
 
 [extra]

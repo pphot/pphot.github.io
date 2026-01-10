@@ -3,7 +3,7 @@ title = "Harry Potter and the Goblet of Fire: Growing Up, Fast"
 date = 2025-12-01
 template = "post.html"
 description = "The book where everything changes - darker, longer, and the moment when death becomes real."
-tags = ["books", "fantasy", "magic", "tournament", "coming-of-age"]
+tags = ["fantasy", "coming-of-age", "loss"]
 generate_feed = true
 
 [extra]

@@ -3,7 +3,7 @@ title = "Coffee Shop Rituals: Finding Home in Strange Places"
 date = 2026-01-05
 template = "post.html"
 description = "How a simple morning routine in local cafés has become my anchor while traveling through life."
-tags = ["daily-life", "coffee", "rituals", "reflection"]
+tags = ["ritual", "belonging", "home"]
 generate_feed = true
 
 [extra]

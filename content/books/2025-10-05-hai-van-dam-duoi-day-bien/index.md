@@ -3,7 +3,7 @@ title = "Hai Vạn Dặm Dưới Đáy Biển: Hành Trình Khám Phá Đại D�
 date = 2025-10-05
 template = "post.html"
 description = "Tác phẩm kinh điển của Jules Verne đưa ta vào hành trình kỳ ảo cùng thuyền trưởng Nemo - một câu chuyện về phiêu lưu, khoa học và vẻ đẹp huyền bí của đại dương."
-tags = ["books", "adventure", "science-fiction", "ocean", "classic"]
+tags = ["science-fiction", "adventure", "ocean"]
 generate_feed = true
 
 [extra]

@@ -3,7 +3,7 @@ title = "Harry Potter and the Deathly Hallows: The End"
 date = 2026-01-01
 template = "post.html"
 description = "No school, no safety, just war. The ending we needed - painful, brave, and ultimately hopeful."
-tags = ["books", "fantasy", "magic", "war", "sacrifice", "endings"]
+tags = ["fantasy", "war", "sacrifice", "hope"]
 generate_feed = true
 
 [extra]

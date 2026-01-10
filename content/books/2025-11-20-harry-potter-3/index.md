@@ -3,7 +3,7 @@ title = "Harry Potter and the Prisoner of Azkaban: Time, Truth, and Finding Fami
 date = 2025-11-20
 template = "post.html"
 description = "The book where everything gets deeper - the writing, the themes, the characters. My personal favorite of the series."
-tags = ["books", "fantasy", "magic", "family", "time-travel"]
+tags = ["fantasy", "family", "belonging"]
 generate_feed = true
 
 [extra]

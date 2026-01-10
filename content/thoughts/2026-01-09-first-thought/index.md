@@ -2,7 +2,7 @@
 title = "Starting My Daily Writing"
 date = 2026-01-09
 template = "thought.html"
-tags = ["Daily Life", "Writing"]
+tags = ["writing", "growth"]
 +++
 
 Today I start something new - writing my thoughts every day in English. It feels a bit scary but also exciting!

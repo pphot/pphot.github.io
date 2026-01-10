@@ -3,7 +3,7 @@ title = "Harry Potter and the Order of the Phoenix: The Angry Year"
 date = 2025-12-15
 template = "post.html"
 description = "The longest, most frustrating book - Harry at his most human, most broken, most real."
-tags = ["books", "fantasy", "magic", "rebellion", "grief"]
+tags = ["fantasy", "grief", "anger"]
 generate_feed = true
 
 [extra]

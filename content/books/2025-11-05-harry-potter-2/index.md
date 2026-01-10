@@ -3,7 +3,7 @@ title = "Harry Potter and the Chamber of Secrets: Fears and Voices"
 date = 2025-11-05
 template = "post.html"
 description = "The second book goes darker - exploring prejudice, self-doubt, and the voice in your head that whispers you're not good enough."
-tags = ["books", "fantasy", "magic", "identity", "courage"]
+tags = ["fantasy", "identity", "self-doubt"]
 generate_feed = true
 
 [extra]

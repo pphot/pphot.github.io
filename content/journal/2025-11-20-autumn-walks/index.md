@@ -3,7 +3,7 @@ title = "Autumn Walks and Golden Light"
 date = 2025-11-20
 template = "post.html"
 description = "There's something about autumn that makes me want to walk for hours, watching leaves fall and light change."
-tags = ["nature", "seasons", "reflection", "photography"]
+tags = ["nature", "reflection", "mindfulness"]
 generate_feed = true
 
 [extra]
