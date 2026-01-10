@@ -2,7 +2,7 @@
 <html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
     {{ template "partials/_head.html" . }}
     <body class="contact-page">
-        <a href="#main" class="skip-to-content">Skip to content</a>
+        <a href="#main" class="skip-to-content">{{ .Site.Config.extra.skip_to_content }}</a>
 
         {{ template "partials/_header.html" . }}
 
@@ -11,9 +11,9 @@
                 <div style="max-width: 700px; margin-inline: auto; padding: var(--space-3xl) var(--space-md);">
                     <!-- Hero Section -->
                     <div style="text-align: center; margin-bottom: var(--space-3xl);">
-                        <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">Get in Touch</h1>
+                        <h1 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">{{ .Site.Config.extra.contact_title }}</h1>
                         <p style="font-size: var(--text-lg); color: var(--color-text-light); line-height: var(--leading-relaxed); max-width: 600px; margin-inline: auto;">
-                            I'd love to hear from you! Whether you want to chat about travel, books, photography, or just say hello.
+                            {{ .Site.Config.extra.contact_subtitle }}
                         </p>
                     </div>
 
@@ -52,7 +52,7 @@
                             </div>
                             <div style="flex: 1; text-align: left;">
                                 <div style="font-size: var(--text-sm); color: var(--color-text-light); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.25rem;">
-                                    Email
+                                    {{ .Site.Config.extra.contact_email_label }}
                                 </div>
                                 <div style="font-size: var(--text-xl); font-weight: 600; color: var(--color-text);">
                                     {{ .Site.Config.extra.email }}
@@ -62,7 +62,7 @@
 
                         <!-- Instagram Card -->
                         <a 
-                            href="https://instagram.com/phuong_phot"
+                            href="{{ .Site.Config.extra.contact_instagram_url }}"
                             target="_blank"
                             rel="noopener noreferrer"
                             style="
@@ -95,17 +95,17 @@
                             </div>
                             <div style="flex: 1; text-align: left;">
                                 <div style="font-size: var(--text-sm); color: var(--color-text-light); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.25rem;">
-                                    Instagram
+                                    {{ .Site.Config.extra.contact_instagram_label }}
                                 </div>
                                 <div style="font-size: var(--text-xl); font-weight: 600; color: var(--color-text);">
-                                    @phuong_phot
+                                    {{ .Site.Config.extra.contact_instagram_handle }}
                                 </div>
                             </div>
                         </a>
 
                         <!-- GitHub Card -->
                         <a 
-                            href="https://github.com/pphot"
+                            href="{{ .Site.Config.extra.contact_github_url }}"
                             target="_blank"
                             rel="noopener noreferrer"
                             style="
@@ -138,10 +138,10 @@
                             </div>
                             <div style="flex: 1; text-align: left;">
                                 <div style="font-size: var(--text-sm); color: var(--color-text-light); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.25rem;">
-                                    GitHub
+                                    {{ .Site.Config.extra.contact_github_label }}
                                 </div>
                                 <div style="font-size: var(--text-xl); font-weight: 600; color: var(--color-text);">
-                                    pphot
+                                    {{ .Site.Config.extra.contact_github_handle }}
                                 </div>
                             </div>
                         </a>
@@ -156,7 +156,7 @@
                         margin-top: var(--space-2xl);
                     ">
                         <p style="font-size: var(--text-base); color: var(--color-text-light); margin: 0;">
-                            Looking forward to connecting with you! 🌟
+                            {{ .Site.Config.extra.contact_footer_message }}
                         </p>
                     </div>
                 </div>
