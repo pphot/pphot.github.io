@@ -1,6 +1,33 @@
 ;(function () {
     'use strict'
 
+    // Parallax Hero Effect
+    const hero = document.querySelector('.hero')
+    const heroImage = document.querySelector('.hero-image')
+    
+    if (hero && heroImage) {
+        let ticking = false
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrolled = window.pageYOffset
+                    const heroHeight = hero.offsetHeight
+                    
+                    // Only apply parallax when hero is in viewport
+                    if (scrolled < heroHeight) {
+                        const parallaxValue = scrolled * 0.5
+                        heroImage.style.transform = `translateY(${parallaxValue}px)`
+                    }
+                    
+                    ticking = false
+                })
+                
+                ticking = true
+            }
+        })
+    }
+
     // Mobile Navigation
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle')
     const mobileNav = document.getElementById('mobile-nav')
