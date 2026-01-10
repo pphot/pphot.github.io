@@ -2323,6 +2323,11 @@ img:not([loading='lazy']) {
    THOUGHT POST (SINGLE) - Simpler, more personal than regular posts
    =================================================================== */
 
+/* Add top spacing to match journal/book pages */
+.thought-post-page .container {
+    margin-top: var(--space-3xl);
+}
+
 .thought-post {
     max-width: var(--width-prose);
     margin: 0 auto;
@@ -2337,18 +2342,20 @@ img:not([loading='lazy']) {
     border-left: 4px solid var(--color-primary);
 }
 
-.thought-back-link {
+/* Thought back link - simplified for post-header context */
+.post-header .thought-back-link {
     display: inline-flex;
     align-items: center;
     font-size: var(--text-sm);
     color: var(--color-primary);
     text-decoration: none;
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-lg);
     font-weight: 600;
-    transition: transform 0.2s ease;
+    transition: all var(--transition-smooth);
 }
 
-.thought-back-link:hover {
+.post-header .thought-back-link:hover {
+    color: var(--color-primary-dark);
     transform: translateX(-4px);
 }
 
@@ -2470,26 +2477,42 @@ img:not([loading='lazy']) {
     margin: 0;
 }
 
-.thought-nav {
+/* Thought navigation - simplified for post-footer context */
+.post-footer .thought-nav {
     display: flex;
     justify-content: space-between;
     gap: var(--space-md);
+    margin-top: var(--space-xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--color-border);
 }
 
-.thought-nav-link {
-    font-size: var(--text-sm);
+.post-footer .thought-nav-link {
+    font-size: var(--text-base);
     color: var(--color-primary);
     text-decoration: none;
     font-weight: 600;
-    transition: transform 0.2s ease;
+    transition: all var(--transition-smooth);
 }
 
-.thought-nav-link:hover {
+.post-footer .thought-nav-link:hover {
+    color: var(--color-primary-dark);
+}
+
+.post-footer .thought-nav-link:first-child:hover {
     transform: translateX(-2px);
 }
 
-.thought-nav-link:last-child:hover {
+.post-footer .thought-nav-link:last-child:hover {
     transform: translateX(2px);
+}
+
+/* Mobile responsive */
+@media (max-width: 640px) {
+    .post-footer .thought-nav {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
 }
 
 /* Mobile responsive */

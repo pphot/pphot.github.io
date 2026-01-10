@@ -7,37 +7,37 @@
         {{ template "partials/_header.html" . }}
         
         <main id="main">
-            <article class="thought-post">
-                <header class="thought-post-header">
+            <article class="container">
+                <header class="post-header">
                     <a href="/thoughts" class="thought-back-link">← Back to Thoughts</a>
                     
-                    <time class="thought-post-date" datetime="{{ .Page.Config.date }}">
-                        {{ date .Page.Config.date "January 2, 2006" }}
-                    </time>
+                    <div class="post-meta">
+                        <time class="post-date" datetime="{{ .Page.Config.date }}">
+                            {{ date .Page.Config.date "January 2, 2006" }}
+                        </time>
+                    </div>
                     
-                    <h1 class="thought-post-title">{{ .Page.Config.title }}</h1>
+                    <h1 class="post-title-single">{{ .Page.Config.title }}</h1>
                     
-                    <div class="thought-post-tags">
+                    <div class="post-tags">
                         {{ range .Page.Config.tags }}
                         {{ $tag_slugify := . | urlize }}
                         {{ $tag_url := printf "/tags/%s" $tag_slugify }}
-                        <a href="{{ $tag_url }}" class="thought-tag">#{{ . }}</a>
+                        <a href="{{ $tag_url }}" class="post-tag">#{{ . }}</a>
                         {{ end }}
                     </div>
                 </header>
                 
-                <div class="thought-content">
+                <div class="prose">
                     {{ .Page.Content }}
                 </div>
                 
-                <footer class="thought-post-footer">
-                    <div class="thought-divider">✨</div>
-                    
-                    <div class="thought-author">
-                        <img src="{{ .Site.Config.extra.avatar }}" alt="{{ .Site.Config.extra.name }}" class="thought-author-avatar" width="50" height="50" />
-                        <div class="thought-author-info">
-                            <p class="thought-author-name">{{ .Site.Config.extra.name }}</p>
-                            <p class="thought-author-bio">{{ .Site.Config.extra.bio }}</p>
+                <footer class="post-footer">
+                    <div class="post-author">
+                        <img src="{{ .Site.Config.extra.avatar }}" alt="{{ .Site.Config.extra.name }}" class="author-avatar" width="60" height="60" />
+                        <div class="author-info">
+                            <h4>{{ .Site.Config.extra.name }}</h4>
+                            <p>{{ .Site.Config.extra.bio }}</p>
                         </div>
                     </div>
                     
