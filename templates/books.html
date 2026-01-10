@@ -2,21 +2,21 @@
 <html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
     {{ template "partials/_head.html" . }}
     <body class="section-page books-page">
-        <a href="#main" class="skip-to-content">Skip to content</a>
+        <a href="#main" class="skip-to-content">{{ .Site.Config.extra.skip_to_content }}</a>
         
         {{ template "partials/_header.html" . }}
         
         <main id="main">
             <div class="container">
                 <div class="section-header">
-                    <h1>📚 Books</h1>
-                    <p class="section-subtitle">Reviews, reflections, and literary discoveries</p>
+                    <h1>{{ .Site.Config.extra.books_title }}</h1>
+                    <p class="section-subtitle">{{ .Site.Config.extra.books_subtitle }}</p>
                 </div>
                 
                 <div class="post-grid">
                     {{ range reverse .Section.Children }}
                     <article class="post-card">
-                        {{ $post_image := "/img/post-cover.webp" }}
+                        {{ $post_image := .Site.Config.extra.default_post_cover }}
                         {{ if .Config.extra.img }}
                             {{ $img_path := .Config.extra.img }}
                             {{ $first_char := index (split $img_path "") 0 }}
@@ -35,7 +35,7 @@
                                 height="250"
                                 loading="lazy"
                                 decoding="async"
-                                onerror="this.src='/img/post-cover.webp'"
+                                onerror="this.src='{{ .Site.Config.extra.default_post_cover }}'"
                             />
                         </a>
                         
