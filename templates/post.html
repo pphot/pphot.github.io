@@ -35,26 +35,7 @@
                         />
                     </div>
                     
-                    <div class="post-meta">
-                        {{ if .Page.Config.categories }}
-                        {{ $first_category := index .Page.Config.categories 0 }}
-                        {{ $category_icon := "" }}
-                        {{ if eq $first_category "books" }}
-                            {{ $category_icon = "📚" }}
-                        {{ else if eq $first_category "journal" }}
-                            {{ $category_icon = "📔" }}
-                        {{ else if eq $first_category "thoughts" }}
-                            {{ $category_icon = "💭" }}
-                        {{ end }}
-                        <span class="post-category">{{ $category_icon }} {{ $first_category }}</span>
-                        {{ end }}
-                        <time class="post-date" datetime="{{ .Page.Config.date }}">
-                            {{ date .Page.Config.date "January 2, 2006" }}
-                        </time>
-                        {{ if .Page.ReadTime }}
-                        <span class="reading-time">{{ .Page.ReadTime }} {{ .Site.Config.extra.post_read_time_suffix }}</span>
-                        {{ end }}
-                    </div>
+                    <div class="post-meta">{{ if .Page.Config.categories }}{{ $first_category := index .Page.Config.categories 0 }}{{ $category_icon := "" }}{{ if eq $first_category "books" }}{{ $category_icon = "📚" }}{{ else if eq $first_category "journal" }}{{ $category_icon = "📔" }}{{ else if eq $first_category "thoughts" }}{{ $category_icon = "💭" }}{{ end }}<span class="post-category">{{ $category_icon }} {{ $first_category }}</span>{{ end }}<time class="post-date" datetime="{{ .Page.Config.date }}">{{ date .Page.Config.date "January 2, 2006" }}</time>{{ if .Page.ReadTime }}<span class="reading-time">{{ .Page.ReadTime }} {{ .Site.Config.extra.post_read_time_suffix }}</span>{{ end }}</div>
                     
                     <h1 class="post-title-single">{{ .Page.Config.title }}</h1>
                     
