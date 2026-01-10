@@ -97,6 +97,10 @@ post_share_twitter = "Twitter"
 post_share_facebook = "Facebook"
 post_share_email = "Email"
 
+# Related posts configuration
+related_posts_max = 10  # Maximum total related posts to show
+related_posts_randomize = true  # Randomize order for variety
+
 # Footer
 footer_copyright_suffix = "All moments captured with love"
 

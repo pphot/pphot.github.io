@@ -436,3 +436,33 @@
     if (document.querySelector('.toc-nav')) {
         enableTocActiveState()
     }
+
+    // Randomize Related Posts
+    function randomizeRelatedPosts() {
+        const relatedSection = document.querySelector('.related-posts')
+        if (!relatedSection) return
+        
+        // Get all related groups
+        const groups = Array.from(relatedSection.querySelectorAll('.related-group'))
+        if (groups.length === 0) return
+        
+        // Shuffle each group's list items
+        groups.forEach(group => {
+            const list = group.querySelector('.related-list')
+            if (!list) return
+            
+            const items = Array.from(list.querySelectorAll('li'))
+            if (items.length <= 1) return
+            
+            // Fisher-Yates shuffle
+            for (let i = items.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1))
+                list.appendChild(items[j])
+            }
+        })
+    }
+    
+    // Initialize related posts randomization
+    if (document.querySelector('.related-posts')) {
+        randomizeRelatedPosts()
+    }
