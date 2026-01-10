@@ -7,7 +7,7 @@ tags = ["books", "history", "science", "philosophy", "humanity"]
 generate_feed = true
 
 [extra]
-img = "img/sapiens.webp"
+img = "img/cover.webp"
 +++
 
 This book made me question everything I thought I knew about being human. Yuval Noah Harari takes 70,000 years of human history and makes it feel urgent, relevant, and deeply personal. It's brilliant, provocative, and occasionally infuriating - which is exactly what great books should be.

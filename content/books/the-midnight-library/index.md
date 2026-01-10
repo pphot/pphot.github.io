@@ -7,7 +7,7 @@ tags = ["books", "fiction", "philosophy", "mental-health", "choices"]
 generate_feed = true
 
 [extra]
-img = "img/midnight-library.webp"
+img = "img/cover.webp"
 +++
 
 I read this book in one sitting, tears streaming down my face at 2 AM. It's the kind of book that finds you exactly when you need it. If you've ever wondered "what if?" about your life choices, this book will break your heart and put it back together.
