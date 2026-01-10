@@ -1199,8 +1199,7 @@ footer::before {
     font-family: var(--font-body);
     font-size: var(--text-lg);
     max-width: var(--width-prose);
-    margin-left: var(--space-lg);
-    margin-right: auto;
+    margin-inline: auto; /* Center the prose content */
     color: var(--color-text);
     background: transparent;
     line-height: var(--leading-loose);
@@ -2919,59 +2918,88 @@ header.scroll-up {
 }
 
 /* ===================================================================
-   TABLE OF CONTENTS (TOC) SIDEBAR
+   TABLE OF CONTENTS (TOC) SIDEBAR - RIGHT SIDE
+   Expert UX Design: Centered layout, natural reading flow, ergonomic positioning
    =================================================================== */
 
 .post-wrapper {
-    display: flex;
-    max-width: var(--width-max);
+    display: grid;
+    grid-template-columns: 1fr 220px; /* Content expands | TOC small 220px */
+    gap: var(--space-xl);
+    max-width: var(--width-max); /* 1400px - entire layout centered */
     margin: 0 auto;
-    gap: var(--space-2xl);
+    padding-inline: var(--space-md);
+    align-items: start;
+}
+
+.post-wrapper main {
+    /* Main content - natural expansion with centered text */
+    min-width: 0; /* Prevent grid blowout */
+    /* Note: Typography max-width (75ch) is applied to .prose, not here */
 }
 
 .toc-sidebar {
-    flex: 0 0 280px;
+    /* TOC on right - small, compact, doesn't steal content space */
     position: sticky;
-    top: 100px;
+    top: 100px; /* Account for fixed header */
     height: fit-content;
-    max-height: calc(100vh - 120px);
+    max-height: calc(100vh - 120px); /* Prevent overflow */
     overflow-y: auto;
-    padding: var(--space-lg);
-    display: none; /* Hidden on mobile by default */
+    overflow-x: hidden;
+    padding: var(--space-sm);
+    display: none; /* Hidden by default, shown on large screens */
+    
+    /* Subtle visual separation */
+    border-left: 1px solid var(--color-border-light);
+    padding-left: var(--space-md);
 }
 
-/* Only show TOC on larger screens when content exists */
+/* Only show TOC on large screens when content exists */
 @media (min-width: 1200px) {
     .toc-sidebar:not(:empty) {
         display: block;
     }
 }
 
+/* Custom scrollbar for TOC (when content is long) */
 .toc-sidebar::-webkit-scrollbar {
     width: 4px;
+}
+
+.toc-sidebar::-webkit-scrollbar-track {
+    background: transparent;
 }
 
 .toc-sidebar::-webkit-scrollbar-thumb {
     background: var(--color-border);
     border-radius: 2px;
+    transition: background var(--transition-fast);
 }
 
 .toc-sidebar::-webkit-scrollbar-thumb:hover {
     background: var(--color-primary);
 }
 
+/* Firefox scrollbar */
+.toc-sidebar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+}
+
+/* TOC Navigation Styles */
 .toc-nav {
-    font-size: var(--text-sm);
+    font-size: var(--text-xs); /* Small, compact text */
 }
 
 .toc-title {
     font-family: var(--font-display);
-    font-size: var(--text-base);
+    font-size: var(--text-xs);
     font-weight: 700;
-    margin-bottom: var(--space-md);
-    color: var(--color-text);
+    margin-bottom: var(--space-sm);
+    color: var(--color-text-light);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
+    padding-left: var(--space-xs);
 }
 
 .toc-nav ul {
@@ -2986,20 +3014,22 @@ header.scroll-up {
 
 .toc-nav ul ul {
     margin-left: var(--space-md);
-    margin-top: var(--space-xs);
+    margin-top: var(--space-2xs);
 }
 
 .toc-nav a {
     display: block;
     color: var(--color-text-muted);
     text-decoration: none;
-    padding: var(--space-xs) var(--space-sm);
+    padding: var(--space-2xs) var(--space-xs);
     border-radius: var(--rounded-sm);
     position: relative;
     transition: all var(--transition-fast);
-    line-height: 1.6;
+    line-height: 1.5;
+    font-weight: 400;
 }
 
+/* Active indicator on LEFT side of TOC link (right side of screen) */
 .toc-nav a::before {
     content: '';
     position: absolute;
@@ -3015,48 +3045,107 @@ header.scroll-up {
 
 .toc-nav a:hover {
     color: var(--color-primary);
-    background: rgba(212, 165, 116, 0.08);
-    transform: translateX(4px);
+    background: rgba(212, 135, 62, 0.08);
+    transform: translateX(2px); /* Subtle shift right on hover */
 }
 
 .toc-nav a:hover::before {
-    height: 80%;
+    height: 70%;
 }
 
 .toc-nav a.active {
     color: var(--color-primary);
-    background: rgba(212, 165, 116, 0.12);
+    background: rgba(212, 135, 62, 0.12);
     font-weight: 600;
 }
 
 .toc-nav a.active::before {
     height: 100%;
-    box-shadow: 0 0 8px rgba(212, 165, 116, 0.5);
+    box-shadow: 0 0 8px rgba(212, 135, 62, 0.4);
 }
 
+/* H3 links (nested sections) */
 .toc-nav a.h3 {
-    font-size: 0.92em;
+    font-size: 0.9em;
     padding-left: var(--space-md);
     color: var(--color-text-lighter);
+    font-weight: 400;
 }
 
-/* Mobile: Hide TOC sidebar completely */
+.toc-nav a.h3:hover {
+    color: var(--color-primary-600);
+}
+
+/* ===================================================================
+   RESPONSIVE DESIGN - Mobile First Approach
+   =================================================================== */
+
+/* Tablet and below: Hide TOC, full-width content */
 @media (max-width: 1199px) {
     .post-wrapper {
-        flex-direction: column;
+        grid-template-columns: 1fr; /* Single column */
+        gap: var(--space-xl);
     }
     
     .toc-sidebar {
-        display: none !important;
+        display: none !important; /* Hide TOC on smaller screens */
     }
 }
 
-/* Adjust main content width when TOC is visible */
-@media (min-width: 1200px) {
-    .post-wrapper main {
-        flex: 1;
-        min-width: 0; /* Prevent flex item from overflowing */
+/* Large Desktop: 1400px+ (Wider container, more breathing room) */
+@media (min-width: 1400px) {
+    .post-wrapper {
+        max-width: 1600px; /* Wider container on large screens */
+        grid-template-columns: 1fr 240px; /* TOC still compact */
+        gap: var(--space-2xl);
     }
+}
+
+/* Ultra-wide: 1800px+ (Maximum comfort for reading) */
+@media (min-width: 1800px) {
+    .post-wrapper {
+        max-width: 1800px; /* Even wider on ultra-wide screens */
+        grid-template-columns: 1fr 260px; /* TOC grows slightly, still compact */
+        gap: var(--space-2xl);
+    }
+    
+    .toc-nav {
+        font-size: var(--text-sm); /* Slightly larger text on huge screens */
+    }
+}
+
+/* ===================================================================
+   ACCESSIBILITY ENHANCEMENTS
+   =================================================================== */
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    .toc-nav a {
+        transition: none;
+    }
+    
+    .toc-nav a::before {
+        transition: none;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .toc-sidebar {
+        border-left-width: 2px;
+        border-left-color: currentColor;
+    }
+    
+    .toc-nav a.active {
+        outline: 2px solid currentColor;
+    }
+}
+
+/* Focus visible for keyboard navigation */
+.toc-nav a:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    background: rgba(212, 135, 62, 0.15);
 }
 
 /* ===================================================================
