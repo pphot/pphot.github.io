@@ -2,59 +2,76 @@
 {{ $current_tags := .Page.Config.tags }}
 
 {{ if $current_tags }}
-<section class="related-posts">
-    <h3>You Might Also Enjoy</h3>
-    <div class="related-posts-grid">
-        {{ $journal_section := get_section "journal" }}
-        {{ $thoughts_section := get_section "thoughts" }}
-        {{ $books_section := get_section "books" }}
-        {{ $all_posts := concat $journal_section.Children $thoughts_section.Children $books_section.Children }}
-        
-        {{ $related := slice }}
-        {{ range $all_posts }}
-            {{ if ne .Permalink $current_page.Permalink }}
-                {{ $shared_tags := 0 }}
-                {{ range .Config.tags }}
-                    {{ if in $current_tags . }}
-                        {{ $shared_tags = add $shared_tags 1 }}
-                    {{ end }}
+    {{ $journal_section := get_section "journal" }}
+    {{ $thoughts_section := get_section "thoughts" }}
+    {{ $books_section := get_section "books" }}
+    {{ $all_posts := concat $journal_section.Children $thoughts_section.Children $books_section.Children }}
+    
+    {{/* Collect related posts */}}
+    {{ $related := slice }}
+    {{ range $all_posts }}
+        {{ if ne .Permalink $current_page.Permalink }}
+            {{ $has_shared_tag := false }}
+            {{ range .Config.tags }}
+                {{ if in $current_tags . }}
+                    {{ $has_shared_tag = true }}
                 {{ end }}
-                
-                {{ if gt $shared_tags 0 }}
-                    {{ $related = append $related (dict "page" . "score" $shared_tags) }}
+            {{ end }}
+            {{ if $has_shared_tag }}
+                {{ $related = append $related . }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+    
+    {{ if $related }}
+    <section class="related-posts">
+        <h3>Related Posts</h3>
+        
+        {{/* Group posts by tags */}}
+        {{ $shown_tags := slice }}
+        {{ $shown_posts := slice }}
+        {{ $group_count := 0 }}
+        
+        {{ range $current_tags }}
+            {{ $tag := . }}
+            {{ if not (in $shown_tags $tag) }}
+                {{ if lt $group_count 3 }}
+                    {{/* Find posts with this tag */}}
+                    {{ $posts_for_tag := slice }}
+                    {{ range $related }}
+                        {{ if in .Config.tags $tag }}
+                            {{ if not (in $shown_posts .Permalink) }}
+                                {{ $posts_for_tag = append $posts_for_tag . }}
+                            {{ end }}
+                        {{ end }}
+                    {{ end }}
+                    
+                    {{ if $posts_for_tag }}
+                        {{ $shown_tags = append $shown_tags $tag }}
+                        {{ $group_count = add $group_count 1 }}
+                        
+                        <div class="related-group">
+                            <h4>More posts about <a href="/tags/{{ $tag | urlize }}">#{{ $tag }}</a></h4>
+                            <ul class="related-list">
+                                {{ $post_count := 0 }}
+                                {{ range $posts_for_tag }}
+                                    {{ if lt $post_count 6 }}
+                                        {{ $shown_posts = append $shown_posts .Permalink }}
+                                        {{ $post_count = add $post_count 1 }}
+                                        <li>
+                                            <a href="{{ .Permalink }}">
+                                                <span class="date">{{ date .Config.date "2 Jan 2006" }}</span>
+                                                <span class="title">{{ .Config.title }}</span>
+                                            </a>
+                                        </li>
+                                    {{ end }}
+                                {{ end }}
+                            </ul>
+                        </div>
+                    {{ end }}
                 {{ end }}
             {{ end }}
         {{ end }}
-        
-        {{ $count := 0 }}
-        {{ range $related }}
-            {{ if lt $count 3 }}
-            {{ $post := .page }}
-            <article class="related-post-card">
-                {{ $post_image := $.Site.Config.extra.default_post_cover }}
-                {{ if $post.Config.extra.img }}
-                    {{ $img_path := $post.Config.extra.img }}
-                    {{ $first_char := index (split $img_path "") 0 }}
-                    {{ if eq $first_char "/" }}
-                        {{ $post_image = $img_path }}
-                    {{ else }}
-                        {{ $post_image = printf "%s%s" $post.Permalink $img_path }}
-                    {{ end }}
-                {{ end }}
-                
-                <a href="{{ $post.Permalink }}" class="related-post-image">
-                    <img src="{{ $post_image }}" alt="{{ $post.Config.title }}" loading="lazy" />
-                </a>
-                <div class="related-post-content">
-                    <h4><a href="{{ $post.Permalink }}">{{ $post.Config.title }}</a></h4>
-                    {{ if $post.Config.description }}
-                    <p class="related-post-description">{{ $post.Config.description }}</p>
-                    {{ end }}
-                </div>
-            </article>
-            {{ $count = add $count 1 }}
-            {{ end }}
-        {{ end }}
-    </div>
-</section>
+    </section>
+    {{ end }}
 {{ end }}
