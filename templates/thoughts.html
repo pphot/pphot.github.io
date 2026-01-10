@@ -2,15 +2,15 @@
 <html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
     {{ template "partials/_head.html" . }}
     <body class="section-page thoughts-page">
-        <a href="#main" class="skip-to-content">Skip to content</a>
+        <a href="#main" class="skip-to-content">{{ .Site.Config.extra.skip_to_content }}</a>
         
         {{ template "partials/_header.html" . }}
         
         <main id="main">
             <div class="container">
                 <div class="section-header">
-                    <h1>💭 Daily Thoughts</h1>
-                    <p class="section-subtitle">Short moments, daily practice, honest reflections</p>
+                    <h1>{{ .Site.Config.extra.thoughts_title }}</h1>
+                    <p class="section-subtitle">{{ .Site.Config.extra.thoughts_subtitle }}</p>
                 </div>
                 
                 <div class="thoughts-timeline">
