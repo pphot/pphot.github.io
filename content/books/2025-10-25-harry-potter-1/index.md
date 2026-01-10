@@ -4,6 +4,7 @@ date = 2025-10-25
 template = "post.html"
 description = "The book that started it all - a story about belonging, friendship, and discovering you're more than you think you are."
 tags = ["fantasy", "coming-of-age", "friendship"]
+categories = ["books"]
 generate_feed = true
 
 [extra]

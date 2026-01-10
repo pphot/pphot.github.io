@@ -3,6 +3,7 @@ title = "Slow Morning with Tea"
 date = 2026-01-07
 template = "thought.html"
 tags = ["mindfulness", "ritual"]
+categories = ["thoughts"]
 +++
 
 This morning I woke up early – not because of an alarm, but because my body was ready. The light was soft and gray, the kind of light that makes you want to move slowly and speak quietly.

@@ -4,6 +4,7 @@ date = 2025-12-01
 template = "post.html"
 description = "The book where everything changes - darker, longer, and the moment when death becomes real."
 tags = ["fantasy", "coming-of-age", "loss"]
+categories = ["books"]
 generate_feed = true
 
 [extra]

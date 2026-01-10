@@ -4,6 +4,7 @@ date = 2025-11-05
 template = "post.html"
 description = "The second book goes darker - exploring prejudice, self-doubt, and the voice in your head that whispers you're not good enough."
 tags = ["fantasy", "identity", "self-doubt"]
+categories = ["books"]
 generate_feed = true
 
 [extra]

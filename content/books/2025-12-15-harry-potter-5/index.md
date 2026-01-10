@@ -4,6 +4,7 @@ date = 2025-12-15
 template = "post.html"
 description = "The longest, most frustrating book - Harry at his most human, most broken, most real."
 tags = ["fantasy", "grief", "anger"]
+categories = ["books"]
 generate_feed = true
 
 [extra]

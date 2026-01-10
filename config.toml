@@ -142,4 +142,5 @@ lines = [
 # Taxonomy configuration
 [taxonomies]
 tags = { enabled = true, paginate_by = 0 }
+categories = { enabled = true, paginate_by = 0 }
 series = { enabled = false, paginate_by = 0 }

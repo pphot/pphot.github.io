@@ -2123,6 +2123,30 @@ img:not([loading='lazy']) {
     color: var(--color-text-lighter);
 }
 
+/* Post category badge - clear context indicator */
+.post-category {
+    display: inline-block;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-transform: capitalize;
+    padding: var(--space-2xs) var(--space-sm);
+    background: rgba(212, 135, 62, 0.08);
+    border-radius: var(--rounded-sm);
+    margin-right: var(--space-xs);
+    border: 1px solid rgba(212, 135, 62, 0.15);
+    transition: all var(--transition-fast);
+}
+
+.post-category:hover {
+    background: rgba(212, 135, 62, 0.12);
+    border-color: rgba(212, 135, 62, 0.25);
+}
+
+.post-meta-separator {
+    color: var(--color-text-lighter);
+    margin-inline: var(--space-xs);
+}
+
 /* Post intro/description - italic standout text with subtle accent */
 .post-intro {
     text-align: left;

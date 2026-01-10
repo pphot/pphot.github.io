@@ -4,6 +4,7 @@ date = 2025-10-15
 template = "post.html"
 description = "The recipes we inherit are more than instructions – they're stories, connections, and love made edible."
 tags = ["family", "memories", "food", "tradition"]
+categories = ["journal"]
 generate_feed = true
 
 [extra]

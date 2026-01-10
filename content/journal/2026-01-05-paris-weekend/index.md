@@ -4,6 +4,7 @@ date = 2026-01-05
 template = "post.html"
 description = "Sometimes the best travel moments aren't found in guidebooks, but in the quiet corners where locals live their daily lives."
 tags = ["travel", "connection", "beauty"]
+categories = ["journal"]
 generate_feed = true
 
 [extra]

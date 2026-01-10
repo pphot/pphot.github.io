@@ -4,6 +4,7 @@ date = 2026-01-01
 template = "post.html"
 description = "No school, no safety, just war. The ending we needed - painful, brave, and ultimately hopeful."
 tags = ["fantasy", "war", "sacrifice", "hope"]
+categories = ["books"]
 generate_feed = true
 
 [extra]

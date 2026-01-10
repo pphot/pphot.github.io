@@ -4,6 +4,7 @@ date = 2025-11-20
 template = "post.html"
 description = "The book where everything gets deeper - the writing, the themes, the characters. My personal favorite of the series."
 tags = ["fantasy", "family", "belonging"]
+categories = ["books"]
 generate_feed = true
 
 [extra]
