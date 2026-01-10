@@ -975,7 +975,8 @@ header:hover {
     flex-direction: column;
 }
 
-.post-date {
+/* Post date in cards (block display for list view) */
+.post-card .post-date {
     font-size: var(--text-sm);
     color: var(--color-text-light); /* Improved contrast */
     text-transform: uppercase;
@@ -2123,11 +2124,15 @@ img:not([loading='lazy']) {
     flex-wrap: wrap;
 }
 
-.post-date {
+/* Post date in single post page (inline with meta) */
+.post-meta .post-date {
+    display: inline;
     color: var(--color-text-light);
 }
 
-.reading-time {
+/* Reading time */
+.post-meta .reading-time {
+    display: inline;
     color: var(--color-text-lighter);
 }
 
