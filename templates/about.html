@@ -2,7 +2,7 @@
 <html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
     {{ template "partials/_head.html" . }}
     <body class="about-page">
-        <a href="#main" class="skip-to-content">Skip to content</a>
+        <a href="#main" class="skip-to-content">{{ .Site.Config.extra.skip_to_content }}</a>
         
         {{ template "partials/_header.html" . }}
         
@@ -15,7 +15,7 @@
                             alt="{{ .Site.Config.extra.name }}"
                             class="about-avatar"
                         />
-                        <h1>About Pphot</h1>
+                        <h1>{{ .Site.Config.extra.about_title }}</h1>
                     </div>
                     
                     <div class="prose prose-about">
