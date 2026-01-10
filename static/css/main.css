@@ -2604,3 +2604,316 @@ img:not([loading='lazy']) {
         font-size: var(--text-lg);
     }
 }
+
+/* ===================================================================
+   BACK TO TOP BUTTON WITH PROGRESS RING
+   =================================================================== */
+
+#back-to-top {
+    position: fixed;
+    bottom: var(--space-xl);
+    right: var(--space-xl);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    backdrop-filter: var(--backdrop-blur);
+    -webkit-backdrop-filter: var(--backdrop-blur);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-lg);
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px) scale(0.8);
+    transition: all var(--transition-smooth);
+    z-index: var(--z-floating);
+}
+
+#back-to-top.shown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+#back-to-top:hover {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: var(--shadow-colored);
+}
+
+#back-to-top svg {
+    width: 100%;
+    height: 100%;
+}
+
+#back-to-top circle {
+    fill: none;
+    stroke: var(--color-primary);
+    stroke-width: 2;
+    opacity: 0.3;
+    transform-origin: center;
+    transform: rotate(-90deg);
+}
+
+#back-to-top path {
+    fill: none;
+    stroke: var(--color-primary);
+    stroke-width: 2;
+}
+
+#back-to-top:hover circle {
+    stroke: white;
+}
+
+#back-to-top:hover path {
+    stroke: white;
+}
+
+/* ===================================================================
+   AUTO-HIDE HEADER ON SCROLL
+   =================================================================== */
+
+header {
+    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+header.scroll-down {
+    transform: translateY(-100%);
+    box-shadow: none;
+}
+
+header.scroll-up {
+    transform: translateY(0);
+    box-shadow: var(--shadow-md);
+}
+
+/* ===================================================================
+   TOAST NOTIFICATIONS
+   =================================================================== */
+
+.toast {
+    position: fixed;
+    bottom: var(--space-2xl);
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--color-text);
+    color: var(--color-bg);
+    padding: var(--space-md) var(--space-xl);
+    border-radius: var(--rounded-full);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    box-shadow: var(--shadow-xl);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-smooth);
+    z-index: var(--z-tooltip);
+}
+
+.toast.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ===================================================================
+   KEYBOARD SHORTCUTS HELP MODAL
+   =================================================================== */
+
+.keyboard-help-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: var(--z-modal);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-smooth);
+}
+
+.keyboard-help-modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.keyboard-help-content {
+    background: var(--color-bg-card);
+    padding: var(--space-2xl);
+    border-radius: var(--rounded-lg);
+    box-shadow: var(--shadow-xl);
+    max-width: 400px;
+    width: 90%;
+    transform: scale(0.9);
+    transition: transform var(--transition-smooth);
+}
+
+.keyboard-help-modal.show .keyboard-help-content {
+    transform: scale(1);
+}
+
+.keyboard-help-content h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    margin-bottom: var(--space-lg);
+    color: var(--color-text);
+}
+
+.keyboard-help-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-lg) 0;
+}
+
+.keyboard-help-content li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-sm) 0;
+    font-size: var(--text-base);
+    color: var(--color-text);
+}
+
+.keyboard-help-content kbd {
+    display: inline-block;
+    padding: 4px 8px;
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--rounded-sm);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    min-width: 32px;
+    text-align: center;
+}
+
+.help-hint {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-align: center;
+    margin: 0;
+}
+
+/* ===================================================================
+   ENHANCED IMAGE LOADING
+   =================================================================== */
+
+.prose img {
+    opacity: 0;
+    transition: opacity 0.6s var(--transition-smooth);
+}
+
+.prose img.loaded {
+    opacity: 1;
+}
+
+/* ===================================================================
+   HIGH CONTRAST MODE SUPPORT
+   =================================================================== */
+
+.high-contrast {
+    --color-primary: #ff6b00;
+    --color-text: #000000;
+    --color-bg: #ffffff;
+    --color-border: #000000;
+}
+
+@media (prefers-contrast: more) {
+    :root {
+        --color-primary: #ff6b00;
+        --color-text: #000000;
+        --color-bg: #ffffff;
+        --color-border: #000000;
+    }
+}
+
+/* ===================================================================
+   REDUCED MOTION SUPPORT
+   =================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    #back-to-top {
+        transition: opacity 0.2s ease;
+    }
+}
+
+/* ===================================================================
+   ENHANCED SKIP TO CONTENT LINK
+   =================================================================== */
+
+.skip-to-content {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-primary);
+    color: white;
+    padding: var(--space-md) var(--space-xl);
+    border-radius: var(--rounded-lg);
+    font-weight: 600;
+    text-decoration: none;
+    z-index: var(--z-tooltip);
+    transition: top var(--transition-smooth);
+}
+
+.skip-to-content:focus {
+    top: var(--space-md);
+}
+
+/* ===================================================================
+   CLICKABLE HEADINGS FOR COPY LINK
+   =================================================================== */
+
+.prose h1[id]:hover,
+.prose h2[id]:hover,
+.prose h3[id]:hover,
+.prose h4[id]:hover {
+    position: relative;
+}
+
+.prose h1[id]:hover::after,
+.prose h2[id]:hover::after,
+.prose h3[id]:hover::after,
+.prose h4[id]:hover::after {
+    content: '🔗';
+    position: absolute;
+    margin-left: var(--space-sm);
+    opacity: 0.5;
+    font-size: 0.7em;
+}
+
+/* ===================================================================
+   MOBILE RESPONSIVE ENHANCEMENTS
+   =================================================================== */
+
+@media (max-width: 640px) {
+    #back-to-top {
+        bottom: var(--space-lg);
+        right: var(--space-lg);
+        width: 44px;
+        height: 44px;
+    }
+    
+    .toast {
+        width: 90%;
+        max-width: 320px;
+        bottom: var(--space-xl);
+    }
+    
+    .keyboard-help-content {
+        padding: var(--space-xl);
+    }
+}
