@@ -670,8 +670,14 @@ header:hover {
     max-width: var(--width-prose);
     margin-inline: auto;
     margin-bottom: var(--space-3xl);
-    padding-inline: var(--space-md);
-    text-align: left; /* Left-aligned for modern 2026 aesthetic */
+    padding: var(--space-2xl);
+    text-align: center;
+    background: var(--glass-bg);
+    backdrop-filter: var(--backdrop-blur);
+    -webkit-backdrop-filter: var(--backdrop-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-lg), var(--shadow-colored);
 }
 
 .welcome-avatar {
@@ -732,17 +738,19 @@ header:hover {
     font-weight: 400;
 }
 
-/* BENTO GRID - 2026 Asymmetric Layout (Apple-style)
+/* BENTO GRID - 2026 Asymmetric Layout with Container Queries
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .post-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-md);
+    gap: var(--space-lg);
     max-width: var(--width-max);
     margin-inline: auto;
     padding-inline: var(--space-md);
     margin-bottom: var(--space-3xl);
+    container-type: inline-size;
+    container-name: grid;
 }
 
 /* Tablet: 2-column asymmetric */
