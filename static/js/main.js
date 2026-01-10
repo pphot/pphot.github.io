@@ -381,3 +381,57 @@
         enableCopyHeadings()
     }
 })()
+
+    // TOC Active State Tracking
+    function enableTocActiveState() {
+        const toc = document.querySelector('.toc-nav')
+        if (!toc) return
+
+        const headings = document.querySelectorAll('.prose h2[id], .prose h3[id]')
+        const tocLinks = new Map()
+        
+        headings.forEach((heading) => {
+            const link = toc.querySelector(`a[href="#${heading.id}"]`)
+            if (link) {
+                tocLinks.set(heading, link)
+            }
+        })
+
+        if (tocLinks.size === 0) return
+
+        let activeLink = null
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const link = tocLinks.get(entry.target)
+                        if (link && link !== activeLink) {
+                            if (activeLink) {
+                                activeLink.classList.remove('active')
+                            }
+                            link.classList.add('active')
+                            activeLink = link
+
+                            // Scroll TOC to show active item
+                            link.scrollIntoView({ 
+                                behavior: 'smooth', 
+                                block: 'nearest' 
+                            })
+                        }
+                    }
+                })
+            },
+            { 
+                rootMargin: '-80px 0px -80% 0px',
+                threshold: 0 
+            }
+        )
+
+        headings.forEach((heading) => observer.observe(heading))
+    }
+
+    // Initialize TOC if present
+    if (document.querySelector('.toc-nav')) {
+        enableTocActiveState()
+    }

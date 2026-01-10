@@ -1,0 +1,60 @@
+{{ $current_page := .Page }}
+{{ $current_tags := .Page.Config.tags }}
+
+{{ if $current_tags }}
+<section class="related-posts">
+    <h3>You Might Also Enjoy</h3>
+    <div class="related-posts-grid">
+        {{ $journal_section := get_section "journal" }}
+        {{ $thoughts_section := get_section "thoughts" }}
+        {{ $books_section := get_section "books" }}
+        {{ $all_posts := concat $journal_section.Children $thoughts_section.Children $books_section.Children }}
+        
+        {{ $related := slice }}
+        {{ range $all_posts }}
+            {{ if ne .Permalink $current_page.Permalink }}
+                {{ $shared_tags := 0 }}
+                {{ range .Config.tags }}
+                    {{ if in $current_tags . }}
+                        {{ $shared_tags = add $shared_tags 1 }}
+                    {{ end }}
+                {{ end }}
+                
+                {{ if gt $shared_tags 0 }}
+                    {{ $related = append $related (dict "page" . "score" $shared_tags) }}
+                {{ end }}
+            {{ end }}
+        {{ end }}
+        
+        {{ $count := 0 }}
+        {{ range $related }}
+            {{ if lt $count 3 }}
+            {{ $post := .page }}
+            <article class="related-post-card">
+                {{ $post_image := $.Site.Config.extra.default_post_cover }}
+                {{ if $post.Config.extra.img }}
+                    {{ $img_path := $post.Config.extra.img }}
+                    {{ $first_char := index (split $img_path "") 0 }}
+                    {{ if eq $first_char "/" }}
+                        {{ $post_image = $img_path }}
+                    {{ else }}
+                        {{ $post_image = printf "%s%s" $post.Permalink $img_path }}
+                    {{ end }}
+                {{ end }}
+                
+                <a href="{{ $post.Permalink }}" class="related-post-image">
+                    <img src="{{ $post_image }}" alt="{{ $post.Config.title }}" loading="lazy" />
+                </a>
+                <div class="related-post-content">
+                    <h4><a href="{{ $post.Permalink }}">{{ $post.Config.title }}</a></h4>
+                    {{ if $post.Config.description }}
+                    <p class="related-post-description">{{ $post.Config.description }}</p>
+                    {{ end }}
+                </div>
+            </article>
+            {{ $count = add $count 1 }}
+            {{ end }}
+        {{ end }}
+    </div>
+</section>
+{{ end }}

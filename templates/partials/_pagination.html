@@ -1,0 +1,25 @@
+{{ if or .Page.Higher .Page.Lower }}
+<nav class="pagination">
+    <div class="pagination-buttons">
+        {{ with .Page.Higher }}
+        <a href="{{ .Permalink }}" class="pagination-button pagination-prev">
+            <span class="pagination-arrow">←</span>
+            <div class="pagination-content">
+                <span class="pagination-label">Previous</span>
+                <span class="pagination-title">{{ .Config.title }}</span>
+            </div>
+        </a>
+        {{ end }}
+        
+        {{ with .Page.Lower }}
+        <a href="{{ .Permalink }}" class="pagination-button pagination-next">
+            <div class="pagination-content">
+                <span class="pagination-label">Next</span>
+                <span class="pagination-title">{{ .Config.title }}</span>
+            </div>
+            <span class="pagination-arrow">→</span>
+        </a>
+        {{ end }}
+    </div>
+</nav>
+{{ end }}

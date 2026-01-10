@@ -8,8 +8,13 @@
         
         <div class="reading-progress" id="reading-progress"></div>
         
-        <main id="main">
-            <article class="container">
+        <div class="post-wrapper">
+            <aside class="toc-sidebar">
+                {{ template "partials/_toc.html" . }}
+            </aside>
+            
+            <main id="main">
+                <article class="container">
                 <header class="post-header">
                     {{ $post_image := .Site.Config.extra.default_post_cover }}
                     {{ if .Page.Config.extra.img }}
@@ -86,8 +91,12 @@
                         </div>
                     </div>
                 </footer>
+                
+                {{ template "partials/_pagination.html" . }}
+                {{ template "partials/_related_posts.html" . }}
             </article>
         </main>
+        </div>
         
         {{ template "partials/_footer.html" . }}
         
