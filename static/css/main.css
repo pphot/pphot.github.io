@@ -706,24 +706,50 @@ header:hover {
 }
 
 .post-card {
-    background: var(--color-bg-card);
-    border-radius: var(--radius-xl);
+    background: var(--glass-bg);
+    backdrop-filter: var(--backdrop-blur);
+    -webkit-backdrop-filter: var(--backdrop-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-2xl);
     overflow: hidden;
     box-shadow:
         0 1px 3px rgba(0, 0, 0, 0.05),
-        0 4px 16px rgba(0, 0, 0, 0.08);
-    transition: all var(--transition-base);
+        0 4px 16px rgba(0, 0, 0, 0.08),
+        var(--shadow-colored);
+    transition: all var(--transition-smooth);
     display: flex;
     flex-direction: column;
     position: relative;
+    transform-style: preserve-3d;
+    will-change: transform, box-shadow;
 }
 
-/* Modern 2026 hover effect */
+/* Modern 2026 hover effect with 3D tilt and glow */
 .post-card:hover {
-    transform: translateY(-8px) scale(1.01);
+    transform: translateY(-12px) scale(1.02);
     box-shadow:
-        0 4px 8px rgba(0, 0, 0, 0.08),
-        0 12px 40px rgba(0, 0, 0, 0.12);
+        0 8px 16px rgba(0, 0, 0, 0.1),
+        0 20px 50px rgba(0, 0, 0, 0.15),
+        var(--shadow-glow);
+    border-color: rgba(212, 165, 116, 0.4);
+}
+
+/* Add shimmer effect on hover */
+.post-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-shimmer);
+    transition: left var(--transition-slow);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.post-card:hover::before {
+    left: 100%;
 }
 
 .post-card-image {
@@ -732,6 +758,25 @@ header:hover {
     aspect-ratio: 16 / 10;
     overflow: hidden;
     background: var(--color-bg-alt);
+    z-index: 0;
+}
+
+/* Add gradient overlay to images for better text readability */
+.post-card-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.2), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+    pointer-events: none;
+}
+
+.post-card:hover .post-card-image::after {
+    opacity: 1;
 }
 
 /* Hero card (1st) - Cinematic aspect ratio */
@@ -760,8 +805,9 @@ header:hover {
     transition: transform var(--transition-slow);
 }
 
+/* Smooth zoom with slight rotation on hover */
 .post-card:hover .post-card-image img {
-    transform: scale(1.05);
+    transform: scale(1.08) rotate(0.5deg);
 }
 
 .post-card-content {
@@ -818,21 +864,42 @@ header:hover {
 
 .post-tag {
     font-size: var(--text-xs);
-    color: var(--color-primary-dark); /* Dark gold text - WCAG AA compliant */
-    background: var(--color-primary-light);
-    padding: 0.25rem 0.75rem;
+    color: var(--color-primary-dark);
+    background: linear-gradient(135deg, var(--color-primary-light) 0%, rgba(232, 201, 168, 0.8) 100%);
+    padding: 0.35rem 0.85rem;
     border-radius: var(--radius-full);
     text-transform: lowercase;
-    font-weight: 600; /* Bolder for better readability */
-    border: 1px solid var(--color-primary); /* Add subtle border for definition */
+    font-weight: 600;
+    border: 1px solid rgba(212, 165, 116, 0.3);
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all var(--transition-base);
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Add subtle shimmer to tags */
+.post-tag::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s;
+}
+
+.post-tag:hover::before {
+    left: 100%;
 }
 
 .post-tag:hover {
-    background: var(--color-primary);
+    background: var(--gradient-primary);
     color: white;
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(212, 165, 116, 0.3);
+    border-color: var(--color-primary);
 }
 
 /* When tags are in the post header (single post page) */
