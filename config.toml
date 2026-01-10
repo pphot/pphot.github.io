@@ -4,9 +4,9 @@ title = "Phuong"
 description = "A lifestyle blog about journeys, books, photography, and personal reflections"
 language = "en"
 output_dir = "public"
-minify_css = false
-minify_html = false
-minify_js = false
+minify_css = true
+minify_html = true
+minify_js = true
 
 # Auto-generate summaries from first N sentences (when description is not provided)
 summary_length = 2
