@@ -703,7 +703,7 @@ header:hover {
 }
 
 .hero-subtitle {
-    font-family: var(--font-serif);
+    font-family: var(--font-body);
     font-size: clamp(1.125rem, 2vw, 1.5rem);
     color: rgba(253, 251, 247, 0.95);
     max-width: 600px;
@@ -1004,7 +1004,7 @@ header:hover {
 }
 
 .post-description {
-    font-family: var(--font-serif); /* Elegant serif for reading */
+    font-family: var(--font-body); /* Clean sans-serif for reading */
     font-size: var(--text-base);
     color: var(--color-text-light);
     line-height: var(--leading-relaxed);
@@ -1119,7 +1119,7 @@ footer::before {
     color: var(--color-text-light);
     margin-bottom: var(--space-xl);
     font-style: italic;
-    font-family: var(--font-serif);
+    font-family: var(--font-body);
 }
 
 .footer-links {
@@ -1196,7 +1196,7 @@ footer::before {
     display: block;
     position: relative;
     z-index: 2;
-    font-family: var(--font-serif);
+    font-family: var(--font-body);
     font-size: var(--text-lg);
     max-width: var(--width-prose);
     margin-left: var(--space-lg);
@@ -2127,7 +2127,7 @@ img:not([loading='lazy']) {
 /* Post intro/description - italic standout text with subtle accent */
 .post-intro {
     text-align: left;
-    font-family: var(--font-serif);
+    font-family: var(--font-body);
     font-size: var(--text-2xl);
     font-style: italic;
     line-height: var(--leading-relaxed);
@@ -2191,7 +2191,7 @@ img:not([loading='lazy']) {
     padding-left: var(--space-xl);
     padding-block: var(--space-md);
     margin-left: var(--space-xl);
-    font-family: var(--font-serif);
+    font-family: var(--font-body);
     font-size: var(--text-xl);
     font-style: italic;
     color: var(--color-text);
