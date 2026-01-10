@@ -35,9 +35,7 @@
                         </a>
 
                         <div class="post-card-content">
-                            <time class="post-date" datetime="{{ .Config.date }}">
-                                {{ date .Config.date "Jan 2, 2006" }}
-                            </time>
+                            <div class="post-card-meta">{{ if .Config.categories }}{{ $first_category := index .Config.categories 0 }}{{ $category_icon := "" }}{{ if eq $first_category "books" }}{{ $category_icon = "📚" }}{{ else if eq $first_category "journal" }}{{ $category_icon = "📔" }}{{ else if eq $first_category "thoughts" }}{{ $category_icon = "💭" }}{{ end }}<span class="post-category">{{ $category_icon }} {{ $first_category }}</span>{{ end }}<time class="post-date" datetime="{{ .Config.date }}">{{ date .Config.date "Jan 2, 2006" }}</time></div>
                             <h2 class="post-title">
                                 <a href="{{ .Permalink }}">{{ .Config.title }}</a>
                             </h2>

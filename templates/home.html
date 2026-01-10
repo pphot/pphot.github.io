@@ -78,9 +78,7 @@
                         </a>
 
                         <div class="post-card-content">
-                            <time class="post-date" datetime="{{ .Config.date }}">
-                                {{ date .Config.date "Jan 2, 2006" }}
-                            </time>
+                            <div class="post-card-meta">{{ if .Config.categories }}{{ $first_category := index .Config.categories 0 }}{{ $category_icon := "" }}{{ if eq $first_category "books" }}{{ $category_icon = "📚" }}{{ else if eq $first_category "journal" }}{{ $category_icon = "📔" }}{{ else if eq $first_category "thoughts" }}{{ $category_icon = "💭" }}{{ end }}<span class="post-category">{{ $category_icon }} {{ $first_category }}</span>{{ end }}<time class="post-date" datetime="{{ .Config.date }}">{{ date .Config.date "Jan 2, 2006" }}</time></div>
                             <h3 class="post-title">
                                 <a href="{{ .Permalink }}">{{ .Config.title }}</a>
                             </h3>
@@ -116,9 +114,7 @@
                         </a>
 
                         <div class="post-card-content">
-                            <time class="post-date" datetime="{{ .Config.date }}">
-                                {{ date .Config.date "Jan 2, 2006" }}
-                            </time>
+                            <div class="post-card-meta">{{ if .Config.categories }}{{ $first_category := index .Config.categories 0 }}{{ $category_icon := "" }}{{ if eq $first_category "books" }}{{ $category_icon = "📚" }}{{ else if eq $first_category "journal" }}{{ $category_icon = "📔" }}{{ else if eq $first_category "thoughts" }}{{ $category_icon = "💭" }}{{ end }}<span class="post-category">{{ $category_icon }} {{ $first_category }}</span>{{ end }}<time class="post-date" datetime="{{ .Config.date }}">{{ date .Config.date "Jan 2, 2006" }}</time></div>
                             <h3 class="post-title">
                                 <a href="{{ .Permalink }}">{{ .Config.title }}</a>
                             </h3>
@@ -154,9 +150,7 @@
                         </a>
 
                         <div class="post-card-content">
-                            <time class="post-date" datetime="{{ .Config.date }}">
-                                {{ date .Config.date "Jan 2, 2006" }}
-                            </time>
+                            <div class="post-card-meta">{{ if .Config.categories }}{{ $first_category := index .Config.categories 0 }}{{ $category_icon := "" }}{{ if eq $first_category "books" }}{{ $category_icon = "📚" }}{{ else if eq $first_category "journal" }}{{ $category_icon = "📔" }}{{ else if eq $first_category "thoughts" }}{{ $category_icon = "💭" }}{{ end }}<span class="post-category">{{ $category_icon }} {{ $first_category }}</span>{{ end }}<time class="post-date" datetime="{{ .Config.date }}">{{ date .Config.date "Jan 2, 2006" }}</time></div>
                             <h3 class="post-title">
                                 <a href="{{ .Permalink }}">{{ .Config.title }}</a>
                             </h3>
@@ -204,9 +198,7 @@
                         </a>
 
                         <div class="post-card-content">
-                            <time class="post-date" datetime="{{ .Config.date }}">
-                                {{ date .Config.date "Jan 2, 2006" }}
-                            </time>
+                            <div class="post-card-meta">{{ if .Config.categories }}{{ $first_category := index .Config.categories 0 }}{{ $category_icon := "" }}{{ if eq $first_category "books" }}{{ $category_icon = "📚" }}{{ else if eq $first_category "journal" }}{{ $category_icon = "📔" }}{{ else if eq $first_category "thoughts" }}{{ $category_icon = "💭" }}{{ end }}<span class="post-category">{{ $category_icon }} {{ $first_category }}</span>{{ end }}<time class="post-date" datetime="{{ .Config.date }}">{{ date .Config.date "Jan 2, 2006" }}</time></div>
                             <h3 class="post-title">
                                 <a href="{{ .Permalink }}">{{ .Config.title }}</a>
                             </h3>
@@ -242,9 +234,7 @@
                         </a>
 
                         <div class="post-card-content">
-                            <time class="post-date" datetime="{{ .Config.date }}">
-                                {{ date .Config.date "Jan 2, 2006" }}
-                            </time>
+                            <div class="post-card-meta">{{ if .Config.categories }}{{ $first_category := index .Config.categories 0 }}{{ $category_icon := "" }}{{ if eq $first_category "books" }}{{ $category_icon = "📚" }}{{ else if eq $first_category "journal" }}{{ $category_icon = "📔" }}{{ else if eq $first_category "thoughts" }}{{ $category_icon = "💭" }}{{ end }}<span class="post-category">{{ $category_icon }} {{ $first_category }}</span>{{ end }}<time class="post-date" datetime="{{ .Config.date }}">{{ date .Config.date "Jan 2, 2006" }}</time></div>
                             <h3 class="post-title">
                                 <a href="{{ .Permalink }}">{{ .Config.title }}</a>
                             </h3>
@@ -259,6 +249,32 @@
                         </div>
                     </article>
                     {{ end }} {{ end }}
+                </div>
+            </section>
+
+            <!-- Category Navigation Section -->
+            <section class="category-navigation">
+                <div class="category-grid">
+                    <a href="/journal" class="category-card">
+                        <div class="category-icon">📔</div>
+                        <h3 class="category-name">Journal</h3>
+                        <p class="category-description">Daily reflections, travel stories, and personal moments</p>
+                        <span class="category-link">View all journal entries →</span>
+                    </a>
+
+                    <a href="/books" class="category-card">
+                        <div class="category-icon">📚</div>
+                        <h3 class="category-name">Books</h3>
+                        <p class="category-description">Reviews and thoughts on books that touched my heart</p>
+                        <span class="category-link">View all book reviews →</span>
+                    </a>
+
+                    <a href="/thoughts" class="category-card">
+                        <div class="category-icon">💭</div>
+                        <h3 class="category-name">Thoughts</h3>
+                        <p class="category-description">Quick reflections and fleeting observations</p>
+                        <span class="category-link">View all thoughts →</span>
+                    </a>
                 </div>
             </section>
         </main>
