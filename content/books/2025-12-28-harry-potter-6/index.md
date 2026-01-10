@@ -1,6 +1,6 @@
 +++
 title = "Harry Potter and the Half-Blood Prince: Before the Storm"
-date = 2025-11-05
+date = 2025-12-28
 template = "post.html"
 description = "Romance, mystery, and learning about Voldemort's past. The calm before everything falls apart."
 tags = ["books", "fantasy", "magic", "mystery", "sacrifice"]

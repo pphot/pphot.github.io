@@ -1,6 +1,6 @@
 +++
 title = "Harry Potter and the Prisoner of Azkaban: Time, Truth, and Finding Family"
-date = 2025-12-15
+date = 2025-11-20
 template = "post.html"
 description = "The book where everything gets deeper - the writing, the themes, the characters. My personal favorite of the series."
 tags = ["books", "fantasy", "magic", "family", "time-travel"]
