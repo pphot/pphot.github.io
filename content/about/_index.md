@@ -4,7 +4,7 @@ template = "about.html"
 date = 2026-01-09
 +++
 
-## Hello, I'm Pphot
+## Hello, I'm Phuong
 
 I'm a storyteller, a wanderer, and a seeker of beauty in the everyday. But I didn't start out that way.
 

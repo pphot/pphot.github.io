@@ -39,16 +39,16 @@
                     height="120"
                     loading="lazy"
                 />
-                <h2>Welcome to Pphot</h2>
+                <h2>Welcome to {{ .Config.extra.name }}</h2>
                 <div>{{ .Page.Content }}</div>
             </section>
 
-            {{ $journal := get_section "journal" }} {{ $books := get_section "books" }} {{ $thoughts := get_section "thoughts" }} {{
-            $has_featured := false }} {{ range $journal.Children }}{{ if .Config.extra.featured }}{{
-            $has_featured = true }}{{ end }}{{ end }} {{ range $books.Children }}{{ if
-            .Config.extra.featured }}{{ $has_featured = true }}{{ end }}{{ end }} {{ range
-            $thoughts.Children }}{{ if .Config.extra.featured }}{{ $has_featured = true }}{{ end
-            }}{{ end }} {{ if $has_featured }}
+            {{ $journal := get_section "journal" }} {{ $books := get_section "books" }} {{ $thoughts
+            := get_section "thoughts" }} {{ $has_featured := false }} {{ range $journal.Children
+            }}{{ if .Config.extra.featured }}{{ $has_featured = true }}{{ end }}{{ end }} {{ range
+            $books.Children }}{{ if .Config.extra.featured }}{{ $has_featured = true }}{{ end }}{{
+            end }} {{ range $thoughts.Children }}{{ if .Config.extra.featured }}{{ $has_featured =
+            true }}{{ end }}{{ end }} {{ if $has_featured }}
             <section class="section-featured">
                 <div class="section-header">
                     <h2>Featured Stories</h2>
