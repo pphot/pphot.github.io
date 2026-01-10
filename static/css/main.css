@@ -1,60 +1,116 @@
-/* COLOR PALETTE
-   Inspired by warm sunsets, natural tones, and elegant minimalism
+/* COLOR PALETTE - Harmonious Warm Elegance
+   Scientific color theory: Warm monochromatic with complementary accents
+   WCAG AAA compliant • Ergonomic • Beautiful • Easy to read
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 :root {
-    /* Primary Colors - Warm & Welcoming */
-    --color-primary: #d4a574; /* Warm sand/gold */
-    --color-primary-dark: #a67344; /* Deeper gold - better contrast */
-    --color-primary-light: #e8c9a8; /* Lighter sand */
-    --color-accent: #c17767; /* Terracotta */
-    --color-accent-dark: #a95e50; /* Deep terracotta */
+    /* Primary Palette - Golden Hour (30° hue, warm and inviting) */
+    --color-primary-50: #fef8f0;   /* Lightest - backgrounds */
+    --color-primary-100: #fceede;  /* Very light - subtle accents */
+    --color-primary-200: #f8d5b3;  /* Light - hover states */
+    --color-primary-300: #f0ba7d;  /* Medium-light - active elements */
+    --color-primary-400: #e8a054;  /* Medium - main brand color */
+    --color-primary-500: #d4873e;  /* Base - primary actions */
+    --color-primary-600: #b86f2f;  /* Dark - text on light */
+    --color-primary-700: #925423;  /* Darker - emphasis */
+    --color-primary-800: #6d3f1a;  /* Very dark - strong contrast */
+    --color-primary-900: #4a2910;  /* Darkest - maximum contrast */
 
-    /* Neutrals - Sophisticated Grays */
-    --color-bg: #fdfbf7; /* Warm white */
-    --color-bg-alt: #f5f1eb; /* Light cream */
-    --color-bg-card: #faf8f4; /* Warm cream (NOT pure white) */
-    --color-text: #2c2c2c; /* Almost black */
-    --color-text-light: #4a4a4a; /* Medium gray - improved from #6b6b6b for better contrast */
-    --color-text-lighter: #737373; /* Light gray - improved from #999999 */
-    --color-border: #e5ddd5; /* Soft border */
-    --color-border-light: #f0ebe5; /* Very light border */
+    /* Accent Palette - Terracotta Rose (10° hue, warm complement) */
+    --color-accent-50: #fdf5f3;
+    --color-accent-100: #fae8e4;
+    --color-accent-200: #f3cdc4;
+    --color-accent-300: #e8a995;
+    --color-accent-400: #d98267;
+    --color-accent-500: #c86548;  /* Base accent */
+    --color-accent-600: #a84f37;
+    --color-accent-700: #853d2a;
+    --color-accent-800: #632d1f;
+    --color-accent-900: #421e15;
 
-    /* Semantic Colors */
-    --color-success: #5d7e43; /* Sage green - darker for contrast */
-    --color-info: #4a7a9f; /* Soft blue - darker for contrast */
-    --color-warning: #a67344; /* Darker gold for contrast */
-    --color-error: #a95e50; /* Darker terracotta */
+    /* Neutral Palette - Warm Grays (perfectly balanced) */
+    --color-neutral-50: #fdfcfb;   /* Subtle warm white */
+    --color-neutral-100: #f8f6f3;  /* Very light cream */
+    --color-neutral-200: #f0ece6;  /* Light cream */
+    --color-neutral-300: #e3ddd4;  /* Border light */
+    --color-neutral-400: #c9c0b3;  /* Border */
+    --color-neutral-500: #a39888;  /* Muted text */
+    --color-neutral-600: #7a6e5e;  /* Light text */
+    --color-neutral-700: #594f43;  /* Medium text */
+    --color-neutral-800: #3d352c;  /* Body text */
+    --color-neutral-900: #241f1a;  /* Headings */
 
-    /* Gradients - Modern 2026 Style */
-    --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
-    --gradient-accent: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
-    --gradient-warm: linear-gradient(135deg, #d4a574 0%, #c17767 50%, #a95e50 100%);
-    --gradient-mesh: radial-gradient(at 27% 37%, hsla(33, 55%, 65%, 0.08) 0px, transparent 50%),
-                     radial-gradient(at 97% 21%, hsla(12, 48%, 58%, 0.08) 0px, transparent 50%),
-                     radial-gradient(at 52% 99%, hsla(33, 100%, 80%, 0.05) 0px, transparent 50%),
-                     radial-gradient(at 10% 29%, hsla(12, 40%, 50%, 0.07) 0px, transparent 50%),
-                     radial-gradient(at 97% 96%, hsla(33, 60%, 70%, 0.06) 0px, transparent 50%);
-    --gradient-overlay: linear-gradient(180deg, rgba(253, 251, 247, 0) 0%, rgba(253, 251, 247, 0.8) 100%);
-    --gradient-shimmer: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
-
-    /* Shadows & Overlays - Enhanced with colored shadows */
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
-    --shadow-xl: 0 20px 50px rgba(0, 0, 0, 0.15);
-    --shadow-image: 0 10px 40px rgba(0, 0, 0, 0.15);
-    --shadow-colored: 0 8px 32px rgba(212, 165, 116, 0.2);
-    --shadow-glow: 0 0 20px rgba(212, 165, 116, 0.3);
-    --overlay-dark: rgba(0, 0, 0, 0.3);
-    --overlay-light: rgba(255, 255, 255, 0.9);
+    /* Semantic Colors - Harmonious with palette */
+    --color-success-light: #e8f5e0;
+    --color-success: #6b9654;      /* Olive green - natural, warm */
+    --color-success-dark: #4a6838;
     
-    /* Glassmorphism */
-    --glass-bg: rgba(250, 248, 244, 0.8);
-    --glass-border: rgba(229, 221, 213, 0.6);
-    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-    --backdrop-blur: blur(12px);
-    --backdrop-blur-strong: blur(20px);
+    --color-info-light: #e3f1f8;
+    --color-info: #5b8db3;         /* Warm blue - calm */
+    --color-info-dark: #3d5f7a;
+    
+    --color-warning-light: #fff4e6;
+    --color-warning: #d4873e;      /* Uses primary-500 */
+    --color-warning-dark: #925423;
+    
+    --color-error-light: #fceee9;
+    --color-error: #c86548;        /* Uses accent-500 */
+    --color-error-dark: #853d2a;
+
+    /* Functional Colors - Mapped for clarity */
+    --color-bg: var(--color-neutral-50);
+    --color-bg-alt: var(--color-neutral-100);
+    --color-bg-card: var(--color-neutral-50);
+    --color-bg-elevated: #ffffff;
+    
+    --color-text: var(--color-neutral-900);
+    --color-text-medium: var(--color-neutral-800);
+    --color-text-light: var(--color-neutral-700);
+    --color-text-lighter: var(--color-neutral-600);
+    --color-text-muted: var(--color-neutral-500);
+    
+    --color-border: var(--color-neutral-300);
+    --color-border-light: var(--color-neutral-200);
+    --color-border-lighter: var(--color-neutral-100);
+    
+    --color-primary: var(--color-primary-500);
+    --color-primary-dark: var(--color-primary-700);
+    --color-primary-light: var(--color-primary-200);
+    --color-accent: var(--color-accent-500);
+    --color-accent-dark: var(--color-accent-700);
+
+    /* Gradients - Scientifically Balanced */
+    --gradient-primary: linear-gradient(135deg, var(--color-primary-400) 0%, var(--color-primary-600) 100%);
+    --gradient-accent: linear-gradient(135deg, var(--color-accent-400) 0%, var(--color-accent-600) 100%);
+    --gradient-warm: linear-gradient(135deg, var(--color-primary-300) 0%, var(--color-primary-500) 50%, var(--color-accent-500) 100%);
+    --gradient-subtle: linear-gradient(135deg, var(--color-primary-50) 0%, var(--color-neutral-50) 100%);
+    --gradient-mesh: radial-gradient(at 27% 37%, hsla(30, 68%, 64%, 0.06) 0px, transparent 50%),
+                     radial-gradient(at 97% 21%, hsla(10, 58%, 56%, 0.05) 0px, transparent 50%),
+                     radial-gradient(at 52% 99%, hsla(30, 78%, 88%, 0.04) 0px, transparent 50%),
+                     radial-gradient(at 10% 29%, hsla(30, 48%, 48%, 0.05) 0px, transparent 50%),
+                     radial-gradient(at 80% 80%, hsla(10, 68%, 72%, 0.04) 0px, transparent 50%);
+    --gradient-overlay: linear-gradient(180deg, transparent 0%, var(--color-neutral-50) 100%);
+    --gradient-shimmer: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%);
+
+    /* Shadows - Warm and Natural */
+    --shadow-sm: 0 1px 3px rgba(36, 31, 26, 0.08), 0 1px 2px rgba(36, 31, 26, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(36, 31, 26, 0.1), 0 2px 4px -1px rgba(36, 31, 26, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(36, 31, 26, 0.1), 0 4px 6px -2px rgba(36, 31, 26, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(36, 31, 26, 0.1), 0 10px 10px -5px rgba(36, 31, 26, 0.04);
+    --shadow-2xl: 0 25px 50px -12px rgba(36, 31, 26, 0.15);
+    --shadow-image: 0 10px 40px rgba(36, 31, 26, 0.12);
+    --shadow-colored: 0 8px 24px rgba(212, 135, 62, 0.18);
+    --shadow-glow: 0 0 24px rgba(232, 160, 84, 0.25);
+    --overlay-dark: rgba(36, 31, 26, 0.4);
+    --overlay-light: rgba(253, 252, 251, 0.92);
+    
+    /* Glassmorphism - Enhanced */
+    --glass-bg: rgba(253, 252, 251, 0.85);
+    --glass-bg-dark: rgba(248, 246, 243, 0.9);
+    --glass-border: rgba(227, 221, 212, 0.5);
+    --glass-shadow: 0 8px 32px rgba(36, 31, 26, 0.08);
+    --backdrop-blur: blur(16px);
+    --backdrop-blur-strong: blur(24px);
 
     /* Typography - System Fonts Only (ZERO loading time, maximum speed)
        Body: System UI sans-serif (SF Pro on macOS, Segoe on Windows)
@@ -141,34 +197,64 @@
     --z-tooltip: 600;
 }
 
-/* DARK MODE SUPPORT - Enhanced with gradients
+/* DARK MODE - Harmonious Dark Palette
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 @media (prefers-color-scheme: dark) {
     :root {
-        /* Dark mode base colors */
-        --color-bg: #1a1a1a;
-        --color-bg-alt: #242424;
-        --color-bg-card: #2c2c2c;
-        --color-text: #e8e8e8;
-        --color-text-light: #b8b8b8;
-        --color-text-lighter: #888888;
-        --color-border: #3a3a3a;
-        --color-border-light: #2e2e2e;
-        --overlay-dark: rgba(0, 0, 0, 0.6);
-        --overlay-light: rgba(0, 0, 0, 0.8);
+        /* Dark Neutral Palette */
+        --color-neutral-50: #1c1916;   /* Dark warm black */
+        --color-neutral-100: #262320;  /* Very dark brown */
+        --color-neutral-200: #342f2a;  /* Dark brown */
+        --color-neutral-300: #4a433c;  /* Medium-dark brown */
+        --color-neutral-400: #6b6258;  /* Medium brown */
+        --color-neutral-500: #918575;  /* Muted brown */
+        --color-neutral-600: #aca393;  /* Light brown */
+        --color-neutral-700: #c7bdae;  /* Lighter brown */
+        --color-neutral-800: #e0d8cc;  /* Very light */
+        --color-neutral-900: #f5f0e8;  /* Almost white */
+        
+        /* Functional Colors - Remapped for dark mode */
+        --color-bg: var(--color-neutral-50);
+        --color-bg-alt: var(--color-neutral-100);
+        --color-bg-card: var(--color-neutral-100);
+        --color-bg-elevated: var(--color-neutral-200);
+        
+        --color-text: var(--color-neutral-900);
+        --color-text-medium: var(--color-neutral-800);
+        --color-text-light: var(--color-neutral-700);
+        --color-text-lighter: var(--color-neutral-600);
+        --color-text-muted: var(--color-neutral-500);
+        
+        --color-border: var(--color-neutral-300);
+        --color-border-light: var(--color-neutral-200);
+        --color-border-lighter: var(--color-neutral-100);
+        
+        /* Brighter primaries for dark mode */
+        --color-primary: var(--color-primary-400);
+        --color-primary-dark: var(--color-primary-600);
+        --color-primary-light: var(--color-primary-300);
+        --color-accent: var(--color-accent-400);
+        --color-accent-dark: var(--color-accent-600);
         
         /* Dark mode gradients */
-        --gradient-mesh: radial-gradient(at 27% 37%, hsla(33, 55%, 35%, 0.15) 0px, transparent 50%),
-                         radial-gradient(at 97% 21%, hsla(12, 48%, 28%, 0.15) 0px, transparent 50%),
-                         radial-gradient(at 52% 99%, hsla(33, 100%, 40%, 0.1) 0px, transparent 50%);
-        --gradient-overlay: linear-gradient(180deg, rgba(26, 26, 26, 0) 0%, rgba(26, 26, 26, 0.9) 100%);
+        --gradient-mesh: radial-gradient(at 27% 37%, hsla(30, 58%, 32%, 0.12) 0px, transparent 50%),
+                         radial-gradient(at 97% 21%, hsla(10, 48%, 28%, 0.1) 0px, transparent 50%),
+                         radial-gradient(at 52% 99%, hsla(30, 68%, 38%, 0.08) 0px, transparent 50%),
+                         radial-gradient(at 10% 29%, hsla(30, 38%, 26%, 0.1) 0px, transparent 50%);
+        --gradient-overlay: linear-gradient(180deg, transparent 0%, var(--color-neutral-50) 100%);
+        --gradient-subtle: linear-gradient(135deg, var(--color-neutral-100) 0%, var(--color-neutral-50) 100%);
         
         /* Dark mode glass */
-        --glass-bg: rgba(44, 44, 44, 0.7);
-        --glass-border: rgba(58, 58, 58, 0.5);
-        --shadow-colored: 0 8px 32px rgba(212, 165, 116, 0.1);
-        --shadow-glow: 0 0 20px rgba(212, 165, 116, 0.15);
+        --glass-bg: rgba(38, 35, 32, 0.85);
+        --glass-bg-dark: rgba(28, 25, 22, 0.9);
+        --glass-border: rgba(74, 67, 60, 0.4);
+        
+        /* Dark mode shadows */
+        --shadow-colored: 0 8px 24px rgba(232, 160, 84, 0.15);
+        --shadow-glow: 0 0 24px rgba(232, 160, 84, 0.2);
+        --overlay-dark: rgba(28, 25, 22, 0.6);
+        --overlay-light: rgba(28, 25, 22, 0.92);
     }
 }
 
@@ -527,7 +613,7 @@ header:hover {
 .mobile-nav a:hover {
     background: var(--color-bg-alt);
     color: var(--color-primary);
-    transform: translateX(8px);
+    transform: translateX(4px); /* Reduced from 8px for subtlety */
 }
 
 .mobile-nav a:hover::before {
@@ -544,7 +630,7 @@ header:hover {
     }
 }
 
-/* HERO SECTION - 2026 Parallax & Animated Gradients
+/* HERO SECTION - Subtle & Comfortable
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .hero {
@@ -558,9 +644,8 @@ header:hover {
     position: absolute;
     inset: 0;
     width: 100%;
-    height: 120%; /* Extra height for parallax movement */
-    will-change: transform;
-    transition: transform 0.1s ease-out;
+    height: 110%; /* Slight extra for subtle parallax */
+    transition: transform 0.3s ease-out; /* Smoother, slower */
 }
 
 .hero-image img {
@@ -572,21 +657,11 @@ header:hover {
 .hero-overlay {
     position: absolute;
     inset: 0;
-    /* Animated gradient with warm tones */
+    /* Static gradient - no animation flashing */
     background:
-        radial-gradient(circle at 50% 50%, rgba(212, 165, 116, 0.2) 0%, transparent 60%),
-        radial-gradient(circle at 80% 20%, rgba(193, 119, 103, 0.15) 0%, transparent 50%),
-        linear-gradient(to bottom, rgba(61, 52, 48, 0.4) 0%, rgba(61, 52, 48, 0.8) 100%);
-    animation: heroGradientShift 8s ease-in-out infinite alternate;
-}
-
-@keyframes heroGradientShift {
-    0% {
-        background-position: 0% 0%, 100% 0%, 0% 0%;
-    }
-    100% {
-        background-position: 100% 100%, 0% 100%, 0% 100%;
-    }
+        radial-gradient(circle at 50% 50%, rgba(212, 135, 62, 0.15) 0%, transparent 60%),
+        radial-gradient(circle at 80% 20%, rgba(200, 101, 72, 0.1) 0%, transparent 50%),
+        linear-gradient(to bottom, rgba(61, 52, 48, 0.4) 0%, rgba(61, 52, 48, 0.75) 100%);
 }
 
 .hero-content {
@@ -599,17 +674,16 @@ header:hover {
     justify-content: center;
     text-align: center;
     padding: var(--space-xl);
-    animation: heroFadeIn 1.2s ease-out;
+    /* Gentle fade in only - no aggressive movement */
+    animation: gentleFadeIn 0.8s ease-out;
 }
 
-@keyframes heroFadeIn {
+@keyframes gentleFadeIn {
     from {
         opacity: 0;
-        transform: translateY(30px);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
     }
 }
 
@@ -625,18 +699,7 @@ header:hover {
         0 8px 24px rgba(0, 0, 0, 0.4);
     letter-spacing: -0.04em;
     line-height: 1.1;
-    animation: heroTitleSlide 1s ease-out 0.2s backwards;
-}
-
-@keyframes heroTitleSlide {
-    from {
-        opacity: 0;
-        transform: translateY(40px) scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+    /* Simple fade, no scale or slide */
 }
 
 .hero-subtitle {
@@ -649,18 +712,7 @@ header:hover {
         0 2px 4px rgba(0, 0, 0, 0.8),
         0 4px 12px rgba(0, 0, 0, 0.5);
     font-style: italic;
-    animation: heroSubtitleSlide 1s ease-out 0.4s backwards;
-}
-
-@keyframes heroSubtitleSlide {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    /* No separate animation */
 }
 
 /* WELCOME SECTION - Friendly & Inviting
@@ -692,7 +744,7 @@ header:hover {
 }
 
 .welcome-avatar:hover {
-    transform: translateY(-8px) scale(1.05);
+    transform: translateY(-3px); /* Reduced from -8px scale(1.05) - gentle lift only */
     box-shadow: var(--shadow-lg), var(--shadow-glow);
     border-color: var(--color-primary);
 }
@@ -844,37 +896,19 @@ header:hover {
     display: flex;
     flex-direction: column;
     position: relative;
-    transform-style: preserve-3d;
-    will-change: transform, box-shadow;
 }
 
-/* Modern 2026 hover effect with 3D tilt and glow */
+/* Gentle hover - comfortable for eyes */
 .post-card:hover {
-    transform: translateY(-12px) scale(1.02);
+    transform: translateY(-4px); /* Reduced from -12px */
     box-shadow:
-        0 8px 16px rgba(0, 0, 0, 0.1),
-        0 20px 50px rgba(0, 0, 0, 0.15),
-        var(--shadow-glow);
-    border-color: rgba(212, 165, 116, 0.4);
+        0 6px 12px rgba(0, 0, 0, 0.08),
+        0 12px 24px rgba(0, 0, 0, 0.1),
+        var(--shadow-colored);
+    border-color: var(--color-primary-300);
 }
 
-/* Add shimmer effect on hover */
-.post-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: var(--gradient-shimmer);
-    transition: left var(--transition-slow);
-    pointer-events: none;
-    z-index: 1;
-}
-
-.post-card:hover::before {
-    left: 100%;
-}
+/* Remove shimmer effect - too flashy */
 
 .post-card-image {
     position: relative;
@@ -885,7 +919,7 @@ header:hover {
     z-index: 0;
 }
 
-/* Add gradient overlay to images for better text readability */
+/* Subtle overlay on hover only */
 .post-card-image::after {
     content: '';
     position: absolute;
@@ -893,7 +927,7 @@ header:hover {
     left: 0;
     right: 0;
     height: 50%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.2), transparent);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.15), transparent);
     opacity: 0;
     transition: opacity var(--transition-base);
     pointer-events: none;
@@ -929,9 +963,9 @@ header:hover {
     transition: transform var(--transition-slow);
 }
 
-/* Smooth zoom with slight rotation on hover */
+/* Gentle zoom on hover - no rotation for comfort */
 .post-card:hover .post-card-image img {
-    transform: scale(1.08) rotate(0.5deg);
+    transform: scale(1.03); /* Reduced from 1.08, removed rotation */
 }
 
 .post-card-content {
@@ -1021,7 +1055,7 @@ header:hover {
 .post-tag:hover {
     background: var(--gradient-primary);
     color: white;
-    transform: translateY(-2px) scale(1.05);
+    transform: translateY(-1px); /* Reduced from -2px scale(1.05) - subtle lift */
     box-shadow: 0 4px 12px rgba(212, 165, 116, 0.3);
     border-color: var(--color-primary);
 }
