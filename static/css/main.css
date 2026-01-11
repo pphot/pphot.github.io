@@ -154,21 +154,21 @@
     --leading-relaxed: 1.65; /* More breathing room */
     --leading-loose: 1.8; /* Extra spacious */
 
-    /* Spacing Scale */
-    --space-xs: clamp(0.5rem, 0.45rem + 0.25vw, 0.625rem);
-    --space-sm: clamp(0.75rem, 0.7rem + 0.25vw, 1rem);
-    --space-md: clamp(1rem, 0.9rem + 0.5vw, 1.5rem);
-    --space-lg: clamp(1.5rem, 1.3rem + 1vw, 2rem);
-    --space-xl: clamp(2rem, 1.7rem + 1.5vw, 3rem);
-    --space-2xl: clamp(3rem, 2.5rem + 2.5vw, 4.5rem);
-    --space-3xl: clamp(4rem, 3rem + 5vw, 6rem);
+    /* Spacing Scale - Mobile-First (Smaller values for mobile) */
+    --space-xs: clamp(0.375rem, 1vw, 0.5rem);      /* 6-8px on mobile */
+    --space-sm: clamp(0.5rem, 1.5vw, 0.75rem);     /* 8-12px on mobile */
+    --space-md: clamp(0.75rem, 2vw, 1rem);         /* 12-16px on mobile */
+    --space-lg: clamp(1rem, 3vw, 1.5rem);          /* 16-24px on mobile */
+    --space-xl: clamp(1.5rem, 4vw, 2rem);          /* 24-32px on mobile */
+    --space-2xl: clamp(2rem, 6vw, 3rem);           /* 32-48px on mobile */
+    --space-3xl: clamp(3rem, 8vw, 4.5rem);         /* 48-72px on mobile */
 
     /* Layout Widths */
     --width-prose: 65ch;
     --width-narrow: 45ch;
     --width-wide: 85ch;
     --width-max: 1400px;
-    --width-container: min(var(--width-max), 100% - 2rem);
+    --width-container: 100%;  /* No built-in margin - padding handled by .container */
 
     /* Border Radius - More variety for modern design */
     --radius-sm: 4px;
@@ -367,10 +367,25 @@ em {
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .container {
-    width: var(--width-container);
+    width: 100%;
     max-width: var(--width-max);
     margin-inline: auto;
-    padding-inline: var(--space-md);
+    /* Mobile-first padding: minimal on mobile, increase on larger screens */
+    padding-inline: var(--space-sm);  /* 8-12px on mobile (not 12-16px) */
+}
+
+/* Increase padding on tablet+ */
+@media (min-width: 640px) {
+    .container {
+        padding-inline: var(--space-md);  /* 12-16px on tablet */
+    }
+}
+
+/* Maximum padding on desktop */
+@media (min-width: 1024px) {
+    .container {
+        padding-inline: var(--space-lg);  /* 16-24px on desktop */
+    }
 }
 
 .visually-hidden {
@@ -635,9 +650,18 @@ header:hover {
 
 .hero {
     position: relative;
-    height: clamp(500px, 70vh, 700px);
+    /* Mobile: smaller hero, Desktop: taller */
+    height: clamp(400px, 60vh, 700px);
     overflow: hidden;
-    margin-bottom: var(--space-3xl);
+    margin-bottom: var(--space-2xl);
+}
+
+/* Increase hero height on tablet+ */
+@media (min-width: 768px) {
+    .hero {
+        height: clamp(500px, 70vh, 700px);
+        margin-bottom: var(--space-3xl);
+    }
 }
 
 .hero-image {
@@ -721,8 +745,9 @@ header:hover {
 .welcome {
     max-width: var(--width-prose);
     margin-inline: auto;
-    margin-bottom: var(--space-3xl);
-    padding: var(--space-2xl);
+    margin-bottom: var(--space-2xl);
+    /* Mobile: less padding */
+    padding: var(--space-lg);
     text-align: center;
     background: var(--glass-bg);
     backdrop-filter: var(--backdrop-blur);
@@ -730,6 +755,14 @@ header:hover {
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-2xl);
     box-shadow: var(--shadow-lg), var(--shadow-colored);
+}
+
+/* Increase padding on tablet+ */
+@media (min-width: 768px) {
+    .welcome {
+        padding: var(--space-2xl);
+        margin-bottom: var(--space-3xl);
+    }
 }
 
 .welcome-avatar {
@@ -768,12 +801,28 @@ header:hover {
 
 .section-header {
     text-align: left; /* Modern 2026 - no centered text */
-    margin-top: var(--space-3xl); /* Space from header */
-    margin-bottom: var(--space-2xl);
+    margin-top: var(--space-2xl); /* Less space on mobile */
+    margin-bottom: var(--space-lg);
     /* Match post-grid container alignment */
     max-width: var(--width-max);
     margin-inline: auto;
-    padding-inline: var(--space-md);
+    padding-inline: var(--space-sm); /* Minimal padding on mobile */
+}
+
+/* Increase spacing on tablet+ */
+@media (min-width: 640px) {
+    .section-header {
+        margin-top: var(--space-3xl);
+        margin-bottom: var(--space-2xl);
+        padding-inline: var(--space-md);
+    }
+}
+
+/* Maximum spacing on desktop */
+@media (min-width: 1024px) {
+    .section-header {
+        padding-inline: var(--space-lg);
+    }
 }
 
 .section-header h2 {
@@ -796,11 +845,11 @@ header:hover {
 .post-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-lg);
+    gap: var(--space-md);  /* Smaller gap on mobile */
     max-width: var(--width-max);
     margin-inline: auto;
-    padding-inline: var(--space-md);
-    margin-bottom: var(--space-3xl);
+    padding-inline: var(--space-sm);  /* Minimal padding on mobile */
+    margin-bottom: var(--space-2xl);
     container-type: inline-size;
     container-name: grid;
 }
@@ -810,6 +859,8 @@ header:hover {
     .post-grid {
         grid-template-columns: repeat(4, 1fr);
         gap: var(--space-lg);
+        padding-inline: var(--space-md);
+        margin-bottom: var(--space-3xl);
     }
 
     /* First card spans 2 columns (featured) */
@@ -835,6 +886,7 @@ header:hover {
     .post-grid {
         grid-template-columns: repeat(6, 1fr);
         gap: var(--space-xl);
+        padding-inline: var(--space-lg);  /* Maximum padding on desktop */
     }
 
     /* Hero card: Full width, tall */
@@ -969,10 +1021,17 @@ header:hover {
 }
 
 .post-card-content {
-    padding: var(--space-lg);
+    padding: var(--space-md);  /* Smaller padding on mobile */
     flex: 1;
     display: flex;
     flex-direction: column;
+}
+
+/* Increase padding on tablet+ */
+@media (min-width: 640px) {
+    .post-card-content {
+        padding: var(--space-lg);
+    }
 }
 
 /* Post card meta wrapper - contains category + date inline */
@@ -1101,10 +1160,18 @@ header:hover {
 footer {
     background: linear-gradient(135deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
     border-top: 1px solid var(--glass-border);
-    padding: var(--space-3xl) 0 var(--space-xl);
-    margin-top: var(--space-3xl);
+    padding: var(--space-2xl) 0 var(--space-md);  /* Less padding on mobile */
+    margin-top: var(--space-2xl);
     position: relative;
     overflow: hidden;
+}
+
+/* Increase padding on tablet+ */
+@media (min-width: 768px) {
+    footer {
+        padding: var(--space-3xl) 0 var(--space-xl);
+        margin-top: var(--space-3xl);
+    }
 }
 
 /* Subtle gradient overlay */
@@ -1122,7 +1189,21 @@ footer::before {
 .footer-content {
     max-width: var(--width-max);
     margin-inline: auto;
-    padding-inline: var(--space-md);
+    padding-inline: var(--space-sm);  /* Mobile-first padding */
+}
+
+/* Increase padding on tablet+ */
+@media (min-width: 640px) {
+    .footer-content {
+        padding-inline: var(--space-md);
+    }
+}
+
+/* Maximum padding on desktop */
+@media (min-width: 1024px) {
+    .footer-content {
+        padding-inline: var(--space-lg);
+    }
 }
 
 .footer-center {
@@ -1505,10 +1586,25 @@ footer::before {
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: var(--space-md);
-    padding-inline: var(--space-md);
+    gap: var(--space-sm);  /* Smaller gap on mobile */
+    padding-inline: var(--space-sm);  /* Minimal padding on mobile */
     max-width: var(--width-max);
     margin-inline: auto;
+}
+
+/* Increase gap and padding on tablet+ */
+@media (min-width: 640px) {
+    .gallery-grid {
+        gap: var(--space-md);
+        padding-inline: var(--space-md);
+    }
+}
+
+/* Maximum spacing on desktop */
+@media (min-width: 1024px) {
+    .gallery-grid {
+        padding-inline: var(--space-lg);
+    }
 }
 
 .gallery-item {
@@ -2117,7 +2213,21 @@ img:not([loading='lazy']) {
 .post-page .prose {
     max-width: 75ch; /* Slightly wider for modern feel */
     margin-inline: 0 auto; /* Left aligned on large screens */
-    padding-inline: var(--space-lg);
+    padding-inline: var(--space-sm);  /* Minimal padding on mobile */
+}
+
+/* Increase padding on tablet */
+@media (min-width: 640px) {
+    .post-page .prose {
+        padding-inline: var(--space-md);
+    }
+}
+
+/* Desktop: more padding + asymmetric offset */
+@media (min-width: 1024px) {
+    .post-page .prose {
+        padding-inline: var(--space-lg);
+    }
 }
 
 @media (min-width: 1280px) {
@@ -2231,9 +2341,29 @@ img:not([loading='lazy']) {
 .post-intro,
 .post-header .post-tags {
     max-width: var(--width-prose); /* Constrain width to 65ch for readability */
-    margin-left: var(--space-lg); /* Beautiful left margin (24-32px) for breathing room */
+    margin-left: var(--space-sm);  /* Minimal margin on mobile */
     margin-right: auto; /* Allow space on right */
     /* NO padding-inline needed - .container already provides base padding! */
+}
+
+/* Increase margin on tablet+ */
+@media (min-width: 640px) {
+    .post-meta,
+    .post-title-single,
+    .post-intro,
+    .post-header .post-tags {
+        margin-left: var(--space-md);
+    }
+}
+
+/* Maximum margin on desktop */
+@media (min-width: 1024px) {
+    .post-meta,
+    .post-title-single,
+    .post-intro,
+    .post-header .post-tags {
+        margin-left: var(--space-lg);
+    }
 }
 
 /* NO overrides for .post-intro - it aligns perfectly with everything else */
@@ -3000,12 +3130,28 @@ header.scroll-up {
 
 .post-wrapper {
     display: grid;
-    grid-template-columns: 1fr 220px; /* Content expands | TOC small 220px */
-    gap: var(--space-xl);
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: var(--space-lg);
     max-width: var(--width-max); /* 1400px - entire layout centered */
     margin: 0 auto;
-    padding-inline: var(--space-md);
+    padding-inline: var(--space-sm);  /* Minimal padding on mobile */
     align-items: start;
+}
+
+/* Tablet: increase padding */
+@media (min-width: 640px) {
+    .post-wrapper {
+        padding-inline: var(--space-md);
+    }
+}
+
+/* Large screens: add TOC sidebar */
+@media (min-width: 1200px) {
+    .post-wrapper {
+        grid-template-columns: 1fr 220px; /* Content expands | TOC small 220px */
+        gap: var(--space-xl);
+        padding-inline: var(--space-lg);
+    }
 }
 
 .post-wrapper main {
@@ -3599,6 +3745,67 @@ header.scroll-up {
     }
     
     .category-navigation {
-        padding: var(--space-2xl) var(--space-md);
+        padding: var(--space-2xl) var(--space-sm);  /* Minimal padding on mobile */
+    }
+}
+
+/* ===================================================================
+   MOBILE TOUCH TARGET OPTIMIZATION - Minimum 44x44px
+   Apple & Google recommend 44px minimum for comfortable tapping
+   =================================================================== */
+
+@media (max-width: 640px) {
+    /* Ensure all buttons meet minimum touch target */
+    .btn,
+    .share-button,
+    .mobile-nav-close,
+    #back-to-top {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Navigation links */
+    .main-nav a,
+    .mobile-nav a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+    
+    /* Post tags and category badges */
+    .post-tag,
+    .post-category {
+        min-height: 32px;  /* Slightly smaller for tags, but still tappable */
+        display: inline-flex;
+        align-items: center;
+        padding: 0.375rem 0.75rem;
+    }
+    
+    /* Footer links */
+    .footer-links a {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
+    
+    /* Pagination buttons */
+    .pagination-button {
+        min-height: 60px;  /* Larger for easier tapping */
+    }
+    
+    /* TOC links (when visible) */
+    .toc-nav a {
+        min-height: 36px;
+        display: flex;
+        align-items: center;
+    }
+    
+    /* Social links */
+    .social-link {
+        min-height: 44px;
+        min-width: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
     }
 }
