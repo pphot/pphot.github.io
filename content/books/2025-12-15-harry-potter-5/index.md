@@ -1,11 +1,14 @@
 +++
 title = "Harry Potter and the Order of the Phoenix: The Angry Year"
-date = 2025-12-15
+date = 2025-12-15T00:00:00Z
+updated = 2025-12-15T00:00:00Z
 template = "post.html"
 description = "The longest, most frustrating book - Harry at his most human, most broken, most real."
 tags = ["fantasy", "grief", "anger"]
 categories = ["books"]
 generate_feed = true
+series = "Harry Potter"
+series_order = 5
 
 [extra]
 img = "img/cover.webp"

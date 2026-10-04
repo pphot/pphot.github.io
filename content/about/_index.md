@@ -1,7 +1,6 @@
 +++
 title = "About"
 template = "about.html"
-date = 2026-01-09
 +++
 
 ## Hello, I'm Phuong

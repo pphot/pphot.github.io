@@ -1,6 +1,7 @@
 +++
 title = "Autumn Walks and Golden Light"
-date = 2025-11-20
+date = 2025-11-20T00:00:00Z
+updated = 2025-11-20T00:00:00Z
 template = "post.html"
 description = "There's something about autumn that makes me want to walk for hours, watching leaves fall and light change."
 tags = ["nature", "reflection", "mindfulness"]
@@ -8,8 +9,7 @@ categories = ["journal"]
 generate_feed = true
 
 [extra]
-img = "/img/portugal.webp"
-featured = false
+img = "/img/braiding-sweetgrass.webp"
 +++
 
 November light has a quality I can't quite describe. It's softer than summer, more golden, like the world is being photographed through a warm filter. Today I walked for two hours through the park near my apartment, and I think I finally understand why autumn is my favorite season.

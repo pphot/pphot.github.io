@@ -1,0 +1,17 @@
+{{ template "partials/_open.html" (dict "Site" .Site "Page" .Page "Section" .Section "Class" "page-page") }}
+
+        <main id="main">
+            <div class="container">
+                <article>
+                    <header class="post-header">
+                        {{ template "partials/_post_meta.html" (dict "Post" .Page "Site" .Site "Long" true) }}
+                        <h1 class="post-title-single">{{ priority .Page.Config.title .Page.Title .Page.Slug }}</h1>
+                        {{ with .Page.Config.description }}<p class="post-intro">{{ . }}</p>{{ end }}
+                    </header>
+
+                    <div class="prose"{{ with .Site.Config.extra.mermaid_src }} data-mermaid-src="{{ . }}"{{ end }}>{{ .Page.Content }}</div>
+                </article>
+            </div>
+        </main>
+
+{{ template "partials/_close.html" (dict "Site" .Site) }}

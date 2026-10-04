@@ -1,0 +1,31 @@
+{{- $posts := concat
+    (get_section "journal").Children
+    (get_section "thoughts").Children
+    (get_section "books").Children
+-}}
+{{- $newer := "" }}{{ $older := "" }}{{ $seen := false -}}
+{{- range sort_by "date" $posts -}}
+    {{- if $seen -}}
+        {{- if not $older }}{{ $older = . }}{{ end -}}
+    {{- else if eq .Permalink $.Page.Permalink -}}
+        {{- $seen = true -}}
+    {{- else -}}
+        {{- $newer = . -}}
+    {{- end -}}
+{{- end -}}
+{{- if or $newer $older }}
+<nav class="post-nav" aria-label="Post navigation">
+    {{ with $older }}
+    <a href="{{ .Permalink }}" class="post-nav-link">
+        <span class="post-nav-label">&larr; Older</span>
+        <span class="post-nav-title">{{ .Title }}</span>
+    </a>
+    {{ end }}
+    {{ with $newer }}
+    <a href="{{ .Permalink }}" class="post-nav-link post-nav-newer">
+        <span class="post-nav-label">Newer &rarr;</span>
+        <span class="post-nav-title">{{ .Title }}</span>
+    </a>
+    {{ end }}
+</nav>
+{{ end }}

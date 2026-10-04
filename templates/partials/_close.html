@@ -1,0 +1,5 @@
+{{ template "partials/_footer.html" . }}
+        {{ with .Scripts }}{{ range split . " " }}<script src="{{ fingerprint . }}"></script>
+        {{ end }}{{ end }}<script src="{{ fingerprint "/js/main.js" }}"></script>
+    </body>
+</html>

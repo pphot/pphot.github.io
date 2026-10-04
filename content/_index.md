@@ -1,7 +1,6 @@
 +++
 title = "Home"
 template = "home.html"
-date = 2026-01-09
 +++
 
 Welcome to my little corner of the internet! 

@@ -1,6 +1,7 @@
 +++
 title = "Cooking Memories: My Grandmother's Kitchen"
-date = 2025-10-15
+date = 2025-10-15T00:00:00Z
+updated = 2025-10-15T00:00:00Z
 template = "post.html"
 description = "The recipes we inherit are more than instructions – they're stories, connections, and love made edible."
 tags = ["family", "memories", "food", "tradition"]
@@ -8,8 +9,6 @@ categories = ["journal"]
 generate_feed = true
 
 [extra]
-img = "/img/portugal.webp"
-featured = false
 +++
 
 I made my grandmother's spring rolls today. My hands remembered the motions before my brain did – the way to soften the rice paper, how tightly to roll, when to stop filling so it doesn't burst. She's been gone for five years, but in my kitchen this afternoon, she was right there with me.

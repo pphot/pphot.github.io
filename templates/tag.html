@@ -1,45 +1,14 @@
-<!doctype html>
-<html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
-    {{ template "partials/_head.html" . }}
-    <body class="tag-page">
-        <a href="#main" class="skip-to-content">Skip to content</a>
-
-        {{ template "partials/_header.html" . }}
+{{ template "partials/_open.html" (dict "Site" .Site "Page" .Page "Section" .Section "Class" "tag-page") }}
 
         <main id="main">
             <div class="container">
-                <div class="section-header">
-                    <h1># {{ .Page.Term }}</h1>
-                    {{ if .Page.Pages }}
-                    <p class="section-subtitle">{{ len .Page.Pages }} posts</p>
-                    {{ end }}
-                    <p class="section-subtitle"><a href="/tags">← View all tags</a></p>
-                </div>
-
-                {{ if .Page.Pages }}
-                <div class="post-list">
-                    {{ range .Page.Pages }}
-                    <article class="post-list-item">
-                        <time class="post-list-date" datetime="{{ .Config.date }}">
-                            {{ date .Config.date "Jan 2, 2006" }}
-                        </time>
-                        <h2 class="post-list-title">
-                            <a href="{{ .Permalink }}">{{ .Config.title }}</a>
-                        </h2>
-                    </article>
-                    {{ end }}
-                </div>
-                {{ else }}
-                <div class="prose">
-                    <p>No posts found with this tag yet.</p>
-                    <p><a href="/">← Back to home</a></p>
-                </div>
-                {{ end }}
+                {{ template "partials/_taxonomy_term.html" (dict
+                    "Title" (printf "#%s" .Page.Term)
+                    "Pages" .Page.Pages
+                    "IndexUrl" "/tags"
+                    "IndexLabel" "tags"
+                ) }}
             </div>
         </main>
 
-        {{ template "partials/_footer.html" . }}
-
-        <script src="/js/main.js"></script>
-    </body>
-</html>
+{{ template "partials/_close.html" (dict "Site" .Site) }}

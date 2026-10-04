@@ -1,9 +1,13 @@
 +++
 title = "Slow Morning with Tea"
-date = 2026-01-07
+date = 2026-01-07T00:00:00Z
+updated = 2026-01-07T00:00:00Z
 template = "thought.html"
+description = "An early start, a pot of jasmine tea, and no phone for an hour."
 tags = ["mindfulness", "ritual"]
 categories = ["thoughts"]
+generate_feed = true
+featured = true
 +++
 
 This morning I woke up early – not because of an alarm, but because my body was ready. The light was soft and gray, the kind of light that makes you want to move slowly and speak quietly.

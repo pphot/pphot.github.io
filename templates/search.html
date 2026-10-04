@@ -1,0 +1,30 @@
+{{ template "partials/_open.html" (dict "Site" .Site "Page" .Page "Section" .Section "Class" "search-page") }}
+
+        <main id="main">
+            <div class="container">
+                <section class="section-header">
+                    <h1>{{ .Site.Config.extra.search_title }}</h1>
+                    <p class="section-subtitle">{{ .Page.Summary }}</p>
+                </section>
+
+                <div class="search-page-box">
+                    <input
+                        type="search"
+                        id="search-page-input"
+                        placeholder="{{ .Site.Config.extra.search_placeholder }}"
+                        aria-label="{{ .Site.Config.extra.search_placeholder }}"
+                        autocomplete="off"
+                        autocapitalize="off"
+                        spellcheck="false"
+                        role="combobox"
+                        aria-expanded="false"
+                        aria-controls="search-page-results"
+                        aria-autocomplete="list"
+                    />
+                    <p class="search-page-status" id="search-page-status" role="status"></p>
+                    <div class="search-results" id="search-page-results" role="listbox" aria-label="Search results"></div>
+                </div>
+            </div>
+        </main>
+
+{{ template "partials/_close.html" (dict "Site" .Site "Scripts" "/js/search.js") }}

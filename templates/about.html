@@ -1,32 +1,17 @@
-<!doctype html>
-<html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
-    {{ template "partials/_head.html" . }}
-    <body class="about-page">
-        <a href="#main" class="skip-to-content">{{ .Site.Config.extra.skip_to_content }}</a>
-        
-        {{ template "partials/_header.html" . }}
-        
+{{ template "partials/_open.html" (dict "Site" .Site "Page" .Page "Section" .Section "Class" "about-page") }}
+
         <main id="main">
             <div class="container">
                 <article class="about-content">
-                    <div class="about-header">
-                        <img 
-                            src="{{ .Site.Config.extra.avatar }}" 
-                            alt="{{ .Site.Config.extra.name }}"
-                            class="about-avatar"
-                        />
-                        <h1>{{ .Site.Config.extra.about_title }}</h1>
-                    </div>
-                    
-                    <div class="prose prose-about">
-                        {{ .Page.Content }}
-                    </div>
+                    <header class="about-header">
+                        <img src="{{ .Site.Config.extra.avatar }}" alt="" class="about-avatar" width="120" height="120" />
+                        <h1>{{ priority .Page.Config.title .Site.Config.extra.about_title }}</h1>
+                        <p class="about-subtitle">{{ .Site.Config.extra.bio }}</p>
+                    </header>
+
+                    <div class="prose">{{ .Page.Content }}</div>
                 </article>
             </div>
         </main>
-        
-        {{ template "partials/_footer.html" . }}
-        
-        <script src="/js/main.js"></script>
-    </body>
-</html>
+
+{{ template "partials/_close.html" (dict "Site" .Site) }}

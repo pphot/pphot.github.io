@@ -1,15 +1,16 @@
 +++
 title = "Coffee Shop Rituals: Finding Home in Strange Places"
-date = 2026-01-05
+date = 2026-01-05T00:00:00Z
+updated = 2026-01-05T00:00:00Z
 template = "post.html"
 description = "How a simple morning routine in local cafés has become my anchor while traveling through life."
 tags = ["ritual", "belonging", "home"]
 categories = ["journal"]
 generate_feed = true
+aliases = ["/journal/coffee-rituals/"]
+featured = true
 
 [extra]
-img = "/img/portugal.webp"
-featured = false
 +++
 
 There's something sacred about the morning ritual of finding a coffee shop in a new place. Not the chain ones with their identical interiors and predictable menus, but the local spots where the barista nods at regulars and the espresso machine hisses its familiar song.

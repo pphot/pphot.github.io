@@ -1,0 +1,13 @@
+<section class="section-header">
+    <h1>{{ .Title }}</h1>
+    {{ with .Subtitle }}<p class="section-subtitle">{{ . }}</p>{{ end }}
+</section>
+
+<div class="tag-cloud">
+    {{ range .Terms }}
+        <a href="{{ .Permalink }}" class="tag-item">
+            <span class="tag-name">#{{ .Name }}</span>
+            <span class="tag-count">{{ .Count }}</span>
+        </a>
+    {{ end }}
+</div>

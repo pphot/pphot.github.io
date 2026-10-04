@@ -1,101 +1,67 @@
-// ABOUTME: Image lightbox functionality for photography galleries
-// ABOUTME: Allows users to view images in full-screen mode with keyboard navigation
+;(function () {
+    'use strict'
 
-(function() {
-    'use strict';
-    
-    // Create lightbox HTML structure
-    const lightboxHTML = `
-        <div class="lightbox" id="lightbox">
-            <div class="lightbox-content">
-                <button class="lightbox-close" id="lightbox-close" aria-label="Close">×</button>
-                <button class="lightbox-prev" id="lightbox-prev" aria-label="Previous">‹</button>
-                <button class="lightbox-next" id="lightbox-next" aria-label="Next">›</button>
-                <img src="" alt="" id="lightbox-img" />
-            </div>
-        </div>
-    `;
-    
-    // Insert lightbox into page
-    document.body.insertAdjacentHTML('beforeend', lightboxHTML);
-    
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxClose = document.getElementById('lightbox-close');
-    const lightboxPrev = document.getElementById('lightbox-prev');
-    const lightboxNext = document.getElementById('lightbox-next');
-    
-    let currentIndex = 0;
-    let images = [];
-    
-    // Get all gallery images
-    const galleryImages = document.querySelectorAll('.gallery-item img, .prose img');
-    
-    if (galleryImages.length === 0) return;
-    
-    images = Array.from(galleryImages);
-    
-    // Add click handlers to images
-    images.forEach((img, index) => {
-        img.style.cursor = 'pointer';
-        img.addEventListener('click', () => {
-            openLightbox(index);
-        });
-    });
-    
-    function openLightbox(index) {
-        currentIndex = index;
-        const img = images[currentIndex];
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt;
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
+    const images = Array.from(document.querySelectorAll('.prose img')).filter(
+        (image) => image.naturalWidth > 0 && !image.closest('.lightbox'),
+    )
+    if (images.length === 0) return
+
+    const overlay = document.createElement('div')
+    overlay.className = 'lightbox'
+    overlay.hidden = true
+    overlay.innerHTML = `
+        <button class="lightbox-close" type="button" aria-label="Close image viewer">&times;</button>
+        <button class="lightbox-prev" type="button" aria-label="Previous image">&#8249;</button>
+        <button class="lightbox-next" type="button" aria-label="Next image">&#8250;</button>
+        <img class="lightbox-image" alt="" />
+        <p class="lightbox-caption" aria-live="polite"></p>
+    `
+    document.body.append(overlay)
+
+    const viewer = overlay.querySelector('.lightbox-image')
+    const caption = overlay.querySelector('.lightbox-caption')
+    const closeButton = overlay.querySelector('.lightbox-close')
+    let index = 0
+    let opener = null
+
+    const show = (next) => {
+        index = (next + images.length) % images.length
+        const image = images[index]
+        viewer.src = image.currentSrc || image.src
+        viewer.alt = image.alt
+        caption.textContent = image.alt
+        caption.hidden = !image.alt
     }
-    
-    function closeLightbox() {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
+
+    const open = (start) => {
+        opener = document.activeElement
+        show(start)
+        overlay.hidden = false
+        document.body.style.overflow = 'hidden'
+        closeButton.focus()
     }
-    
-    function showPrevious() {
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-        lightboxImg.src = images[currentIndex].src;
-        lightboxImg.alt = images[currentIndex].alt;
+
+    const close = () => {
+        overlay.hidden = true
+        document.body.style.overflow = ''
+        opener?.focus()
     }
-    
-    function showNext() {
-        currentIndex = (currentIndex + 1) % images.length;
-        lightboxImg.src = images[currentIndex].src;
-        lightboxImg.alt = images[currentIndex].alt;
-    }
-    
-    // Event listeners
-    lightboxClose.addEventListener('click', closeLightbox);
-    lightboxPrev.addEventListener('click', showPrevious);
-    lightboxNext.addEventListener('click', showNext);
-    
-    // Close on background click
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) {
-            closeLightbox();
-        }
-    });
-    
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (!lightbox.classList.contains('active')) return;
-        
-        switch(e.key) {
-            case 'Escape':
-                closeLightbox();
-                break;
-            case 'ArrowLeft':
-                showPrevious();
-                break;
-            case 'ArrowRight':
-                showNext();
-                break;
-        }
-    });
-    
-})();
+
+    images.forEach((image, position) => {
+        image.style.cursor = 'zoom-in'
+        image.addEventListener('click', () => open(position))
+    })
+
+    closeButton.addEventListener('click', close)
+    overlay.querySelector('.lightbox-prev').addEventListener('click', () => show(index - 1))
+    overlay.querySelector('.lightbox-next').addEventListener('click', () => show(index + 1))
+    overlay.addEventListener('click', (event) => {
+        if (event.target === overlay || event.target === viewer) close()
+    })
+    document.addEventListener('keydown', (event) => {
+        if (overlay.hidden) return
+        if (event.key === 'Escape') close()
+        if (event.key === 'ArrowLeft') show(index - 1)
+        if (event.key === 'ArrowRight') show(index + 1)
+    })
+})()

@@ -1,56 +1,51 @@
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebSite",
-      "@id": "{{ .Site.Config.base_url }}/#website",
-      "url": "{{ .Site.Config.base_url }}",
-      "name": "{{ .Site.Config.title }}",
-      "description": "{{ .Site.Config.description }}",
-      "publisher": {
-        "@id": "{{ .Site.Config.base_url }}/#organization"
-      }
-    },
-    {
-      "@type": "Organization",
-      "@id": "{{ .Site.Config.base_url }}/#organization",
-      "name": "{{ .Site.Config.title }}",
-      "url": "{{ .Site.Config.base_url }}",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "{{ .Site.Config.base_url }}{{ .Site.Config.extra.avatar }}"
-      }
-    }
-    {{ if .Page.Config.date }}
-    ,{
-      "@type": "BlogPosting",
-      "@id": "{{ .Site.Config.base_url }}{{ .Page.Permalink }}#article",
-      "headline": "{{ .Page.Config.title }}",
-      "description": "{{ priority .Page.Config.description .Page.Summary .Site.Config.description }}",
-      "datePublished": "{{ .Page.Config.date }}",
-      {{ if not .Page.Config.updated.IsZero }}
-      "dateModified": "{{ .Page.Config.updated }}",
-      {{ end }}
-      "author": {
-        "@type": "Person",
-        "name": "{{ .Site.Config.extra.name }}"
-      },
-      "publisher": {
-        "@id": "{{ .Site.Config.base_url }}/#organization"
-      },
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "{{ .Site.Config.base_url }}{{ .Page.Permalink }}"
-      }
-      {{ if .Page.Config.extra.img }}
-      ,"image": {
-        "@type": "ImageObject",
-        "url": "{{ .Page.Config.img_url }}"
-      }
-      {{ end }}
-    }
-    {{ end }}
-  ]
-}
-</script>
+{{- $url := printf "%s%s" .Site.Config.base_url (priority .Page.Permalink .Page.Path) }}
+{{- $title := priority .Page.Config.title .Page.Title .Site.Config.title }}
+{{- $description := priority .Page.Config.description .Site.Config.description }}
+{{- $image := printf "%s%s" .Site.Config.base_url .Site.Config.extra.img }}
+{{- with .Page.Config.img_url }}{{ $image = . }}{{ end }}
+{{- $lang := .Site.Config.lang }}
+{{- $site := dict
+    "@type" "WebSite"
+    "@id" (printf "%s/#website" .Site.Config.base_url)
+    "url" (printf "%s/" .Site.Config.base_url)
+    "name" .Site.Config.title
+    "description" .Site.Config.description
+    "inLanguage" $lang
+-}}
+{{- $person := dict
+    "@type" "Person"
+    "@id" (printf "%s/#author" .Site.Config.base_url)
+    "name" .Site.Config.extra.name
+    "url" .Site.Config.base_url
+    "image" (printf "%s%s" .Site.Config.base_url .Site.Config.extra.avatar)
+-}}
+{{- $ld := dict
+    "@context" "https://schema.org"
+    "@type" "WebPage"
+    "@id" $url
+    "url" $url
+    "name" $title
+    "description" $description
+    "inLanguage" $lang
+    "isPartOf" $site
+    "author" $person
+-}}
+{{- if .Page.Config.date -}}
+    {{- $ld = merge $ld (dict
+        "@type" "BlogPosting"
+        "headline" $title
+        "description" $description
+        "image" $image
+        "inLanguage" $lang
+        "datePublished" (date .Page.Config.date "2006-01-02T15:04:05Z07:00")
+        "wordCount" .Page.WordCount
+        "publisher" $person
+    ) -}}
+    {{- with .Page.Config.tags }}{{ $ld = merge $ld (dict "keywords" .) }}{{ end -}}
+    {{- with .Page.Config.categories }}{{ $ld = merge $ld (dict "articleSection" (index . 0)) }}{{ end -}}
+    {{- with .Page.Config.series }}{{ $ld = merge $ld (dict "articlePartOf" (dict "@type" "CreativeWork" "name" .)) }}{{ end -}}
+    {{- if not .Page.Config.updated.IsZero -}}
+        {{- $ld = merge $ld (dict "dateModified" (date .Page.Config.updated "2006-01-02T15:04:05Z07:00")) -}}
+    {{- end -}}
+{{- end -}}
+<script type="application/ld+json">{{ $ld }}</script>

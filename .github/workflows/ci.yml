@@ -34,19 +34,28 @@ jobs:
         run: gozzi version
 
       - name: Build site
-        run: gozzi build
+        # Gozzi renders pages concurrently and occasionally dies on a map race.
+        # Retrying is cheaper than a red build on an upstream bug.
+        run: |
+          for attempt in 1 2 3; do
+            if gozzi build; then
+              exit 0
+            fi
+            echo "gozzi build failed on attempt $attempt"
+          done
+          exit 1
 
       - name: Validate build output
         run: |
           echo "Validating build output..."
           if [ ! -d "public" ]; then
-            echo "❌ Error: public directory not found"
+            echo "public directory not found"
             exit 1
           fi
           if [ ! -f "public/index.html" ]; then
-            echo "❌ Error: index.html not found"
+            echo "index.html not found"
             exit 1
           fi
-          echo "✅ Build validation passed"
-          echo "📊 Build size: $(du -sh public | cut -f1)"
-          echo "📁 Files generated: $(find public -type f | wc -l)"
+          echo "Build output looks valid"
+          echo "Build size: $(du -sh public | cut -f1)"
+          echo "Files generated: $(find public -type f | wc -l)"

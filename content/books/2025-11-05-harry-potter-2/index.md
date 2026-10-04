@@ -1,11 +1,14 @@
 +++
 title = "Harry Potter and the Chamber of Secrets: Fears and Voices"
-date = 2025-11-05
+date = 2025-11-05T00:00:00Z
+updated = 2025-11-05T00:00:00Z
 template = "post.html"
 description = "The second book goes darker - exploring prejudice, self-doubt, and the voice in your head that whispers you're not good enough."
 tags = ["fantasy", "identity", "self-doubt"]
 categories = ["books"]
 generate_feed = true
+series = "Harry Potter"
+series_order = 2
 
 [extra]
 img = "img/cover.webp"

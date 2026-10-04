@@ -1,286 +1,102 @@
-<!doctype html>
-<html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
-    {{ template "partials/_head.html" . }}
-    <body class="homepage">
-        <a href="#main" class="skip-to-content">{{ .Site.Config.extra.skip_to_content }}</a>
+{{- $journal := get_section "journal" -}}
+{{- $books := get_section "books" -}}
+{{- $thoughts := get_section "thoughts" -}}
+{{- $all := concat $journal.Children $books.Children $thoughts.Children -}}
+{{- $featured := sort_by "date" (where $all "featured" true) -}}
+{{- $latest := sort_by "date" $all -}}
+{{ template "partials/_open.html" (dict "Site" .Site "Page" .Page "Section" .Section "Class" "homepage") }}
 
-        {{ template "partials/_header.html" . }}
-
-        <div class="reading-progress" id="reading-progress"></div>
+        <div class="reading-progress" id="reading-progress" role="presentation"></div>
 
         <main id="main">
-            <!-- Hero Section -->
             <section class="hero">
                 <div class="hero-image">
                     <img
-                        src="{{ .Site.Config.extra.hero_image }}"
-                        alt="{{ .Site.Config.extra.home_hero_alt }}"
+                        src="{{ .Site.Config.extra.hero_image_480 }}"
+                        srcset="{{ .Site.Config.extra.hero_image_480 }} 480w, {{ .Site.Config.extra.hero_image_768 }} 768w, {{ .Site.Config.extra.hero_image_1280 }} 1280w, {{ .Site.Config.extra.hero_image }} 1920w"
+                        sizes="100vw"
+                        alt=""
                         width="1920"
                         height="1080"
                         loading="eager"
                         fetchpriority="high"
-                        class="img-cover"
                     />
                 </div>
-                <div class="hero-overlay"></div>
                 <div class="hero-content">
                     <h1 class="hero-title">{{ .Site.Config.title }}</h1>
                     <p class="hero-subtitle">{{ .Site.Config.extra.bio }}</p>
                 </div>
             </section>
 
-            <!-- Welcome Section -->
-            <section class="welcome">
-                <img
-                    src="{{ .Site.Config.extra.avatar }}"
-                    alt="{{ .Site.Config.extra.name }}"
-                    class="welcome-avatar"
-                    width="120"
-                    height="120"
-                    loading="lazy"
-                />
-                <h2>{{ .Site.Config.extra.home_welcome_prefix }} {{ .Config.extra.name }}</h2>
-                <div>{{ .Page.Content }}</div>
+            <section class="welcome container">
+                <img src="{{ .Site.Config.extra.avatar }}" alt="" class="welcome-avatar" width="96" height="96" />
+                <h2>{{ .Site.Config.extra.home_welcome_prefix }} {{ .Site.Config.extra.name }}</h2>
+                <div class="prose">{{ .Page.Content }}</div>
             </section>
 
-            {{ $journal := get_section "journal" }} {{ $books := get_section "books" }} {{ $thoughts
-            := get_section "thoughts" }} {{ $has_featured := false }} {{ range $journal.Children
-            }}{{ if .Config.extra.featured }}{{ $has_featured = true }}{{ end }}{{ end }} {{ range
-            $books.Children }}{{ if .Config.extra.featured }}{{ $has_featured = true }}{{ end }}{{
-            end }} {{ range $thoughts.Children }}{{ if .Config.extra.featured }}{{ $has_featured =
-            true }}{{ end }}{{ end }} {{ if $has_featured }}
-            <section class="section-featured">
-                <div class="section-header">
-                    <h2>{{ .Site.Config.extra.home_featured_title }}</h2>
-                    <p class="section-subtitle">{{ .Site.Config.extra.home_featured_subtitle }}</p>
-                </div>
-
-                <div class="post-grid">
-                    {{ $count := 0 }} {{ range $journal.Children }} {{ if and
-                    .Config.extra.featured (lt $count 6) }} {{ $count = add $count 1 }}
-                    <article class="post-card fade-in">
-                        {{ $post_image := "/img/post-cover.webp" }} {{ if .Config.extra.img }} {{
-                        $img_path := .Config.extra.img }} {{ $first_char := index (split $img_path
-                        "") 0 }} {{ if eq $first_char "/" }} {{ $post_image = $img_path }} {{ else
-                        }} {{ $post_image = printf "%s%s" .Permalink $img_path }} {{ end }} {{ end
-                        }}
-
-                        <a href="{{ .Permalink }}" class="post-card-image">
-                            <img
-                                src="{{ $post_image }}"
-                                alt="{{ .Config.title }}"
-                                width="400"
-                                height="250"
-                                loading="lazy"
-                                decoding="async"
-                                onerror="this.src='/img/post-cover.webp'"
-                            />
-                        </a>
-
-                        <div class="post-card-content">
-                            <div class="post-card-meta">{{ if .Config.categories }}{{ $first_category := index .Config.categories 0 }}{{ $category_icon := "" }}{{ if eq $first_category "books" }}{{ $category_icon = "📚" }}{{ else if eq $first_category "journal" }}{{ $category_icon = "📔" }}{{ else if eq $first_category "thoughts" }}{{ $category_icon = "💭" }}{{ end }}<span class="post-category">{{ $category_icon }} {{ $first_category }}</span>{{ end }}<time class="post-date" datetime="{{ .Config.date }}">{{ date .Config.date "Jan 2, 2006" }}</time></div>
-                            <h3 class="post-title">
-                                <a href="{{ .Permalink }}">{{ .Config.title }}</a>
-                            </h3>
-                            {{ $summary := .Summary }} {{ if $summary }}
-                            <p class="post-description">{{ $summary }}</p>
+            {{ if $featured }}
+                <section class="section-featured container">
+                    <div class="section-header">
+                        <h2>{{ .Site.Config.extra.home_featured_title }}</h2>
+                        <p class="section-subtitle">{{ .Site.Config.extra.home_featured_subtitle }}</p>
+                    </div>
+                    <div class="post-grid">
+                        {{ $featuredShown := 0 }}
+                        {{ range $featured }}
+                            {{ if lt $featuredShown $.Site.Config.extra.home_featured_count }}
+                                {{ $featuredShown = add $featuredShown 1 }}
+                                {{ template "partials/_post_card.html" (dict "Post" . "Site" $.Site "Level" 3 "Class" "fade-in") }}
                             {{ end }}
-                            <div class="post-tags">
-                                {{ range .Config.tags }}
-                                <span class="post-tag">#{{ . }}</span>
-                                {{ end }}
-                            </div>
-                        </div>
-                    </article>
-                    {{ end }} {{ end }} {{ range $books.Children }} {{ if and
-                    .Config.extra.featured (lt $count 6) }} {{ $count = add $count 1 }}
-                    <article class="post-card fade-in">
-                        {{ $post_image := "/img/post-cover.webp" }} {{ if .Config.extra.img }} {{
-                        $img_path := .Config.extra.img }} {{ $first_char := index (split $img_path
-                        "") 0 }} {{ if eq $first_char "/" }} {{ $post_image = $img_path }} {{ else
-                        }} {{ $post_image = printf "%s%s" .Permalink $img_path }} {{ end }} {{ end
-                        }}
-
-                        <a href="{{ .Permalink }}" class="post-card-image">
-                            <img
-                                src="{{ $post_image }}"
-                                alt="{{ .Config.title }}"
-                                width="400"
-                                height="250"
-                                loading="lazy"
-                                decoding="async"
-                                onerror="this.src='/img/post-cover.webp'"
-                            />
-                        </a>
-
-                        <div class="post-card-content">
-                            <div class="post-card-meta">{{ if .Config.categories }}{{ $first_category := index .Config.categories 0 }}{{ $category_icon := "" }}{{ if eq $first_category "books" }}{{ $category_icon = "📚" }}{{ else if eq $first_category "journal" }}{{ $category_icon = "📔" }}{{ else if eq $first_category "thoughts" }}{{ $category_icon = "💭" }}{{ end }}<span class="post-category">{{ $category_icon }} {{ $first_category }}</span>{{ end }}<time class="post-date" datetime="{{ .Config.date }}">{{ date .Config.date "Jan 2, 2006" }}</time></div>
-                            <h3 class="post-title">
-                                <a href="{{ .Permalink }}">{{ .Config.title }}</a>
-                            </h3>
-                            {{ $summary := .Summary }} {{ if $summary }}
-                            <p class="post-description">{{ $summary }}</p>
-                            {{ end }}
-                            <div class="post-tags">
-                                {{ range .Config.tags }}
-                                <span class="post-tag">#{{ . }}</span>
-                                {{ end }}
-                            </div>
-                        </div>
-                    </article>
-                    {{ end }} {{ end }} {{ range $thoughts.Children }} {{ if and
-                    .Config.extra.featured (lt $count 6) }} {{ $count = add $count 1 }}
-                    <article class="post-card fade-in">
-                        {{ $post_image := "/img/post-cover.webp" }} {{ if .Config.extra.img }} {{
-                        $img_path := .Config.extra.img }} {{ $first_char := index (split $img_path
-                        "") 0 }} {{ if eq $first_char "/" }} {{ $post_image = $img_path }} {{ else
-                        }} {{ $post_image = printf "%s%s" .Permalink $img_path }} {{ end }} {{ end
-                        }}
-
-                        <a href="{{ .Permalink }}" class="post-card-image">
-                            <img
-                                src="{{ $post_image }}"
-                                alt="{{ .Config.title }}"
-                                width="400"
-                                height="250"
-                                loading="lazy"
-                                decoding="async"
-                                onerror="this.src='/img/post-cover.webp'"
-                            />
-                        </a>
-
-                        <div class="post-card-content">
-                            <div class="post-card-meta">{{ if .Config.categories }}{{ $first_category := index .Config.categories 0 }}{{ $category_icon := "" }}{{ if eq $first_category "books" }}{{ $category_icon = "📚" }}{{ else if eq $first_category "journal" }}{{ $category_icon = "📔" }}{{ else if eq $first_category "thoughts" }}{{ $category_icon = "💭" }}{{ end }}<span class="post-category">{{ $category_icon }} {{ $first_category }}</span>{{ end }}<time class="post-date" datetime="{{ .Config.date }}">{{ date .Config.date "Jan 2, 2006" }}</time></div>
-                            <h3 class="post-title">
-                                <a href="{{ .Permalink }}">{{ .Config.title }}</a>
-                            </h3>
-                            {{ $summary := .Summary }} {{ if $summary }}
-                            <p class="post-description">{{ $summary }}</p>
-                            {{ end }}
-                            <div class="post-tags">
-                                {{ range .Config.tags }}
-                                <span class="post-tag">#{{ . }}</span>
-                                {{ end }}
-                            </div>
-                        </div>
-                    </article>
-                    {{ end }} {{ end }}
-                </div>
-            </section>
+                        {{ end }}
+                    </div>
+                </section>
             {{ end }}
 
-            <section class="section-latest">
-                <div class="section-header">
-                    <h2>{{ .Site.Config.extra.home_latest_title }}</h2>
-                    <p class="section-subtitle">{{ .Site.Config.extra.home_latest_subtitle }}</p>
-                </div>
-
-                <div class="post-grid">
-                    {{ $latest_count := 0 }} {{ range $journal.Children }} {{ if lt
-                    $latest_count 3 }} {{ $latest_count = add $latest_count 1 }}
-                    <article class="post-card fade-in">
-                        {{ $post_image := "/img/post-cover.webp" }} {{ if .Config.extra.img }} {{
-                        $img_path := .Config.extra.img }} {{ $first_char := index (split $img_path
-                        "") 0 }} {{ if eq $first_char "/" }} {{ $post_image = $img_path }} {{ else
-                        }} {{ $post_image = printf "%s%s" .Permalink $img_path }} {{ end }} {{ end
-                        }}
-
-                        <a href="{{ .Permalink }}" class="post-card-image">
-                            <img
-                                src="{{ $post_image }}"
-                                alt="{{ .Config.title }}"
-                                width="400"
-                                height="250"
-                                loading="lazy"
-                                decoding="async"
-                                onerror="this.src='/img/post-cover.webp'"
-                            />
-                        </a>
-
-                        <div class="post-card-content">
-                            <div class="post-card-meta">{{ if .Config.categories }}{{ $first_category := index .Config.categories 0 }}{{ $category_icon := "" }}{{ if eq $first_category "books" }}{{ $category_icon = "📚" }}{{ else if eq $first_category "journal" }}{{ $category_icon = "📔" }}{{ else if eq $first_category "thoughts" }}{{ $category_icon = "💭" }}{{ end }}<span class="post-category">{{ $category_icon }} {{ $first_category }}</span>{{ end }}<time class="post-date" datetime="{{ .Config.date }}">{{ date .Config.date "Jan 2, 2006" }}</time></div>
-                            <h3 class="post-title">
-                                <a href="{{ .Permalink }}">{{ .Config.title }}</a>
-                            </h3>
-                            {{ $summary := .Summary }} {{ if $summary }}
-                            <p class="post-description">{{ $summary }}</p>
+            {{/* Featured posts are already on the page, so Latest skips them. A
+                 counter rather than limit: gozzi's limit asserts an int and TOML
+                 hands over an int64, so it would silently return everything. */}}
+            {{ $restCount := 0 }}
+            {{ range $latest }}
+                {{ if not .Config.featured }}{{ $restCount = add $restCount 1 }}{{ end }}
+            {{ end }}
+            {{ if gt $restCount 0 }}
+                <section class="section-latest container">
+                    <div class="section-header">
+                        <h2>{{ .Site.Config.extra.home_latest_title }}</h2>
+                        <p class="section-subtitle">{{ .Site.Config.extra.home_latest_subtitle }}</p>
+                    </div>
+                    <div class="post-grid">
+                        {{ $latestShown := 0 }}
+                        {{ range $latest }}
+                            {{ if and (not .Config.featured) (lt $latestShown $.Site.Config.extra.home_latest_count) }}
+                                {{ $latestShown = add $latestShown 1 }}
+                                {{ template "partials/_post_card.html" (dict "Post" . "Site" $.Site "Level" 3 "Class" "fade-in") }}
                             {{ end }}
-                            <div class="post-tags">
-                                {{ range .Config.tags }}
-                                <span class="post-tag">#{{ . }}</span>
-                                {{ end }}
-                            </div>
-                        </div>
-                    </article>
-                    {{ end }} {{ end }} {{ range $books.Children }} {{ if lt $latest_count
-                    6 }} {{ $latest_count = add $latest_count 1 }}
-                    <article class="post-card fade-in">
-                        {{ $post_image := "/img/post-cover.webp" }} {{ if .Config.extra.img }} {{
-                        $img_path := .Config.extra.img }} {{ $first_char := index (split $img_path
-                        "") 0 }} {{ if eq $first_char "/" }} {{ $post_image = $img_path }} {{ else
-                        }} {{ $post_image = printf "%s%s" .Permalink $img_path }} {{ end }} {{ end
-                        }}
+                        {{ end }}
+                    </div>
+                    <p class="section-more"><a href="/archive">{{ .Site.Config.extra.recent_more_text }}</a></p>
+                </section>
+            {{ end }}
 
-                        <a href="{{ .Permalink }}" class="post-card-image">
-                            <img
-                                src="{{ $post_image }}"
-                                alt="{{ .Config.title }}"
-                                width="400"
-                                height="250"
-                                loading="lazy"
-                                decoding="async"
-                                onerror="this.src='/img/post-cover.webp'"
-                            />
-                        </a>
-
-                        <div class="post-card-content">
-                            <div class="post-card-meta">{{ if .Config.categories }}{{ $first_category := index .Config.categories 0 }}{{ $category_icon := "" }}{{ if eq $first_category "books" }}{{ $category_icon = "📚" }}{{ else if eq $first_category "journal" }}{{ $category_icon = "📔" }}{{ else if eq $first_category "thoughts" }}{{ $category_icon = "💭" }}{{ end }}<span class="post-category">{{ $category_icon }} {{ $first_category }}</span>{{ end }}<time class="post-date" datetime="{{ .Config.date }}">{{ date .Config.date "Jan 2, 2006" }}</time></div>
-                            <h3 class="post-title">
-                                <a href="{{ .Permalink }}">{{ .Config.title }}</a>
-                            </h3>
-                            {{ $summary := .Summary }} {{ if $summary }}
-                            <p class="post-description">{{ $summary }}</p>
-                            {{ end }}
-                            <div class="post-tags">
-                                {{ range .Config.tags }}
-                                <span class="post-tag">#{{ . }}</span>
-                                {{ end }}
-                            </div>
-                        </div>
-                    </article>
-                    {{ end }} {{ end }}
-                </div>
-            </section>
-
-            <!-- Category Navigation Section -->
-            <section class="category-navigation">
+            <section class="category-navigation container">
                 <div class="category-grid">
                     <a href="/journal" class="category-card">
-                        <div class="category-icon">📔</div>
-                        <h3 class="category-name">Journal</h3>
-                        <p class="category-description">Daily reflections, travel stories, and personal moments</p>
-                        <span class="category-link">View all journal entries →</span>
+                        <span class="category-icon" aria-hidden="true">📔</span>
+                        <h3 class="category-name">{{ .Site.Config.extra.journal_title }}</h3>
+                        <p class="category-description">{{ .Site.Config.extra.journal_subtitle }}</p>
                     </a>
-
                     <a href="/books" class="category-card">
-                        <div class="category-icon">📚</div>
-                        <h3 class="category-name">Books</h3>
-                        <p class="category-description">Reviews and thoughts on books that touched my heart</p>
-                        <span class="category-link">View all book reviews →</span>
+                        <span class="category-icon" aria-hidden="true">📚</span>
+                        <h3 class="category-name">{{ .Site.Config.extra.books_title }}</h3>
+                        <p class="category-description">{{ .Site.Config.extra.books_subtitle }}</p>
                     </a>
-
                     <a href="/thoughts" class="category-card">
-                        <div class="category-icon">💭</div>
-                        <h3 class="category-name">Thoughts</h3>
-                        <p class="category-description">Quick reflections and fleeting observations</p>
-                        <span class="category-link">View all thoughts →</span>
+                        <span class="category-icon" aria-hidden="true">💭</span>
+                        <h3 class="category-name">{{ .Site.Config.extra.thoughts_title }}</h3>
+                        <p class="category-description">{{ .Site.Config.extra.thoughts_subtitle }}</p>
                     </a>
                 </div>
             </section>
         </main>
 
-        {{ template "partials/_footer.html" . }}
-
-        <script src="/js/main.js"></script>
-    </body>
-</html>
+{{ template "partials/_close.html" (dict "Site" .Site) }}

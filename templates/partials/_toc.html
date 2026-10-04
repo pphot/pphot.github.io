@@ -1,16 +1,14 @@
 {{ if .Page.Toc }}
-<nav class="toc-nav">
-    <h3 class="toc-title">Table of Contents</h3>
+<nav class="toc-nav" aria-labelledby="toc-title">
+    <h2 class="toc-title" id="toc-title">On this page</h2>
     <ul>
-        {{ range $h2 := .Page.Toc }}
+        {{ range .Page.Toc }}
         <li>
-            <a class="h2" href="#{{ $h2.ID }}">{{ $h2.Title }}</a>
-            {{ if $h2.Children }}
+            <a href="#{{ .ID }}">{{ .Title }}</a>
+            {{ if .Children }}
             <ul>
-                {{ range $h2.Children }}
-                <li>
-                    <a class="h3" href="#{{ .ID }}">{{ .Title }}</a>
-                </li>
+                {{ range .Children }}
+                <li><a href="#{{ .ID }}">{{ .Title }}</a></li>
                 {{ end }}
             </ul>
             {{ end }}

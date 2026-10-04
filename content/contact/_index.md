@@ -1,16 +1,8 @@
 +++
 title = "Contact"
 template = "contact.html"
-date = 2026-01-09
+description = "Get in touch about travel, books, photography, or just to say hello."
 generate_feed = false
 +++
 
-# Let's Connect
-
-I'd love to hear from you! Whether you want to chat about travel, books, photography, or just say hello.
-
-Feel free to reach out:
-
-- **Email:** [pphot@gmail.com](mailto:pphot@gmail.com)
-- **Instagram:** [@phuong_phot](https://instagram.com/phuong_phot)
-- **GitHub:** [pphot](https://github.com/pphot)
+I read everything that lands in my inbox. Tell me about a place you loved, a book that changed your mind, or a shot you are proud of, and I will get back to you.

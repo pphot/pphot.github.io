@@ -1,11 +1,14 @@
 +++
 title = "Harry Potter and the Prisoner of Azkaban: Time, Truth, and Finding Family"
-date = 2025-11-20
+date = 2025-11-20T00:00:00Z
+updated = 2025-11-20T00:00:00Z
 template = "post.html"
 description = "The book where everything gets deeper - the writing, the themes, the characters. My personal favorite of the series."
 tags = ["fantasy", "family", "belonging"]
 categories = ["books"]
 generate_feed = true
+series = "Harry Potter"
+series_order = 3
 
 [extra]
 img = "img/cover.webp"

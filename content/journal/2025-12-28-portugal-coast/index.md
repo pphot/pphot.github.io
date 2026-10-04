@@ -1,15 +1,16 @@
 +++
 title = "Coastal Wanderings: Three Days in Portugal"
-date = 2025-12-28
+date = 2025-12-28T00:00:00Z
+updated = 2025-12-28T00:00:00Z
 template = "post.html"
 description = "From the cliffs of Lagos to the streets of Lisbon, Portugal stole my heart with its warmth, colors, and endless ocean views."
 tags = ["travel", "ocean", "connection"]
 categories = ["journal"]
 generate_feed = true
+featured = true
 
 [extra]
-img = "/img/portugal.webp"
-featured = true
+img = "/img/gallery/golden-hour-08.webp"
 +++
 
 The Portuguese coast has a way of making you slow down. Maybe it's the sound of waves crashing against ancient cliffs, or the way the light turns everything golden in the late afternoon. Whatever it is, from the moment I stepped off the plane in Faro, I felt myself exhale – releasing the tension I didn't even know I was carrying.

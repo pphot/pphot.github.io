@@ -1,0 +1,13 @@
+{{- $format := "Jan 2, 2006" }}{{ if .Long }}{{ $format = "January 2, 2006" }}{{ end -}}
+<span class="post-meta">
+    {{- with .Post.Config.categories }}
+        {{- $category := index . 0 }}
+        {{- $icon := "✍️" }}
+        {{- if eq $category "journal" }}{{ $icon = "📔" }}{{ else if eq $category "books" }}{{ $icon = "📚" }}{{ else if eq $category "thoughts" }}{{ $icon = "💭" }}{{ end }}
+        <a class="post-category" href="/categories/{{ $category | urlize }}">{{ $icon }} {{ $category }}</a>
+    {{- end }}
+    <time class="post-date" datetime="{{ date .Post.Config.date "2006-01-02T15:04:05Z07:00" }}">{{ date .Post.Config.date $format }}</time>
+    {{- with .Post.ReadTime }}
+        <span class="reading-time">{{ . }} {{ $.Site.Config.extra.post_read_time_suffix }}</span>
+    {{- end }}
+</span>

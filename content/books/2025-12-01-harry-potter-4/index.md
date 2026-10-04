@@ -1,11 +1,14 @@
 +++
 title = "Harry Potter and the Goblet of Fire: Growing Up, Fast"
-date = 2025-12-01
+date = 2025-12-01T00:00:00Z
+updated = 2025-12-01T00:00:00Z
 template = "post.html"
 description = "The book where everything changes - darker, longer, and the moment when death becomes real."
 tags = ["fantasy", "coming-of-age", "loss"]
 categories = ["books"]
 generate_feed = true
+series = "Harry Potter"
+series_order = 4
 
 [extra]
 img = "img/cover.webp"

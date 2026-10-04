@@ -1,11 +1,15 @@
 +++
 title = "Harry Potter and the Philosopher's Stone: Where Magic Begins"
-date = 2025-10-25
+date = 2025-10-25T00:00:00Z
+updated = 2025-10-25T00:00:00Z
 template = "post.html"
 description = "The book that started it all - a story about belonging, friendship, and discovering you're more than you think you are."
 tags = ["fantasy", "coming-of-age", "friendship"]
 categories = ["books"]
 generate_feed = true
+series = "Harry Potter"
+series_order = 1
+featured = true
 
 [extra]
 img = "img/cover.webp"

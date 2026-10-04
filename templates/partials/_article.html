@@ -1,0 +1,148 @@
+{{- $url := printf "%s%s" .Site.Config.base_url (priority .Page.Permalink .Page.Path) }}
+{{- $title := .Page.Config.title }}
+{{- $cover := .Site.Config.extra.default_post_cover }}
+{{- with .Page.Config.extra.img }}
+    {{- if eq (index (split . "") 0) "/" }}{{ $cover = . }}{{ else }}{{ $cover = printf "%s%s" $.Page.Permalink . }}{{ end }}
+{{- end }}
+<header class="post-header">
+    {{ if ne $cover .Site.Config.extra.default_post_cover }}
+        <div class="post-featured-image">
+            <img src="{{ $cover }}" alt="{{ $title }}" width="1200" height="630" loading="eager" fetchpriority="high" onerror="this.src='{{ .Site.Config.extra.default_post_cover }}'" />
+        </div>
+    {{ end }}
+
+    {{ template "partials/_post_meta.html" (dict "Post" .Page "Site" .Site "Long" true) }}
+
+    <h1 class="post-title-single">{{ $title }}</h1>
+
+    {{ with .Page.Config.description }}
+        <p class="post-intro">{{ . }}</p>
+    {{ end }}
+
+    {{ with .Page.Config.tags }}
+        <div class="post-tags">
+            {{ range . }}<a class="post-tag" href="/tags/{{ urlize . }}">#{{ . }}</a>{{ end }}
+        </div>
+    {{ end }}
+</header>
+
+{{- if .Site.Config.extra.outdate_alert_days }}
+    <p
+        class="outdate-alert is-hidden"
+        id="outdate-alert"
+        role="status"
+        data-days="{{ .Site.Config.extra.outdate_alert_days }}"
+        data-before="{{ .Site.Config.extra.outdate_alert_text_before }}"
+        data-after="{{ .Site.Config.extra.outdate_alert_text_after }}"
+    ></p>
+{{- end }}
+
+<div class="prose"{{ with .Site.Config.extra.mermaid_src }} data-mermaid-src="{{ . }}"{{ end }}>
+    {{ .Page.Content }}
+</div>
+
+<footer class="post-footer">
+    <div class="post-share">
+        <h2>{{ .Site.Config.extra.post_share_title }}</h2>
+        <div class="share-buttons">
+            <button type="button" class="share-button" data-share="x" data-title="{{ $title }}" data-url="{{ $url }}">{{ .Site.Config.extra.post_share_x }}</button>
+            <button type="button" class="share-button" data-share="facebook" data-url="{{ $url }}">{{ .Site.Config.extra.post_share_facebook }}</button>
+            <button type="button" class="share-button" data-share="email" data-title="{{ $title }}" data-url="{{ $url }}">{{ .Site.Config.extra.post_share_email }}</button>
+            <button type="button" class="share-button" data-share="copy" data-url="{{ $url }}">{{ .Site.Config.extra.post_share_copy }}</button>
+        </div>
+    </div>
+
+    {{- if .Site.Config.extra.reaction_endpoint }}
+        {{- $emojis := .Site.Config.extra.reaction_emojis }}
+        {{- with .Page.Config.extra.reaction_emojis }}{{ $emojis = . }}{{ end }}
+        <div
+            class="reaction {{ .Site.Config.extra.reaction_align }} is-pending"
+            role="group"
+            data-endpoint="{{ .Site.Config.extra.reaction_endpoint }}"
+            aria-label="Reactions to this post"
+            aria-live="polite"
+        >
+            {{ range $emojis }}
+            <button type="button" class="reaction-btn" data-emoji="{{ . }}" disabled>
+                <span aria-hidden="true">{{ . }}</span>
+                <span class="reaction-count" data-count>0</span>
+            </button>
+            {{ end }}
+        </div>
+    {{- end }}
+
+    <div class="post-author">
+        <img src="{{ .Site.Config.extra.avatar }}" alt="" class="author-avatar" width="56" height="56" loading="lazy" />
+        <div class="author-info">
+            <p class="author-name"><a href="/about">{{ .Site.Config.extra.name }}</a></p>
+            <p>{{ .Site.Config.extra.bio }}</p>
+        </div>
+    </div>
+
+    <p class="post-signoff">{{ .Site.Config.extra.ended_words }}</p>
+</footer>
+
+{{- with .Page.Series }}
+<section class="series-nav" aria-label="This series">
+    <p class="series-nav-label">
+        <a href="{{ .Permalink }}">{{ .Name }}</a>
+        <span class="series-nav-position">Part {{ .CurrentPart }} of {{ .TotalPosts }}</span>
+    </p>
+    <div class="series-nav-links">
+        {{ with .PreviousPost }}
+        <a class="series-nav-link" href="{{ .Permalink }}" rel="prev">&larr; <span>{{ .Title }}</span></a>
+        {{ end }}
+        {{ with .NextPost }}
+        <a class="series-nav-link" href="{{ .Permalink }}" rel="next"><span>{{ .Title }}</span> &rarr;</a>
+        {{ end }}
+    </div>
+</section>
+{{- end }}
+
+{{- /* The sections that hold posts. Older/newer links and related posts both
+       read this list, so a new post section is added in one place. */ -}}
+{{- $posts := concat
+    (get_section "journal").Children
+    (get_section "thoughts").Children
+    (get_section "books").Children
+-}}
+{{ template "partials/_post_nav.html" . }}
+{{ template "partials/_related_posts.html" (dict "Page" .Page "Site" .Site "Posts" $posts) }}
+
+{{- with .Site.Config.extra.comment_endpoint }}
+<section class="comments" id="comments" data-endpoint="{{ . }}" data-title="{{ $.Site.Config.extra.comments_title }}">
+    <h2 class="comments-title">{{ $.Site.Config.extra.comments_title }}</h2>
+    <p class="comments-status" id="comments-status" role="status">Loading comments…</p>
+    <div class="comments-list" id="comments-list"></div>
+    <form class="comment-form" id="comment-form" novalidate>
+        <div class="comment-form-row">
+            <label class="comment-form-label" for="comment-author">Name</label>
+            <input
+                class="comment-form-input"
+                id="comment-author"
+                name="author"
+                type="text"
+                maxlength="60"
+                autocomplete="name"
+                required
+            />
+        </div>
+        <div class="comment-form-row">
+            <label class="comment-form-label" for="comment-content">Comment</label>
+            <textarea
+                class="comment-form-input"
+                id="comment-content"
+                name="content"
+                rows="4"
+                maxlength="2000"
+                required
+            ></textarea>
+        </div>
+        <div class="comment-form-actions">
+            <button type="submit" class="btn">Post comment</button>
+            <button type="button" class="comment-form-cancel" hidden>Cancel</button>
+            <span class="comment-form-hint" id="comment-hint" role="status"></span>
+        </div>
+    </form>
+</section>
+{{- end }}

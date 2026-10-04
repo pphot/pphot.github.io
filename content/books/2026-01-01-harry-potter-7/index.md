@@ -1,11 +1,14 @@
 +++
 title = "Harry Potter and the Deathly Hallows: The End"
-date = 2026-01-01
+date = 2026-01-01T00:00:00Z
+updated = 2026-01-01T00:00:00Z
 template = "post.html"
 description = "No school, no safety, just war. The ending we needed - painful, brave, and ultimately hopeful."
 tags = ["fantasy", "war", "sacrifice", "hope"]
 categories = ["books"]
 generate_feed = true
+series = "Harry Potter"
+series_order = 7
 
 [extra]
 img = "img/cover.webp"

@@ -1,0 +1,14 @@
+{{ template "partials/_open.html" (dict "Site" .Site "Page" .Page "Section" .Section "Class" "serie-page") }}
+
+        <main id="main">
+            <div class="container">
+                {{ template "partials/_taxonomy_term.html" (dict
+                    "Title" (printf "%s" .Page.Term)
+                    "Pages" .Page.Pages
+                    "IndexUrl" "/series"
+                    "IndexLabel" "series"
+                ) }}
+            </div>
+        </main>
+
+{{ template "partials/_close.html" (dict "Site" .Site) }}

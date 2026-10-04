@@ -1,0 +1,14 @@
+<section class="section-header">
+    <h1>{{ .Title }}</h1>
+    {{ with .Subtitle }}<p class="section-subtitle">{{ . }}</p>{{ end }}
+</section>
+
+{{ if .Posts }}
+    <div class="post-grid">
+        {{ range sort_by "date" .Posts }}
+            {{ template "partials/_post_card.html" (dict "Post" . "Site" $.Site "Level" 2 "Class" "fade-in") }}
+        {{ end }}
+    </div>
+{{ else }}
+    <p class="section-empty">Nothing here yet. <a href="/archive">Browse the archive</a> or start writing.</p>
+{{ end }}

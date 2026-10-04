@@ -1,50 +1,29 @@
-<!doctype html>
-<html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
-    {{ template "partials/_head.html" . }}
-    <body class="section-page thoughts-page">
-        <a href="#main" class="skip-to-content">{{ .Site.Config.extra.skip_to_content }}</a>
-        
-        {{ template "partials/_header.html" . }}
-        
+{{ template "partials/_open.html" (dict "Site" .Site "Page" .Page "Section" .Section "Class" "section-page thoughts-page") }}
+
         <main id="main">
             <div class="container">
-                <div class="section-header">
+                <section class="section-header">
                     <h1>{{ .Site.Config.extra.thoughts_title }}</h1>
                     <p class="section-subtitle">{{ .Site.Config.extra.thoughts_subtitle }}</p>
-                </div>
-                
+                </section>
+
                 <div class="thoughts-timeline">
-                    {{ range reverse .Section.Children }}
-                    <article class="thought-card">
-                        <div class="thought-header">
-                            <time class="thought-date" datetime="{{ .Config.date }}">
-                                {{ date .Config.date "January 2, 2006" }}
-                            </time>
-                            <div class="thought-tags">
-                                {{ range .Config.tags }}
-                                <span class="thought-tag">#{{ . }}</span>
+                    {{ range sort_by "date" .Section.Children }}
+                        <article class="thought-card">
+                            <div class="thought-card-meta">
+                                {{ template "partials/_post_meta.html" (dict "Post" . "Site" $.Site) }}
+                                {{ with .Config.tags }}
+                                    <span class="thought-tags">
+                                        {{ range . }}<a class="thought-tag" href="/tags/{{ urlize . }}">#{{ . }}</a>{{ end }}
+                                    </span>
                                 {{ end }}
                             </div>
-                        </div>
-                        
-                        <h2 class="thought-title">
-                            <a href="{{ .Permalink }}">{{ .Config.title }}</a>
-                        </h2>
-                        
-                        {{ $summary := .Summary }}
-                        {{ if $summary }}
-                        <div class="thought-excerpt">{{ $summary }}</div>
-                        {{ end }}
-                        
-                        <a href="{{ .Permalink }}" class="thought-link">Read more →</a>
-                    </article>
+                            <h2 class="thought-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+                            {{ with .Summary }}<p class="thought-excerpt">{{ . }}</p>{{ end }}
+                        </article>
                     {{ end }}
                 </div>
             </div>
         </main>
-        
-        {{ template "partials/_footer.html" . }}
-        
-        <script src="/js/main.js"></script>
-    </body>
-</html>
+
+{{ template "partials/_close.html" (dict "Site" .Site) }}

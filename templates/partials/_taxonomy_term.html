@@ -1,0 +1,16 @@
+<section class="section-header">
+    <h1>{{ .Title }}</h1>
+    <p class="section-subtitle">
+        {{ len .Pages }} {{ pluralize "post" (len .Pages) }} &middot; <a href="{{ .IndexUrl }}">All {{ .IndexLabel }}</a>
+    </p>
+</section>
+
+<div class="post-list">
+    {{ range .Pages }}
+        <article class="post-list-item">
+            {{ with .Position }}<span class="post-list-position">{{ . }}</span>{{ end }}
+            <time class="post-list-date" datetime="{{ date .Config.date "2006-01-02" }}">{{ date .Config.date "Jan 2, 2006" }}</time>
+            <h2 class="post-list-title"><a href="{{ .Permalink }}">{{ priority .Title (index .Config "title") }}</a></h2>
+        </article>
+    {{ end }}
+</div>

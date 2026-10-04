@@ -4,143 +4,177 @@ title = "Phuong"
 description = "A lifestyle blog about journeys, books, photography, and personal reflections"
 language = "en"
 output_dir = "public"
+summary_length = 2
+
+# Chroma style for fenced code blocks. dracula keeps its own dark background in
+# both themes.
+syntax_theme = "dracula"
+
 minify_css = true
 minify_html = true
 minify_js = true
+minify_json = true
+minify_svg = true
+minify_xml = true
 
-# Auto-generate summaries from first N sentences (when description is not provided)
-summary_length = 2
-
-# Sections to include in homepage cache key (for incremental builds)
-homepage_cache_sections = ["journal", "books", "thoughts"]
-
-#=========================================================================================
 [extra]
 name = "Phuong"
-id = "pphot"
-email = "pphot@gmail.com"
-bio = "Sharing life's journey • Daily thoughts • Travel • Books"
+bio = "Sharing life's journey · daily thoughts · travel · books"
 avatar = "/img/avatar.webp"
 img = "/img/post-cover.webp"
+hero_image = "/img/hero.webp"
+hero_image_1280 = "/img/hero-1280.webp"
+hero_image_480 = "/img/hero-480.webp"
+hero_image_768 = "/img/hero-768.webp"
+default_post_cover = "/img/post-cover.webp"
+
+# Loaded on demand, and only on pages that contain a mermaid fence.
+mermaid_src = "https://cdn.jsdelivr.net/npm/mermaid@11.17.2/dist/mermaid.esm.min.mjs"
+
 links = [
-  { name = "Instagram", icon = "instagram", url = "#" },
+  { name = "Instagram", icon = "instagram", url = "https://instagram.com/phuong_phot" },
   { name = "Email", icon = "email", url = "mailto:pphot@gmail.com" },
 ]
 
-# Primary navigation (header) - core content only
 sections = [
-  { name = "thoughts", path = "/thoughts", is_external = false },
-  { name = "journal", path = "/journal", is_external = false },
-  { name = "books", path = "/books", is_external = false },
-  { name = "about", path = "/about", is_external = false },
+  { name = "thoughts", path = "/thoughts" },
+  { name = "journal", path = "/journal" },
+  { name = "books", path = "/books" },
+  { name = "about", path = "/about" },
 ]
 
-# Secondary navigation (footer) - simple and minimal
 footer_links = [
-  { name = "contact", path = "/contact", is_external = false },
-  { name = "rss", path = "/atom.xml", is_external = false },
+  { name = "Archive", path = "/archive" },
+  { name = "Tags", path = "/tags" },
+  { name = "Categories", path = "/categories" },
+  { name = "Series", path = "/series" },
+  { name = "Contact", path = "/contact" },
+  { name = "RSS", path = "/atom.xml" },
 ]
 
-nav_separator = "☰"
-nav_wrapper_left = ""
-nav_wrapper_right = ""
-nav_wrapper_separator = ""
-# Currently working on status badge (shown next to name)
 currently_status = "exploring new places"
-currently_status_link = "#"
-ended_words = "Thanks for reading! I'd love to hear your thoughts."
-reaction_align = "right" # "left" | "center" | "right"
-reaction_endpoint = "https://reaction.tienduy-nguyen-dev.workers.dev"
-outdate_alert_text_before = "This post was written "
-outdate_alert_text_after = " days ago."
-recent_more_text = "View All Posts"
-enable_analytics = false
+currently_status_link = "/journal/"
 
-# Homepage section titles
+skip_to_content = "Skip to content"
+ended_words = "Thanks for reading. If this gave you something to think about, I would love to hear your thoughts."
+
+# Homepage
+home_welcome_prefix = "Welcome to"
 home_featured_title = "Featured Stories"
 home_featured_subtitle = "Handpicked moments and reflections"
+home_featured_count = 6
 home_latest_title = "Latest Posts"
-home_latest_subtitle = "Recent stories from all corners"
-home_welcome_prefix = "Welcome to"
-home_hero_alt = "Pphot - Lifestyle Blog"
+home_latest_subtitle = "Recent writing from every corner of the blog"
+home_latest_count = 9
+recent_more_text = "Browse the archive"
 
-# Section page titles and subtitles
+# Section pages
 journal_title = "📔 Journal"
 journal_subtitle = "Travel stories, vacation memories, life adventures, plus food stories and recipes"
 thoughts_title = "💭 Daily Thoughts"
 thoughts_subtitle = "Short moments, daily practice, honest reflections"
 books_title = "📚 Books"
 books_subtitle = "Reviews, reflections, and literary discoveries"
+
 about_title = "About Pphot"
+archive_title = "Archive"
+search_title = "Search"
+search_placeholder = "Search posts, books, travel notes…"
+
+# Taxonomy pages
+tags_title = "All Tags"
+tags_subtitle = "Browse every post by topic"
+categories_title = "Categories"
+categories_subtitle = "Journal entries, book reviews, and daily thoughts"
+series_title = "Series"
+series_subtitle = "Multi part reads, in reading order"
+
+# Post page
+post_read_time_suffix = "min read"
+post_share_title = "Share this post"
+post_share_x = "X"
+post_share_facebook = "Facebook"
+post_share_email = "Email"
+post_share_copy = "Copy link"
+
+comment_endpoint = "https://comment-blog.tienduy-nguyen-dev.workers.dev"
+comments_title = "Join the conversation"
+
+reaction_endpoint = "https://reaction.tienduy-nguyen-dev.workers.dev"
+reaction_align = "right"
+reaction_emojis = ["👍", "❤️", "🥹"]
+
+outdate_alert_days = 180
+outdate_alert_text_before = "Published"
+outdate_alert_text_after = "days ago, so some details may have changed."
 
 # Contact page
 contact_title = "Get in Touch"
-contact_subtitle = "I'd love to hear from you! Whether you want to chat about travel, books, photography, or just say hello."
-contact_email_label = "Email"
-contact_instagram_label = "Instagram"
-contact_instagram_handle = "@phuong_phot"
-contact_instagram_url = "https://instagram.com/phuong_phot"
-contact_github_label = "GitHub"
-contact_github_handle = "pphot"
-contact_github_url = "https://github.com/pphot"
-contact_footer_message = "Looking forward to connecting with you! 🌟"
+contact_footer_message = "Looking forward to connecting with you."
 
 # 404 page
 error_404_title = "Lost in the Journey?"
-error_404_message = "The page you're looking for seems to have wandered off the path."
-error_404_button = "Take Me Home"
+error_404_message = "The page you were looking for wandered off the path. Try the archive, or search for what you needed."
+error_404_button = "Take me home"
+error_404_archive = "Open archive"
+error_404_search_label = "Search the blog"
+error_404_search_placeholder = "Search posts…"
+error_404_search_button = "Search"
 
-# Post page
-post_share_title = "Share this post"
-post_read_time_suffix = "min read"
-post_share_twitter = "Twitter"
-post_share_facebook = "Facebook"
-post_share_email = "Email"
-
-# Related posts configuration
-related_posts_max = 10  # Maximum posts to show PER TAG (not total)
-related_posts_randomize = true  # Randomize order for variety
-
-# Footer
 footer_copyright_suffix = "All moments captured with love"
 
-# Accessibility
-skip_to_content = "Skip to content"
+# Card thumbnails, so a listing page never downloads a full sized cover.
+[extra.thumbnails]
+"/books/hai-van-dam-duoi-day-bien/img/cover.webp" = "/img/thumbs/hai-van-dam-duoi-day-bien.webp"
+"/books/harry-potter-1/img/cover.webp" = "/img/thumbs/harry-potter-1.webp"
+"/books/harry-potter-2/img/cover.webp" = "/img/thumbs/harry-potter-2.webp"
+"/books/harry-potter-3/img/cover.webp" = "/img/thumbs/harry-potter-3.webp"
+"/books/harry-potter-4/img/cover.webp" = "/img/thumbs/harry-potter-4.webp"
+"/books/harry-potter-5/img/cover.webp" = "/img/thumbs/harry-potter-5.webp"
+"/books/harry-potter-6/img/cover.webp" = "/img/thumbs/harry-potter-6.webp"
+"/books/harry-potter-7/img/cover.webp" = "/img/thumbs/harry-potter-7.webp"
+"/img/braiding-sweetgrass.webp" = "/img/thumbs/braiding-sweetgrass.webp"
+"/img/gallery/golden-hour-03.webp" = "/img/thumbs/golden-hour-03.webp"
+"/img/gallery/golden-hour-08.webp" = "/img/thumbs/golden-hour-08.webp"
+"/img/paris.webp" = "/img/thumbs/paris.webp"
+"/img/post-cover.webp" = "/img/thumbs/post-cover.webp"
 
-# Default images
-default_post_cover = "/img/post-cover.webp"
-hero_image = "/img/hero.webp"
+# Atom feed author. Sub-tables come last: a plain key after a table header would
+# belong to that table instead of [extra].
+[extra.author]
+name = "Phuong"
+email = "pphot@gmail.com"
 
-# Homepage bento cards configuration
-[[extra.bento_cards]]
-type = "focus"
-icon = "✈️"
-title = "Currently"
-lines = [
-  { prompt = "📍", text = "exploring new destinations" },
-  { prompt = "📖", text = "reading great stories" },
-  { prompt = "📸", text = "capturing moments" }
-]
+[[extra.contact_methods]]
+icon = "✉️"
+label = "Email"
+value = "pphot@gmail.com"
+url = "mailto:pphot@gmail.com"
 
-[[extra.bento_cards]]
-type = "interests"
-icon = "💭"
-title = "Interests"
-tags = ["Daily Life", "Travel", "Books", "Writing", "Thoughts", "English Practice"]
+[[extra.contact_methods]]
+icon = "📷"
+label = "Instagram"
+value = "@phuong_photo"
+url = "https://instagram.com/phuong_photo"
+new_tab = true
 
-[[extra.bento_cards]]
-type = "now"
-icon = "🌟"
-title = "Favorites"
-lines = [
-  { prompt = ">", text = "writing daily thoughts" },
-  { prompt = ">", text = "practicing English" },
-  { prompt = ">", text = "sharing life moments" }
-]
+[[extra.contact_methods]]
+icon = "💻"
+label = "GitHub"
+value = "pphot"
+url = "https://github.com/pphot"
+new_tab = true
 
+[plugins.fingerprint]
+enabled = true
 
-# Taxonomy configuration
+# Gozzi renders $math$ delimiters and ```mermaid fences by default. Mermaid
+# works because main.js loads the diagram library when a page has one. Math has
+# no marker in the emitted HTML and needs a full KaTeX bundle, so it stays off.
+[plugins.markdown]
+math = false
+
 [taxonomies]
 tags = { enabled = true, paginate_by = 0 }
 categories = { enabled = true, paginate_by = 0 }
-series = { enabled = false, paginate_by = 0 }
+series = { enabled = true, paginate_by = 0 }

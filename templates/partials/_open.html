@@ -1,0 +1,6 @@
+<!doctype html>
+<html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
+    {{ template "partials/_head.html" . }}
+    <body class="{{ .Class }}">
+        <a href="#main" class="skip-to-content">{{ .Site.Config.extra.skip_to_content }}</a>
+        {{ template "partials/_header.html" . }}

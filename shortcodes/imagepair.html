@@ -1,0 +1,13 @@
+<div class="image-pair">
+    <div class="image-pair-grid">
+        {{- if .left }}
+        <img src="{{ .left }}" alt="{{ .left_alt }}" loading="lazy" decoding="async" />
+        {{- end }}
+        {{- if .right }}
+        <img src="{{ .right }}" alt="{{ .right_alt }}" loading="lazy" decoding="async" />
+        {{- end }}
+    </div>
+    {{- if .caption }}
+    <p class="image-pair-caption">{{ .caption }}</p>
+    {{- end }}
+</div>

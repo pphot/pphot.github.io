@@ -1,0 +1,13 @@
+{{ template "partials/_open.html" (dict "Site" .Site "Page" .Page "Section" .Section "Class" "categories-page") }}
+
+        <main id="main">
+            <div class="container">
+                {{ template "partials/_taxonomy_index.html" (dict
+                    "Title" .Site.Config.extra.categories_title
+                    "Subtitle" .Site.Config.extra.categories_subtitle
+                    "Terms" .Page.Terms
+                ) }}
+            </div>
+        </main>
+
+{{ template "partials/_close.html" (dict "Site" .Site) }}

@@ -1,0 +1,36 @@
+{{- $cover := .Site.Config.extra.default_post_cover -}}
+{{- with .Post.Config.extra.img -}}
+    {{- if eq (index (split . "") 0) "/" }}{{ $cover = . }}{{ else }}{{ $cover = printf "%s%s" $.Post.Permalink . }}{{ end -}}
+{{- end -}}
+{{- $srcset := "" -}}
+{{- with index $.Site.Config.extra.thumbnails $cover }}{{ $srcset = printf "%s 480w, %s 1200w" . $cover }}{{ end -}}
+<article class="post-card{{ with .Class }} {{ . }}{{ end }}">
+    <a href="{{ .Post.Permalink }}" class="post-card-image" tabindex="-1" aria-hidden="true">
+        <img
+            src="{{ $cover }}"
+            {{ with $srcset }}srcset="{{ . }}" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"{{ end }}
+            alt=""
+            width="400"
+            height="250"
+            loading="lazy"
+            decoding="async"
+            onerror="this.src='{{ .Site.Config.extra.default_post_cover }}'"
+        />
+    </a>
+    <div class="post-card-content">
+        {{ template "partials/_post_meta.html" (dict "Post" .Post "Site" .Site) }}
+        {{ if eq .Level 2 }}
+        <h2 class="post-title"><a href="{{ .Post.Permalink }}">{{ .Post.Title }}</a></h2>
+        {{ else }}
+        <h3 class="post-title"><a href="{{ .Post.Permalink }}">{{ .Post.Title }}</a></h3>
+        {{ end }}
+        {{ with .Post.Summary }}
+        <p class="post-description">{{ . }}</p>
+        {{ end }}
+        {{ with .Post.Config.tags }}
+        <div class="post-tags">
+            {{ range . }}<a class="post-tag" href="/tags/{{ urlize . }}">#{{ . }}</a>{{ end }}
+        </div>
+        {{ end }}
+    </div>
+</article>

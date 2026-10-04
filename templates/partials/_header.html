@@ -1,28 +1,74 @@
+{{- $current := .Page.Permalink -}}
 <header>
     <div class="header-container">
         <a href="/" class="site-logo">{{ .Site.Config.title }}</a>
-        
-        <nav class="main-nav">
+
+        {{ with .Site.Config.extra.currently_status }}
+            <a href="{{ $.Site.Config.extra.currently_status_link }}" class="site-status">
+                <span class="site-status-dot" aria-hidden="true"></span>
+                {{ . }}
+            </a>
+        {{ end }}
+
+        <nav class="main-nav" aria-label="Main">
             <ul>
                 {{ range .Site.Config.extra.sections }}
-                <li><a href="{{ .path }}">{{ .name }}</a></li>
+                <li>
+                    <a href="{{ .path }}"{{ if and $current (has_prefix $current .path) }} aria-current="page"{{ end }}>{{ .name }}</a>
+                </li>
                 {{ end }}
             </ul>
         </nav>
-        
-        <button class="mobile-menu-toggle" aria-label="Toggle menu" id="mobile-menu-toggle">
-            ☰
-        </button>
+
+        <div class="header-actions">
+            <button type="button" class="icon-button" id="search-toggle" data-search-src="{{ fingerprint "/js/search.js" }}" aria-label="Search posts" title="Search (Cmd+K)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+            </button>
+            <button type="button" class="icon-button" id="theme-toggle" aria-label="Switch colour theme" title="Switch colour theme">
+                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"></path></svg>
+                <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"></path></svg>
+            </button>
+            <button type="button" class="icon-button mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+            </button>
+        </div>
     </div>
 </header>
 
-<nav class="mobile-nav" id="mobile-nav">
-    <button class="mobile-nav-close" aria-label="Close menu" id="mobile-nav-close">
-        ×
-    </button>
+<nav class="mobile-nav" id="mobile-nav" aria-label="Mobile" hidden>
+    <button type="button" class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">&times;</button>
     <ul>
         {{ range .Site.Config.extra.sections }}
-        <li><a href="{{ .path }}">{{ .name }}</a></li>
+        <li>
+            <a href="{{ .path }}"{{ if and $current (has_prefix $current .path) }} aria-current="page"{{ end }}>{{ .name }}</a>
+        </li>
         {{ end }}
     </ul>
 </nav>
+
+<dialog class="search-modal" id="search-dialog" aria-label="Search posts">
+    <div class="search-box">
+        <svg class="search-box-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+        <input
+            type="search"
+            id="search-dialog-input"
+            placeholder="Search posts…"
+            aria-label="Search posts"
+            autocomplete="off"
+            autocapitalize="off"
+            spellcheck="false"
+            role="combobox"
+            aria-expanded="false"
+            aria-controls="search-dialog-results"
+            aria-autocomplete="list"
+        />
+        <button type="button" class="search-box-close" id="search-close" aria-label="Close search">&times;</button>
+    </div>
+    <p class="search-count" id="search-dialog-status" role="status"></p>
+    <div class="search-results" id="search-dialog-results" role="listbox" aria-label="Search results"></div>
+    <div class="search-hint">
+        <kbd>&uarr;</kbd><kbd>&darr;</kbd> navigate
+        <kbd>&crarr;</kbd> open
+        <kbd>esc</kbd> close
+    </div>
+</dialog>
